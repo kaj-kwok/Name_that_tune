@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config()
 const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
@@ -11,33 +12,13 @@ App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
 App.use(Express.static('public'));
 App.use(cors())
-
-// App.get('/login', (req, res) => {
-//   var scopes = ['user-read-private', 'user-read-email'],
-//     redirectUri = 'http://localhost:3000/auth/callback',
-//     clientId = '036db34aae6d4d70a636cd76c4758224',
-//     state = 'some-state-of-my-choice';
-
-//   // Setting credentials can be done in the wrapper's constructor, or using the API object's setters.
-//   var spotifyApi = new SpotifyWebApi({
-//     redirectUri: redirectUri,
-//     clientId: clientId
-//   });
-
-//   // Create the authorization URL
-//   var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
-//   console.log(authorizeURL)
-
-//   // https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
-//   res.redirect(authorizeURL)
-
-// })
+App.use(morgan("dev"));
 
 App.post('/login', (req, res) => {
 
   const credentials = {
-    clientId: '036db34aae6d4d70a636cd76c4758224',
-    clientSecret: '785208f392dd452b875a8cda1a807be7',
+    clientId: process.env.SPOTIFY_CLIENT_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     redirectUri: 'http://localhost:3000/auth/callback'
   };
 
@@ -74,8 +55,8 @@ App.post('/refresh', (req, res) => {
   const refreshToken = req.body.refreshToken
   console.log("refresh running")
   const spotifyApi = new SpotifyWebApi({
-    clientId: '036db34aae6d4d70a636cd76c4758224',
-    clientSecret: '785208f392dd452b875a8cda1a807be7',
+    clientId: process.env.SPOTIFY_CLIENT_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     redirectUri: 'http://localhost:3000/auth/callback',
     refreshToken,
   })
