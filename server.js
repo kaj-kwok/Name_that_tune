@@ -15,6 +15,7 @@ App.use(cors())
 App.use(morgan("dev"));
 
 App.post('/login', (req, res) => {
+  console.log("Post request made to Spotify API");
 
   const credentials = {
     clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -26,7 +27,6 @@ App.post('/login', (req, res) => {
 
   // The code that's returned as a query parameter to the redirect URI
   const code = req.body.code;
-  console.log(code)
 
   // Retrieve an access token and a refresh token
   spotifyApi.authorizationCodeGrant(code).then(
@@ -39,6 +39,7 @@ App.post('/login', (req, res) => {
       spotifyApi.setAccessToken(data.body['access_token']);
       spotifyApi.setRefreshToken(data.body['refresh_token']);
 
+      // send access token info back to client
       res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import SpotifyWebApi from "spotify-web-api-node"
 import useAuth from "./useAuth"
 import React from 'react'
-import axios from "axios"
 import Player from './Player'
 import ResponsiveAppBar from './Nav'
 import ComboBox from "./SearchBar"
@@ -10,7 +9,8 @@ import ColorButtons from "./Button"
 import FullWidthTextField from "./GuessBox"
 
 export default function Dashboard({ code }) {
-  const accessToken = useAuth(code)
+  const { accessToken, refreshToken } = useAuth(code)
+
   return (
     <>
       <ResponsiveAppBar/>
@@ -29,6 +29,7 @@ export default function Dashboard({ code }) {
       <ComboBox className="combo-box"/>
       <ColorButtons/>
     </div>
+    <Player accessToken={accessToken} refreshToken={refreshToken} />
     </>
   )
 }
