@@ -6,10 +6,11 @@ export default function ComboBox() {
   return (
     <Autocomplete
       disablePortal
+      size="small"
       id="combo-box-demo"
       options={top100Films}
       sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Movie" />}
+      renderInput={(params) => <TextField {...params} label="Can you guess the song?" />}
     />
   );
 }

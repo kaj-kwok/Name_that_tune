@@ -8,12 +8,16 @@ import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
 import FullWidthTextField from "./GuessBox"
 
+
+
+
+
 export default function Dashboard({ code }) {
   const { accessToken, refreshToken } = useAuth(code)
 
   return (
-    <>
-      <ResponsiveAppBar/>
+    <div className="body">
+      <ResponsiveAppBar />
       <div className="guess-box">
         <FullWidthTextField className="guess" label="Guess 2"/>
         <FullWidthTextField className="guess"/>
@@ -22,14 +26,13 @@ export default function Dashboard({ code }) {
         <FullWidthTextField className="guess"/>
         <FullWidthTextField className="guess"/>
       </div>
-    <div className="player">
-      <Player accessToken={accessToken} />
+      <div className="player">
+        <Player accessToken={accessToken} refreshToken={refreshToken} />    
+      </div>
+      <div className="submit-form">
+        <ComboBox className="combo-box"/>
+        <ColorButtons/>
+      </div>
     </div>
-    <div className="submit-form">
-      <ComboBox className="combo-box"/>
-      <ColorButtons/>
-    </div>
-    <Player accessToken={accessToken} refreshToken={refreshToken} />
-    </>
   )
 }
