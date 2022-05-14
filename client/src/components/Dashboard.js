@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react"
-import SpotifyWebApi from "spotify-web-api-node"
 import useAuth from "./useAuth"
 import React from 'react'
 import Player from './Player'
@@ -19,19 +17,22 @@ export default function Dashboard({ code }) {
     <div className="body">
       <ResponsiveAppBar />
       <div className="guess-box">
-        <FullWidthTextField className="guess" label="Guess 2"/>
-        <FullWidthTextField className="guess"/>
-        <FullWidthTextField className="guess"/>
-        <FullWidthTextField className="guess"/>
-        <FullWidthTextField className="guess"/>
-        <FullWidthTextField className="guess"/>
+        <FullWidthTextField className="guess" label="Guess 2" />
+        <FullWidthTextField className="guess" />
+        <FullWidthTextField className="guess" />
+        <FullWidthTextField className="guess" />
+        <FullWidthTextField className="guess" />
+        <FullWidthTextField className="guess" />
+      </div>
+      <div className="player">
+        <Player accessToken={accessToken} refreshToken={refreshToken} />
+      </div>
+      <div className="submit-form">
+        <ComboBox className="combo-box" />
+        <ColorButtons />
       </div>
       <div className="player">
         <Player accessToken={accessToken} refreshToken={refreshToken} />    
-      </div>
-      <div className="submit-form">
-        <ComboBox className="combo-box"/>
-        <ColorButtons/>
       </div>
     </div>
   )
