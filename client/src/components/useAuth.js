@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios';
 
 export default function useAuth(code) {
@@ -14,9 +14,8 @@ export default function useAuth(code) {
         setAccessToken(res.data.accessToken)
         setRefreshToken(res.data.refreshToken)
         setExpiresIn(res.data.expiresIn)
-        //clear token information from URL, set to root URL
+        //clear query parameters from URL, set to root URL
         window.history.pushState({}, null, "/")
-        console.log(accessToken)
       })
       //if code is expired, redirect to login
       .catch(() => {
@@ -26,7 +25,7 @@ export default function useAuth(code) {
 
   //post route to refresh our accessToken using the refreshToken
   useEffect(() => {
-
+    // conditional to prevent code from running if there is no refresh/expire token set
     if (!refreshToken || !expiresIn) return
     const interval = setInterval(() => {
       axios.post('http://localhost:3001/refresh', {
@@ -45,5 +44,5 @@ export default function useAuth(code) {
     return () => clearInterval(interval)
   }, [expiresIn, refreshToken])
 
-  return accessToken
+  return { accessToken, refreshToken }
 }
