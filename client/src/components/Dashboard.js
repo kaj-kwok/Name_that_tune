@@ -31,9 +31,6 @@ export default function Dashboard({ code }) {
         <ComboBox className="combo-box" />
         <ColorButtons />
       </div>
-      <div className="player">
-        <Player accessToken={accessToken} refreshToken={refreshToken} />    
-      </div>
     </div>
   )
 }
