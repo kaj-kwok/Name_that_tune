@@ -2,7 +2,8 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-export default function ComboBox() {
+export default function ComboBox({ getGuess }) {
+
   return (
     <Autocomplete
       disablePortal
@@ -10,7 +11,8 @@ export default function ComboBox() {
       id="combo-box-demo"
       options={top100Films}
       sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Can you guess the song?" />}
+      onChange={(e, value) => getGuess(value)}
+      renderInput={(params) => <TextField {...params} label="Can you guess the Song" />}
     />
   );
 }

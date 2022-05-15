@@ -62,20 +62,23 @@ App.post('/refresh', (req, res) => {
     refreshToken,
   })
 
-  spotifyApi.refreshAccessToken().then(
-    (data) => {
-      res.json({
-        accessToken: data.body.accessToken,
-        expiresIn: data.body.expiresIn,
-      })
+  spotifyApi.refreshAccessToken()
+    .then(function (data) {
+      console.log('The refreshed token expires in ' + data.body['expires_in']);
+      console.log('The refreshed access token is ' + data.body['access_token']);
 
       // Save the access token so that it's used in future calls
       spotifyApi.setAccessToken(data.body['access_token']);
+
+      res.json({
+        accessToken: data.body.access_token,
+        expiresIn: data.body.expires_in,
+      })
     },
-    function (err) {
-      console.log('Could not refresh access token', err);
-    }
-  );
+      function (err) {
+        console.log('Could not refresh access token', err);
+      }
+    );
 })
 
 // Sample GET route
