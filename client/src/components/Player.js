@@ -57,7 +57,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh }) {
         }
       };
     }
-  }, [accessToken]);
+  }, []);
 
   // changeDevice if device state is updated
   useEffect(() => {

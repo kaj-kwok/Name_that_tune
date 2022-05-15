@@ -21,11 +21,13 @@ export default function Dashboard({ code }) {
   let placeholderArray = [0, 1, 2, 3, 4, 5]
 
   // creates the fields that holds the guesses
-  const guessDisplay = placeholderArray.map((answer, index) => {
+  const guessDisplay = answers.map((answer, index) => {
+    console.log(answer.label)
     return (
       <FullWidthTextField
+        key={index}
         className="guess"
-        answer={answer}
+        value={answer.label}
         label={index + 1}
       />
     )
@@ -35,6 +37,7 @@ export default function Dashboard({ code }) {
     console.log("currentGuess", currentGuess);
     const newAnswers = [...answers]
     newAnswers.push(currentGuess)
+    console.log(newAnswers);
     setAnswers(newAnswers)
   }
 
@@ -46,7 +49,7 @@ export default function Dashboard({ code }) {
         {guessDisplay}
       </div>
       <div className="player">
-        <Player accessToken={accessToken} refreshToken={refreshToken} makePostRequesttoRefresh={makePostRequesttoRefresh} />
+        {accessToken ? <Player accessToken={accessToken} refreshToken={refreshToken} makePostRequesttoRefresh={makePostRequesttoRefresh} /> : <div>loading</div>}
       </div>
       <div className="submit-form">
         <ComboBox className="combo-box" getGuess={getGuess} />

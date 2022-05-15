@@ -9,15 +9,16 @@ export default function FullWidthTextField(props) {
       sx={{
         width: 400,
         maxWidth: '100%',
-        
+
       }}
     >
-      <TextField 
-      fullWidth 
-      disabled
-      size="small"
-      label={"Guess #" + props.label} 
-      id="fullWidth" />
+      <TextField
+        fullWidth
+        disabled
+        size="small"
+        label={"Guess #" + props.label}
+        value={props.value}
+        id="fullWidth" />
     </Box>
   );
 }
