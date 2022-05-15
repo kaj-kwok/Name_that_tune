@@ -1,12 +1,14 @@
-body {
-  background-color: black;
+.body {
+  /* background-color: black; */
 }
+
 
 .login {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: black;
 }
 
 

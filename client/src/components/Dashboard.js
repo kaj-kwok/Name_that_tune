@@ -4,7 +4,7 @@ import Player from './Player'
 import ResponsiveAppBar from './Nav'
 import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
-import FullWidthTextField from "./GuessBox"
+import GuessBox from "./GuessBox"
 import { useState } from 'react';
 
 export default function Dashboard({ code }) {
@@ -14,11 +14,10 @@ export default function Dashboard({ code }) {
   const NUMBER_OF_GUESSES = 6
 
   const getGuess = (guess) => {
-    setCurrentGuess(guess.label)
+    setCurrentGuess(guess)
   }
 
-  // placeholder function to be replaced by guess array
-  let placeholderArray = [0, 1, 2, 3, 4, 5]
+  
 
   //function to calculate the rows 
   const currentRows = function () {
@@ -33,11 +32,11 @@ export default function Dashboard({ code }) {
   const guessDisplay = rowsToDisplay.map((answer, index) => {
     console.log(answer)
     return (
-      <FullWidthTextField
+      <GuessBox
         key={index}
         className="guess"
         value={answer}
-        label={index + 1}
+        placeholder={index + 1}
       />
     )
   })

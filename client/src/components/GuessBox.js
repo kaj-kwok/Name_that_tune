@@ -2,8 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function FullWidthTextField(props) {
 
+export default function GuessBox(props) {
   return (
     <Box
       sx={{
@@ -16,9 +16,11 @@ export default function FullWidthTextField(props) {
         fullWidth
         disabled
         size="small"
-        label={"Guess #" + props.label}
+        placeholder={"Guess #" + props.placeholder}
         value={props.value}
-        id="fullWidth" />
+        id="fullWidth" 
+        />
+
     </Box>
   );
 }
