@@ -13,8 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import LightSwitch from './Switch';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function ResponsiveAppBar() {
@@ -37,7 +39,6 @@ export function ResponsiveAppBar() {
   };
 
   return ( 
-    <div className='nav-bar'>
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -115,6 +116,7 @@ export function ResponsiveAppBar() {
           >
             LOGO
           </Typography>
+          <LightSwitch/>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -126,9 +128,12 @@ export function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-
+          <div className='icons'>
+            <Box paddingTop={0.8}>
+            <QuestionMarkIcon />
+            </Box>
+            <BarChartIcon fontSize='large'/>
           <Box sx={{ flexGrow: 0 }}>
-            <BarChartIcon fontSize='large' />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -157,10 +162,10 @@ export function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+          </div>
         </Toolbar>
       </Container>
     </AppBar>
-    </div>
   );
 };
 export default ResponsiveAppBar;

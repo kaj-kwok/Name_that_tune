@@ -7,11 +7,12 @@ export default function ComboBox({ getGuess }) {
   return (
     <Autocomplete
       disablePortal
+      size="small"
       id="combo-box-demo"
       options={top100Films}
       sx={{ width: 300 }}
       onChange={(e, value) => getGuess(value)}
-      renderInput={(params) => <TextField {...params} label="Movie" />}
+      renderInput={(params) => <TextField {...params} label="Can you guess the Song" />}
     />
   );
 }

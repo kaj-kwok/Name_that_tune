@@ -26,7 +26,7 @@ export default function Dashboard({ code }) {
 
 
   return (
-    <>
+    <div className="body">
       <ResponsiveAppBar />
       <div className="guess-box">
         <FullWidthTextField className="guess" label="Guess 2" />
@@ -43,6 +43,6 @@ export default function Dashboard({ code }) {
         <ComboBox className="combo-box" getGuess={getGuess} />
         <ColorButtons submitAnswer={submitAnswer} />
       </div>
-    </>
+    </div>
   )
 }
