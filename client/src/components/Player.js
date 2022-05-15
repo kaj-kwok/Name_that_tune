@@ -4,9 +4,9 @@ import { Button } from '@mui/material'
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 
-export default function Player({ accessToken, makePostRequesttoRefresh }) {
+export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, guesses }) {
   const [track, setTrack] = useState('')
-  const [guesses, setGuesses] = useState(1)
+  
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
   const [trackList, setTrackList] = useState()
@@ -127,10 +127,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh }) {
     })
   }
 
-  const skipTurn = () => {
-    setGuesses(prev => prev + 1)
-    console.log(guesses)
-  }
+  
 
   const changeDevice = (device) => {
     axios(`https://api.spotify.com/v1/me/player?${device}`, {

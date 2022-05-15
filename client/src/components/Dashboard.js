@@ -11,17 +11,22 @@ export default function Dashboard({ code }) {
   const { accessToken, refreshToken, makePostRequesttoRefresh } = useAuth(code)
   const [currentGuess, setCurrentGuess] = useState([])
   const [answers, setAnswers] = useState([])
-  const NUMBER_OF_GUESSES = 6
+  const [guesses, setGuesses] = useState(6)
 
+  // sets guess state
   const getGuess = (guess) => {
     setCurrentGuess(guess)
   }
 
-  
+  // Skips turn, reducing amount of guesses left by 1
+  const skipTurn = () => {
+    setGuesses(prev => prev + 1)
+    console.log(guesses)
+  }
 
   //function to calculate the rows 
   const currentRows = function () {
-    const remainingGuesses = NUMBER_OF_GUESSES - answers.length
+    const remainingGuesses = guesses - answers.length
     return [...answers, ...Array(remainingGuesses)]
   }
 
@@ -57,7 +62,7 @@ export default function Dashboard({ code }) {
         {guessDisplay}
       </div>
       <div className="player">
-        {accessToken ? <Player accessToken={accessToken} refreshToken={refreshToken} makePostRequesttoRefresh={makePostRequesttoRefresh} /> : <div>loading</div>}
+        {accessToken ? <Player guesses ={guesses} skipTurn={skipTurn} accessToken={accessToken} refreshToken={refreshToken} makePostRequesttoRefresh={makePostRequesttoRefresh} /> : <div>loading</div>}
       </div>
       <div className="submit-form">
         <ComboBox className="combo-box" getGuess={getGuess} />
