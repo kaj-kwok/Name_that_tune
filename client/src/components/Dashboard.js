@@ -9,25 +9,34 @@ import { useState } from 'react';
 
 export default function Dashboard({ code }) {
   const { accessToken, refreshToken, makePostRequesttoRefresh } = useAuth(code)
-  // const { accessToken, refreshToken } = useAuth(code)
   const [currentGuess, setCurrentGuess] = useState([])
   const [answers, setAnswers] = useState([])
+  const NUMBER_OF_GUESSES = 6
 
   const getGuess = (guess) => {
-    setCurrentGuess(guess)
+    setCurrentGuess(guess.label)
   }
 
   // placeholder function to be replaced by guess array
   let placeholderArray = [0, 1, 2, 3, 4, 5]
 
+  //function to calculate the rows 
+  const currentRows = function () {
+    const remainingGuesses = NUMBER_OF_GUESSES - answers.length
+    return [...answers, ...Array(remainingGuesses)]
+  }
+
+  const rowsToDisplay = currentRows()
+  console.log(rowsToDisplay)
+
   // creates the fields that holds the guesses
-  const guessDisplay = answers.map((answer, index) => {
-    console.log(answer.label)
+  const guessDisplay = rowsToDisplay.map((answer, index) => {
+    console.log(answer)
     return (
       <FullWidthTextField
         key={index}
         className="guess"
-        value={answer.label}
+        value={answer}
         label={index + 1}
       />
     )
