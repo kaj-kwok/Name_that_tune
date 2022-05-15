@@ -12,9 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import LightSwitch from './Switch';
+import StatsModal from './StatsModal';
+import HelpModal from './HelpModal';
 
 const pages = [];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -130,10 +130,8 @@ export function ResponsiveAppBar() {
             ))}
           </Box>
           <div className='icons'>
-            <Box paddingTop={0.8}>
-              <QuestionMarkIcon />
-            </Box>
-            <BarChartIcon fontSize='large'/>
+            <HelpModal />
+            <StatsModal />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

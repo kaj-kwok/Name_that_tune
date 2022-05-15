@@ -47,3 +47,22 @@ button.MuiButton-root.MuiButton-contained {
   gap: 8px;
 
 }
+
+.modal-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-text {
+  display: flex;
+  gap: 15px;
+}
+
+.modal-heart {
+  display: flex;
+  gap: 20px;
+  padding-left: 5px;
+
+}
+
