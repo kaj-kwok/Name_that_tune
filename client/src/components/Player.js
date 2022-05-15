@@ -4,8 +4,7 @@ import { Button } from '@mui/material'
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 
-export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, guesses }) {
-  const [track, setTrack] = useState('')
+export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, turnsLeft, selectAnswer, answer }) {
   
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
@@ -93,11 +92,12 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
   const currentTrack = (tracks) => {
     const index = Math.floor(Math.random() * (tracks.length - 1))
     console.log("index", index)
-    setTrack(tracks[index])
+    selectAnswer(tracks[index])
+    // setTrack(tracks[index])
   }
 
   const play = (device) => {
-    console.log("this is the current track", track.id)
+    console.log("this is the current track", answer)
     console.log("this is the device", device)
     if (!device) {
       console.log("not working")
@@ -109,12 +109,12 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         "Content-Type": "application/json"
       },
       data: {
-        "uris": [`spotify:track:${track.id}`]
+        "uris": [`spotify:track:${answer}`]
       },
       "position_ms": 0,
     }).then(() => setTimeout(() => {
       pause()
-    }, (guesses * 3000)))
+    }, (turnsLeft * 3000)))
   }
 
   const pause = (device) => {

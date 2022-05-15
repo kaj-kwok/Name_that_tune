@@ -20,4 +20,4 @@ export default function ComboBox({ getGuess }) {
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 
 
-const songList = [ "thunderstruck", "back in black", "highway to hell", "t.n.t", "you shook me all night long" ];
+const songList = [ "Thunderstruck", "Back In Black", "Highway to Hell", "T.N.T.", "You Shook Me All Night Long", "test", "testing" ];
