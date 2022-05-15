@@ -28,21 +28,35 @@ export default function useAuth(code) {
     // conditional to prevent code from running if there is no refresh/expire token set
     if (!refreshToken || !expiresIn) return
     const interval = setInterval(() => {
-      axios.post('http://localhost:3001/refresh', {
-        refreshToken,
-      })
-        .then(res => {
-          setAccessToken(res.data.accessToken)
-          setExpiresIn(res.data.expiresIn)
-        })
-        //if code is expired, redirect to login
-        .catch(() => {
-          window.location = "/"
-        })
+      makePostRequesttoRefresh()
     }, (expiresIn - 60) * 1000)
 
     return () => clearInterval(interval)
   }, [expiresIn, refreshToken])
 
-  return { accessToken, refreshToken }
+  //call function to send refresh token to get a new accesstoken
+  function makePostRequesttoRefresh(callback) {
+    axios.post('http://localhost:3001/refresh', {
+      refreshToken,
+    })
+      .then(res => {
+        if (typeof callback === 'function') {
+          callback(res.data.accessToken)
+        }
+        console.log("res.data.accessToken ", res.data.accessToken)
+        console.log("res.data.expiresIn ", res.data.expiresIn)
+        setAccessToken(res.data.accessToken)
+        setExpiresIn(res.data.expiresIn)
+      })
+      //if code is expired, redirect to login
+      .catch(() => {
+        window.location = "/"
+      })
+  }
+
+  return { accessToken, refreshToken, makePostRequesttoRefresh }
+
+
 }
+
+

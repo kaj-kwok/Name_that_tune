@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export default function Player({ accessToken, refreshToken }) {
+export default function Player({ accessToken, makePostRequesttoRefresh }) {
   const [track, setTrack] = useState('')
   const [guesses, setGuesses] = useState(1)
   const [device, setDevice] = useState()
@@ -20,7 +20,15 @@ export default function Player({ accessToken, refreshToken }) {
 
         const player = new window.Spotify.Player({
           name: 'Web Playback SDK',
-          getOAuthToken: cb => { cb(accessToken); },
+          getOAuthToken: spotifyCallback => {
+            console.log("calling cb for SDK");
+            //// call function get a new token require my refresh currently useAuth
+            makePostRequesttoRefresh((newaccesstoken) => {
+              console.log(newaccesstoken)
+              spotifyCallback(newaccesstoken)
+            })
+          },
+
           volume: 0.5
         });
 
@@ -114,7 +122,8 @@ export default function Player({ accessToken, refreshToken }) {
   }
 
   const skipTurn = () => {
-    setGuesses = (prev => prev + 1)
+    setGuesses(prev => prev + 1)
+    console.log(guesses)
   }
 
   const changeDevice = (device) => {
@@ -133,7 +142,7 @@ export default function Player({ accessToken, refreshToken }) {
   return (
     <div>
       <button onClick={() => play(device)}> >>>>> </button>
-      <button onClick={play}> skip </button>
+      <button onClick={skipTurn}> skip </button>
     </div>
   )
 }
