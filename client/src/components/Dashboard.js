@@ -53,7 +53,7 @@ export default function Dashboard({ code }) {
 
   const determineGameState = () => {
     console.log("called")
-    if (currentGuess === answer.title) {
+    if (currentGuess === answer.title && isGameActive === true) {
       setIsGameActive(false)
       console.log("you win")
       return;
