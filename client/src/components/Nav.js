@@ -38,6 +38,7 @@ export function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  
   return ( 
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -130,7 +131,7 @@ export function ResponsiveAppBar() {
           </Box>
           <div className='icons'>
             <Box paddingTop={0.8}>
-            <QuestionMarkIcon />
+              <QuestionMarkIcon />
             </Box>
             <BarChartIcon fontSize='large'/>
           <Box sx={{ flexGrow: 0 }}>

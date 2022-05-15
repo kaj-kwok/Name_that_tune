@@ -8,21 +8,28 @@ import FullWidthTextField from "./GuessBox"
 
 
 
-
-
 export default function Dashboard({ code }) {
   const { accessToken, refreshToken } = useAuth(code)
+
+  // placeholder function to be replaced by guess array
+  let placeholderArray = [0, 1, 2, 3, 4, 5] 
+
+  // creates the fields that holds the guesses
+  const guessDisplay = placeholderArray.map((answer, index) => {
+    return (
+      <FullWidthTextField
+        className="guess"
+        answer={answer}
+        label={index + 1}
+      />
+    )
+  })
 
   return (
     <div className="body">
       <ResponsiveAppBar />
-      <div className="guess-box">
-        <FullWidthTextField className="guess" label="Guess 2" />
-        <FullWidthTextField className="guess" />
-        <FullWidthTextField className="guess" />
-        <FullWidthTextField className="guess" />
-        <FullWidthTextField className="guess" />
-        <FullWidthTextField className="guess" />
+      <div className="guess-container">
+        {guessDisplay}
       </div>
       <div className="player">
         <Player accessToken={accessToken} refreshToken={refreshToken} />
@@ -32,5 +39,6 @@ export default function Dashboard({ code }) {
         <ColorButtons />
       </div>
     </div>
+
   )
 }

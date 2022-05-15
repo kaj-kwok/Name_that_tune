@@ -13,11 +13,17 @@
 
 .player {
   display: flex;
-  justify-content: center;
+  justify-content: center ;
+  align-items: center;
   margin: 2em 15em 2em 15em;
+  gap: 15px ;
 }
 
-.guess-box {
+button.MuiButton-root.MuiButton-contained {
+  margin: 0 1em 0 0;
+}
+
+.guess-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,8 +47,5 @@
   gap: 8px;
 
 }
-
-
-
 
 

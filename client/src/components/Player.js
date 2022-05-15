@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Button } from '@mui/material'
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 
 export default function Player({ accessToken, refreshToken }) {
   const [track, setTrack] = useState('')
@@ -132,8 +135,8 @@ export default function Player({ accessToken, refreshToken }) {
 
   return (
     <div>
-      <button onClick={() => play(device)}> >>>>> </button>
-      <button onClick={play}> skip </button>
+      <Button variant="contained" onClick={() => play(device)}> <PlayArrowRoundedIcon /> </Button>
+      <Button variant="contained" onClick={play}> <SkipNextIcon /> </Button>
     </div>
   )
 }
