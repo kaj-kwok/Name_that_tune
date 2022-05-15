@@ -1,0 +1,20 @@
+body {
+  background-color: black;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.login_button {
+  background-color: #18D860;
+  color: white;
+  padding: 1rem;
+  border-radius: 9999px;
+  border: none;
+  width: 200px
+}

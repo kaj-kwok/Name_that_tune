@@ -99,6 +99,9 @@ export default function Player({ accessToken, makePostRequesttoRefresh }) {
   const play = (device) => {
     console.log("this is the current track", track.id)
     console.log("this is the device", device)
+    if (!device) {
+      console.log("not working")
+    }
     axios(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
       method: 'PUT',
       headers: {

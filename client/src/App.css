@@ -13,10 +13,10 @@
 
 .player {
   display: flex;
-  justify-content: center ;
+  justify-content: center;
   align-items: center;
   margin: 2em 15em 2em 15em;
-  gap: 15px ;
+  gap: 15px;
 }
 
 button.MuiButton-root.MuiButton-contained {
@@ -35,9 +35,9 @@ button.MuiButton-root.MuiButton-contained {
   margin: 0 2em 0 0;
 }
 
-.guess { 
+.guess {
   padding-bottom: 4em;
-} 
+}
 
 .icons {
   display: flex;
@@ -47,5 +47,3 @@ button.MuiButton-root.MuiButton-contained {
   gap: 8px;
 
 }
-
-
