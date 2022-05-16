@@ -6,6 +6,8 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const morgan = require('morgan');
 const cors = require('cors')
 const PORT = 3001;
+const db = require('./dbqueries');
+
 
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));
