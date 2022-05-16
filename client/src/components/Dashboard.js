@@ -1,14 +1,15 @@
 import useAuth from "./useAuth"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Player from './Player'
 import ResponsiveAppBar from './Nav'
 import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
-import { useState } from 'react';
-import GameModal from "./GameModal"
+import GameModal from "./GameModal";
+
+
 export default function Dashboard({ code }) {
-  const { accessToken, refreshToken, makePostRequesttoRefresh } = useAuth(code)
+  const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong } = useAuth(code)
   const [currentGuess, setCurrentGuess] = useState('')
   const [guesses, setGuesses] = useState([])
   const [turnsLeft, setTurnsLeft] = useState(6)
@@ -16,6 +17,10 @@ export default function Dashboard({ code }) {
   const [isGameActive, setIsGameActive] = useState(true)
   const [isWinner, setIsWinner] = useState(false)
 
+  useEffect(() => {
+    setAnswer(song)
+    console.log('new song is ', song)
+  }, [song])
 
   const selectAnswer = (track) => {
     setAnswer(track)
@@ -45,7 +50,6 @@ export default function Dashboard({ code }) {
   }
 
   const rowsToDisplay = currentRows()
-  console.log("answers plus empty guesses", rowsToDisplay)
 
   // creates the fields that holds the turnsLeft
   const guessDisplay = rowsToDisplay.map((answer, index) => {
@@ -59,7 +63,7 @@ export default function Dashboard({ code }) {
     )
   })
 
- 
+
   const determineGameState = () => {
     console.log("called")
     if (currentGuess === answer.title && isGameActive === true) {
@@ -68,7 +72,7 @@ export default function Dashboard({ code }) {
       console.log("you win")
 
       return;
-    } 
+    }
     if (turnsLeft === 0 && isGameActive === true) {
       setIsGameActive(false)
       console.log("you lost, no more guesses remaining")
@@ -76,16 +80,16 @@ export default function Dashboard({ code }) {
     }
   }
 
-  useEffect(() => {determineGameState()}, [guesses]) 
+  useEffect(() => { determineGameState() }, [guesses])
 
   const submitAnswer = () => {
     if (isGameActive === false) return;
     console.log("currentGuess", currentGuess);
     if (!currentGuess) {
-      console.log("please select an answer") 
+      console.log("please select an answer")
       return;
     }
-    if (guesses.includes (currentGuess)) {
+    if (guesses.includes(currentGuess)) {
       console.log("already guesssed, pls select a different answer")
       return;
     }
@@ -100,31 +104,34 @@ export default function Dashboard({ code }) {
     setTurnsLeft(prev => prev -= 1)
   }
 
+  const x = []
+
   const gameReset = () => {
-    setCurrentGuess('')
-    setGuesses([])
+    console.log("reset game")
+    refreshSong()
     setTurnsLeft(6)
-    setAnswer('')
+    setGuesses((prev) => [])
     setIsGameActive(true)
     setIsWinner(false)
+    setCurrentGuess('')
   }
-  
+
   return (
     <div className="body">
       <ResponsiveAppBar />
-      { !isGameActive && <GameModal isWinner={isWinner} gameReset={gameReset}/> }
+      {!isGameActive && <GameModal isWinner={isWinner} gameReset={gameReset} />}
       <div className="guess-container">
         {guessDisplay}
       </div>
       <div className="player">
-        {accessToken ? <Player 
-        turnsLeft ={turnsLeft} 
-        skipTurn={skipTurn} 
-        accessToken={accessToken} 
-        refreshToken={refreshToken} 
-        makePostRequesttoRefresh={makePostRequesttoRefresh} 
-        selectAnswer={selectAnswer}
-        answer={answer.id}
+        {accessToken ? <Player
+          turnsLeft={turnsLeft}
+          skipTurn={skipTurn}
+          accessToken={accessToken}
+          refreshToken={refreshToken}
+          makePostRequesttoRefresh={makePostRequesttoRefresh}
+          selectAnswer={selectAnswer}
+          answer={answer.id}
         /> : <div>loading</div>}
       </div>
       <div className="submit-form">

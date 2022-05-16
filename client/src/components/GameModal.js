@@ -18,16 +18,16 @@ const style = {
   p: 4,
 };
 
-export default function GameModal( { isWinner, gameReset } ) {
+export default function GameModal({ isWinner, gameReset }) {
   const [open, setOpen] = React.useState(true);
-  
+
 
   return (
     <div>
-      
+
       <Modal
         open={open}
-    
+
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -35,18 +35,18 @@ export default function GameModal( { isWinner, gameReset } ) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Game Over
           </Typography>
-          
+
 
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className='modal-box'>
 
-            <p className='modal-text'>
-              
-              {isWinner ? "You win!" : "You lost you loser"}
-            </p>
-            <IconButton onClick={() => {gameReset()}}><ReplayIcon /></IconButton>
+              <p className='modal-text'>
+
+                {isWinner ? "You win!" : "You lost you loser"}
+              </p>
+              <IconButton onClick={gameReset}><ReplayIcon /></IconButton>
             </div>
-          
+
           </Typography>
         </Box>
       </Modal>

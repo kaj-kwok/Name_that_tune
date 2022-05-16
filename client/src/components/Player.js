@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Button } from '@mui/material'
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 
 export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, turnsLeft, selectAnswer, answer }) {
-  
+
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
   const [trackList, setTrackList] = useState()
@@ -49,7 +49,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         player.connect();
         console.log("player, connected")
 
-        retrievePlaylist()
+        // retrievePlaylist()
 
         return () => {
           player.disconnect()
@@ -64,39 +64,39 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
       changeDevice(device)
   }, [device])
 
-  const retrievePlaylist = () => {
-    axios('https://api.spotify.com/v1/playlists/2dEZn55szDawgoYOYQWHKQ/tracks', {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer ' + accessToken,
-        'Content-Type': "application/json"
-      }
-    }
-    ).then(data => {
-      const returnedSongs = data.data.items.map(item => {
-        return {
-          id: item.track.id,
-          title: item.track.name
-        }
-      })
-      const playlist = returnedSongs.reduce((obj, item) => {
-        const key = item["id"]
-        return { ...obj, [key]: item }
-      }, {})
-      // set to state
-      setTrackList(returnedSongs)
-      currentTrack(returnedSongs)
-    })
-  }
+  // const retrievePlaylist = () => {
+  //   axios('https://api.spotify.com/v1/playlists/2dEZn55szDawgoYOYQWHKQ/tracks', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': 'Bearer ' + accessToken,
+  //       'Content-Type': "application/json"
+  //     }
+  //   }
+  //   ).then(data => {
+  //     const returnedSongs = data.data.items.map(item => {
+  //       return {
+  //         id: item.track.id,
+  //         title: item.track.name
+  //       }
+  //     })
+  //     const playlist = returnedSongs.reduce((obj, item) => {
+  //       const key = item["id"]
+  //       return { ...obj, [key]: item }
+  //     }, {})
+  //     // set to state
+  //     setTrackList(returnedSongs)
+  //     currentTrack(returnedSongs)
+  //   })
+  // }
 
-  const currentTrack = (tracks) => {
-    const index = Math.floor(Math.random() * (tracks.length - 1))
-    console.log("index", index)
-    selectAnswer(tracks[index])
-    // setTrack(tracks[index])
-  }
+  // const currentTrack = (tracks) => {
+  //   const index = Math.floor(Math.random() * (tracks.length - 1))
+  //   console.log("index", index)
+  //   selectAnswer(tracks[index])
+  //   // setTrack(tracks[index])
+  // }
 
-  const play = (device) => {
+  const play = () => {
     console.log("this is the current track", answer)
     console.log("this is the device", device)
     if (!device) {
@@ -127,7 +127,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
     })
   }
 
-  
+
 
   const changeDevice = (device) => {
     axios(`https://api.spotify.com/v1/me/player?${device}`, {
@@ -144,7 +144,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
 
   return (
     <div>
-      <Button variant="contained" onClick={() => play(device)}> <PlayArrowRoundedIcon /> </Button>
+      <Button variant="contained" onClick={() => play()}> <PlayArrowRoundedIcon /> </Button>
       <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>
     </div>
   )
