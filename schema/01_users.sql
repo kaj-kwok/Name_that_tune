@@ -7,4 +7,3 @@ CREATE TABLE users (
   streak INTEGER,
   max_streak INTEGER 
 );
-
