@@ -6,7 +6,7 @@ import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import { useState } from 'react';
-
+import GameModal from "./GameModal"
 export default function Dashboard({ code }) {
   const { accessToken, refreshToken, makePostRequesttoRefresh } = useAuth(code)
   const [currentGuess, setCurrentGuess] = useState('')
@@ -14,6 +14,7 @@ export default function Dashboard({ code }) {
   const [turnsLeft, setTurnsLeft] = useState(6)
   const [answer, setAnswer] = useState('')
   const [isGameActive, setIsGameActive] = useState(true)
+  const [isWinner, setIsWinner] = useState(false)
 
 
   const selectAnswer = (track) => {
@@ -63,7 +64,9 @@ export default function Dashboard({ code }) {
     console.log("called")
     if (currentGuess === answer.title && isGameActive === true) {
       setIsGameActive(false)
+      setIsWinner(true)
       console.log("you win")
+
       return;
     } 
     if (turnsLeft === 0 && isGameActive === true) {
@@ -96,10 +99,20 @@ export default function Dashboard({ code }) {
     setGuesses(newAnswers)
     setTurnsLeft(prev => prev -= 1)
   }
+
+  const gameReset = () => {
+    setCurrentGuess('')
+    setGuesses([])
+    setTurnsLeft(6)
+    setAnswer('')
+    setIsGameActive(true)
+    setIsWinner(false)
+  }
   
   return (
     <div className="body">
       <ResponsiveAppBar />
+      { !isGameActive && <GameModal isWinner={isWinner} gameReset={gameReset}/> }
       <div className="guess-container">
         {guessDisplay}
       </div>
