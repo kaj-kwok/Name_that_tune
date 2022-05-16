@@ -1,5 +1,5 @@
 import useAuth from "./useAuth"
-import React from 'react'
+import React, { useEffect } from 'react'
 import Player from './Player'
 import ResponsiveAppBar from './Nav'
 import ComboBox from "./SearchBar"
@@ -27,8 +27,15 @@ export default function Dashboard({ code }) {
 
   // Skips turn, reducing amount of turnsLeft left by 1
   const skipTurn = () => {
-    setTurnsLeft(prev => prev + 1)
-    console.log(turnsLeft)
+    if (isGameActive === false) return;
+    if (turnsLeft === 0) {
+      console.log("you're out of turns")
+      return;
+    }
+    setTurnsLeft(prev => prev - 1)
+    const newAnswers = [...guesses]
+    newAnswers.push("skipped turn")
+    setGuesses(newAnswers)
   }
 
   //function to calculate the rows 
@@ -51,6 +58,7 @@ export default function Dashboard({ code }) {
     )
   })
 
+ 
   const determineGameState = () => {
     console.log("called")
     if (currentGuess === answer.title && isGameActive === true) {
@@ -65,9 +73,10 @@ export default function Dashboard({ code }) {
     }
   }
 
-  determineGameState()
+  useEffect(() => {determineGameState()}, [guesses]) 
 
   const submitAnswer = () => {
+    if (isGameActive === false) return;
     console.log("currentGuess", currentGuess);
     if (!currentGuess) {
       console.log("please select an answer") 

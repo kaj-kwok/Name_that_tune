@@ -13,6 +13,9 @@
     - [x] their selection will be added to "answers" array 
     - [x] game ends
 
+- Skip conditionals
+  - 
+
 - Game will end when
-  - turns left = 0
-  - submitted answer = correct answer
+  - [x] turns left = 0
+  - [x] submitted answer = correct answer
