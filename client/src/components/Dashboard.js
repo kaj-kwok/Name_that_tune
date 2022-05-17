@@ -17,10 +17,7 @@ export default function Dashboard({ code }) {
   const [isGameActive, setIsGameActive] = useState(true)
   const [isWinner, setIsWinner] = useState(false)
 
-  useEffect(() => {
-    setAnswer(song)
-    console.log('new song is ', song)
-  }, [song])
+  
 
   useEffect(() => {
     if (isGameActive === false) {
