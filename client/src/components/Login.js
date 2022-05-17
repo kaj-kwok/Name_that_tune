@@ -5,10 +5,10 @@ const AUTH_URL = 'https://accounts.spotify.com:443/authorize?client_id=036db34aa
 
 export default function Login() {
   return (
-    <div className="login">
+    <div className="login" >
       {/* <a href={AUTH_URL}>Login with Spotify</a> */}
       <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" width="200" />
-      <button className="login_button" onClick={event => window.location.href = AUTH_URL}>Login to Spotify</button>
+      <button className="login_button" onClick={event => window.location.href = AUTH_URL} >Login to Spotify</button>
     </div>
   )
 }
