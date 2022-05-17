@@ -6,7 +6,8 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const morgan = require('morgan');
 const cors = require('cors')
 const PORT = 3001;
-const db = require('./dbqueries');
+const {db, getUserByEmail} = require('./dbqueries');
+// const getUserByEmail = require('./dbqueries');
 
 
 // Express Configuration
@@ -91,6 +92,8 @@ App.get('/auth/callback', (req, res) => res.json({
 App.post("/stats", (req, res) => {
   console.log(req.body)
 })
+
+console.log("get user by email", getUserByEmail(db, "jshsparx@gmail.com"))
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console

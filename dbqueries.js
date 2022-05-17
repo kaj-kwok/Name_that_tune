@@ -21,3 +21,27 @@ db.connect(()=>{
 
 
 
+// get user id by email
+// insert into game (user_id, completed, score)
+
+const getUserByEmail = function(db, email) {
+  return db.query(`
+    SELECT id 
+    FROM users
+    WHERE email = ${email};
+  `)
+  .then((data) => {
+    console.log("data in get user query", data)
+    return data;
+
+  })
+}
+
+const insertUserIntoGame = function(db, user_id, completed, score) {
+  return db.query(`
+
+  `)
+  
+}
+
+module.exports =  { getUserByEmail }
