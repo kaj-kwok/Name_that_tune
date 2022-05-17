@@ -1,0 +1,37 @@
+/* animation */
+.answer_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  width: 60%;
+  border-radius: 999px;
+  padding: 1em;
+  height: 1em;
+
+}
+
+.answer_row_value {
+  animation: flip 0.5s ease forwards;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: large;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0)
+  }
+
+  45% {
+    transform: rotateX(90deg);
+  }
+
+  55% {
+    transform: rotateX(90deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+
+}

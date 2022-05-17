@@ -1,4 +1,5 @@
 const dotenv = require('dotenv').config()
+
 const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
@@ -6,7 +7,8 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const morgan = require('morgan');
 const cors = require('cors')
 const PORT = 3001;
-const db = require('./dbqueries');
+const { getUserByEmail, addUsertoDatabase, insertGameInfo } = require('./dbqueries');
+
 
 
 // Express Configuration
@@ -89,8 +91,30 @@ App.get('/auth/callback', (req, res) => res.json({
 }));
 
 App.post("/stats", (req, res) => {
-  console.log(req.body)
+  console.log("req.body", req.body)
+  // getUserByEmail(req.body.email).then(data => {
+  //   console.log("data is ", data)
+  // })
+  //   .catch(err => console.log(err))
+  insertGameInfo(1, req.body.completed, req.body.score);
 })
+
+
+App.post("/user", (req, res) => {
+  console.log("user route")
+  // if (req.body !== {}) {
+  //   getUserByEmail(req.body.email).then(data => {
+  //     if (data === undefined) {
+  //       console.log("user not found")
+  //       addUsertoDatabase(req.body)
+  //     }
+  //   })
+  //   res.send(200)
+  // }
+})
+
+
+
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console

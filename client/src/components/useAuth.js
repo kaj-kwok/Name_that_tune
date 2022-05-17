@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import { sendUserInfo } from "./helper.js/helperfunctions";
 
 export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState();
@@ -18,6 +19,7 @@ export default function useAuth(code) {
         setExpiresIn(res.data.expiresIn)
         //clear query parameters from URL, set to root URL
         window.history.pushState({}, null, "/")
+        getUserData(res.data.accessToken)
       })
       //if code is expired, redirect to login
       .catch(() => {
@@ -59,7 +61,8 @@ export default function useAuth(code) {
   useEffect(() => {
     if (!accessToken) return
     refreshSong()
-    getUserData()
+    console.log("refresh song called from useAuth, accesstoken is ", accessToken);
+
   }, [accessToken])
 
   function refreshSong() {
@@ -89,11 +92,10 @@ export default function useAuth(code) {
 
   function currentTrack(tracks) {
     const index = Math.floor(Math.random() * (tracks.length - 1))
-    console.log("index", index)
     setSong(tracks[index])
   }
 
-  function getUserData() {
+  function getUserData(accessToken) {
     axios("https://api.spotify.com/v1/me", {
       method: 'GET',
       headers: {
@@ -102,11 +104,15 @@ export default function useAuth(code) {
       }
     }
     ).then(data => {
-      setUser({
+      const user = {
         name: data.data.display_name,
         email: data.data.email
-      })
-    })
+      }
+      setUser(user)
+      sendUserInfo(user)
+    }).catch(err => console.log(err))
+
+    // 
   }
 
   return { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user }

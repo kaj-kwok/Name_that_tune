@@ -20,3 +20,31 @@
   - [x] turns left = 0
   - [x] submitted answer = correct answer
 
+
+THINGS TO DO:
+
+# Primary
+
+  - [x] button condition, change to pause when song is playing
+  - [] game modal styling 
+  - [] guess box styling 
+  - [] song intervals
+  - [] logo
+  - [] settings drop down change to just display username
+  - [] stats modal display stats
+  - [] fix broken queries and create stats queries
+  - [] expand playlist/guess list
+  - [] game changed to games
+  - [] recording of demo 
+  - [] on click of play button, some icon to show that music is playing
+
+  
+## Secondary
+  - [] dark mode
+  - [] erase drop down in top left
+  - [] deployment to web
+
+
+
+
+

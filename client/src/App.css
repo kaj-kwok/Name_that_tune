@@ -66,12 +66,9 @@ button.MuiButton-root.MuiButton-contained {
 
 }
 
-.box {
+.game-modal-text {
   display: flex;
-  height: 25px;
-  width: 400px;
-  border: 2px solid grey;
-  justify-content: center;
-  align-items: center;
-
+  gap: 15px;
+  flex-direction: column;
 }
+

@@ -1,7 +1,8 @@
-.body {
-  /* background-color: black; */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 
 .login {
   display: flex;
@@ -9,6 +10,9 @@
   justify-content: center;
   align-items: center;
   background-color: black;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 

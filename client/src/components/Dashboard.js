@@ -6,7 +6,7 @@ import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import GameModal from "./GameModal";
-import postGameStats from "./helper.js/sendGameData"
+import { postGameStats } from "./helper.js/helperfunctions"
 
 
 export default function Dashboard({ code }) {
@@ -14,14 +14,9 @@ export default function Dashboard({ code }) {
   const [currentGuess, setCurrentGuess] = useState('')
   const [guesses, setGuesses] = useState([])
   const [turnsLeft, setTurnsLeft] = useState(6)
-  const [answer, setAnswer] = useState('')
   const [isGameActive, setIsGameActive] = useState(true)
   const [isWinner, setIsWinner] = useState(false)
 
-  useEffect(() => {
-    setAnswer(song)
-    console.log('new song is ', song)
-  }, [song])
 
   useEffect(() => {
     if (isGameActive === false) {
@@ -70,8 +65,8 @@ export default function Dashboard({ code }) {
 
   // determines if the game is over, and if it is over if you won or lost
   const determineGameState = () => {
-    console.log("called")
-    if (currentGuess === answer.title && isGameActive === true) {
+    console.log("called determine state")
+    if (currentGuess === song.title && isGameActive === true) {
       setIsGameActive(false)
       setIsWinner(true)
       console.log("you win")
@@ -111,9 +106,6 @@ export default function Dashboard({ code }) {
     document.getElementById("combo-box-demo").value=''
   }
 
-  const x = []
-
-  // function for resetting the game after the current game ends
   const gameReset = () => {
     console.log("reset game")
     refreshSong()
@@ -127,7 +119,7 @@ export default function Dashboard({ code }) {
   return (
     <div className="body">
       <ResponsiveAppBar />
-      {!isGameActive && <GameModal isWinner={isWinner} gameReset={gameReset} />}
+      {!isGameActive && <GameModal answer={song.title} user={user} turnsLeft={turnsLeft} isWinner={isWinner} gameReset={gameReset} />}
       <div className="guess-container">
         {guessDisplay}
       </div>
@@ -138,7 +130,7 @@ export default function Dashboard({ code }) {
           accessToken={accessToken}
           refreshToken={refreshToken}
           makePostRequesttoRefresh={makePostRequesttoRefresh}
-          answer={answer.id}
+          answer={song.id}
         /> : <div>loading</div>}
       </div>
       <div className="submit-form">

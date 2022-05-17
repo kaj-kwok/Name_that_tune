@@ -45,12 +45,7 @@ export default function StatsModal() {
             <p className='modal-text'>
               
             </p>
-            <p className='modal-text'>
-             
-            </p>
-            <p className='modal-heart'> 
-              
-            </p>
+            
             </div>
           
           </Typography>
