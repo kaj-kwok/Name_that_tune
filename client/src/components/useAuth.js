@@ -5,7 +5,8 @@ export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState()
   const [expiresIn, setExpiresIn] = useState()
-  const [song, setSong] = useState("")
+  const [song, setSong] = useState("");
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     axios.post('http://localhost:3001/login', {
@@ -58,6 +59,7 @@ export default function useAuth(code) {
   useEffect(() => {
     if (!accessToken) return
     refreshSong()
+    getUserData()
   }, [accessToken])
 
   function refreshSong() {
@@ -91,7 +93,23 @@ export default function useAuth(code) {
     setSong(tracks[index])
   }
 
-  return { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong }
+  function getUserData() {
+    axios("https://api.spotify.com/v1/me", {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        'Content-Type': "application/json"
+      }
+    }
+    ).then(data => {
+      setUser({
+        name: data.data.display_name,
+        email: data.data.email
+      })
+    })
+  }
+
+  return { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user }
 
 
 }
