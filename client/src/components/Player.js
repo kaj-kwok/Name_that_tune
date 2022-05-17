@@ -45,7 +45,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
           console.log('Device ID has gone offline', device_id);
         });
 
-
         player.connect();
         console.log("player, connected")
 
@@ -55,12 +54,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
       };
     }
   }, []);
-
-  // changeDevice if device state is updated
-  useEffect(() => {
-    if (device)
-      changeDevice(device)
-  }, [device])
 
   const play = () => {
     console.log("this is the current track", answer)
@@ -89,19 +82,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
       headers: {
         'Authorization': 'Bearer ' + accessToken,
         "Content-Type": "application/json"
-      },
-    })
-  }
-
-  const changeDevice = (device) => {
-    axios(`https://api.spotify.com/v1/me/player?${device}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': 'Bearer ' + accessToken,
-        "Content-Type": "application/json"
-      },
-      data: {
-        "device_ids": [device]
       },
     })
   }

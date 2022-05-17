@@ -94,23 +94,22 @@ App.post("/stats", (req, res) => {
   getUserByEmail(req.body.email).then(data => {
     console.log("data is ", data)
   })
+    .catch(err => console.log(err))
 })
 
 App.post("/user", (req, res) => {
-  console.log(req.body)
-  getUserByEmail(req.body.email).then(data => {
-    if (data === undefined) {
-      console.log("user not found")
-      addUsertoDatabase(req.body)
-    }
-
-  })
-  // if (getUserByEmail(req.body.email) === undefined) {
-  //   console.log("not found")
-  //   addUsertoDatabase(req.body)
-  // }
-
+  if (req.body !== {}) {
+    getUserByEmail(req.body.email).then(data => {
+      if (data === undefined) {
+        console.log("user not found")
+        addUsertoDatabase(req.body)
+      }
+    })
+    res.send(200)
+  }
 })
+
+
 
 
 App.listen(PORT, () => {

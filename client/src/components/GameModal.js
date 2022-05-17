@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function GameModal({ isWinner, gameReset }) {
+export default function GameModal({ isWinner, gameReset, user, turnsLeft, answer }) {
   const [open, setOpen] = React.useState(true);
 
 
@@ -41,8 +41,11 @@ export default function GameModal({ isWinner, gameReset }) {
             <div className='modal-box'>
 
               <p className='modal-text'>
-
+                {user.name}
                 {isWinner ? "You win!" : "You lost you loser"}
+                The Correct Answer was {answer}
+                You scored {turnsLeft} Points
+                { }
               </p>
               <IconButton onClick={gameReset}><ReplayIcon /></IconButton>
             </div>

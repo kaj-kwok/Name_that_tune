@@ -60,6 +60,7 @@ export default function useAuth(code) {
   useEffect(() => {
     if (!accessToken) return
     refreshSong()
+    console.log("refresh song called from useAuth, accesstoken is ", accessToken);
     getUserData()
   }, [accessToken])
 
@@ -90,7 +91,6 @@ export default function useAuth(code) {
 
   function currentTrack(tracks) {
     const index = Math.floor(Math.random() * (tracks.length - 1))
-    console.log("index", index)
     setSong(tracks[index])
   }
 
@@ -108,7 +108,7 @@ export default function useAuth(code) {
         email: data.data.email
       })
       sendUserInfo(user)
-    })
+    }).catch(err => console.log(err))
 
     // 
   }

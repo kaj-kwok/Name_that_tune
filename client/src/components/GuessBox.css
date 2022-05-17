@@ -1,0 +1,29 @@
+/* animation */
+.answer_row {
+  border: 1px solid lightgray;
+  width: 70%;
+  border-radius: 999px;
+  text-align: center;
+  padding: 1em;
+  height: 1em;
+  animation: flip 0.5s ease forwards;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0)
+  }
+
+  45% {
+    transform: rotateX(90deg);
+  }
+
+  55% {
+    transform: rotateX(90deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+
+}

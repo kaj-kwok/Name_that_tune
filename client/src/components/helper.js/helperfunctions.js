@@ -12,4 +12,8 @@ export function postGameStats(user, isWinner, turnsLeft) {
 
 export function sendUserInfo(user) {
   axios.post("http://localhost:3001/user", user)
+    .then(res => {
+      return
+    })
+    .catch(err => console.log(err))
 }

@@ -31,6 +31,7 @@ const getUserByEmail = (email) => {
       }
 
     })
+    .catch(err => console.log(err))
 }
 
 //function to add user to database
@@ -40,6 +41,7 @@ const addUsertoDatabase = (user) => {
       console.log('user added')
       return data.rows[0]
     })
+    .catch(err => console.log(err))
 }
 
 // get user id by email
