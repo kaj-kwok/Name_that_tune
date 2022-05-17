@@ -6,7 +6,7 @@ export function postGameStats(user, isWinner, turnsLeft) {
     displayName: user.name,
     email: user.email,
     completed: isWinner,
-    points: turnsLeft + 1
+    score: turnsLeft + 1
   })
 }
 

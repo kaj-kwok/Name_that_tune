@@ -40,9 +40,9 @@ export default function GameModal({ isWinner, gameReset, user, turnsLeft, answer
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className='modal-box'>
 
-              <p className='modal-text'>
+              <p className='game-modal-text'>
                 {user.name}
-                <span>{isWinner ? "You win!" : "You lost you loser"}</span>
+                <span>{isWinner ? "You win!" : "You lost!"}</span>
                 <span>The Correct Answer was {answer}</span>
                 <span>You scored {turnsLeft} Points</span>
               </p>

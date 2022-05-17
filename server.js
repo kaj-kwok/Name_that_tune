@@ -7,7 +7,7 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const morgan = require('morgan');
 const cors = require('cors')
 const PORT = 3001;
-const { getUserByEmail, addUsertoDatabase } = require('./dbqueries');
+const { getUserByEmail, addUsertoDatabase, insertGameInfo } = require('./dbqueries');
 
 
 
@@ -91,22 +91,26 @@ App.get('/auth/callback', (req, res) => res.json({
 }));
 
 App.post("/stats", (req, res) => {
-  getUserByEmail(req.body.email).then(data => {
-    console.log("data is ", data)
-  })
-    .catch(err => console.log(err))
+  console.log("req.body", req.body)
+  // getUserByEmail(req.body.email).then(data => {
+  //   console.log("data is ", data)
+  // })
+  //   .catch(err => console.log(err))
+  insertGameInfo(1, req.body.completed, req.body.score);
 })
 
+
 App.post("/user", (req, res) => {
-  if (req.body !== {}) {
-    getUserByEmail(req.body.email).then(data => {
-      if (data === undefined) {
-        console.log("user not found")
-        addUsertoDatabase(req.body)
-      }
-    })
-    res.send(200)
-  }
+  console.log("user route")
+  // if (req.body !== {}) {
+  //   getUserByEmail(req.body.email).then(data => {
+  //     if (data === undefined) {
+  //       console.log("user not found")
+  //       addUsertoDatabase(req.body)
+  //     }
+  //   })
+  //   res.send(200)
+  // }
 })
 
 

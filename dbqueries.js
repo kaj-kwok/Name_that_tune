@@ -31,7 +31,7 @@ const getUserByEmail = (email) => {
       }
 
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log("getUser error", err))
 }
 
 //function to add user to database
@@ -41,30 +41,20 @@ const addUsertoDatabase = (user) => {
       console.log('user added')
       return data.rows[0]
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log("addUser error", err))
 }
 
-// get user id by email
-// insert into game (user_id, completed, score)
 
-// const getUserByEmail = function (db, email) {
-//   return db.query(`
-//     SELECT id 
-//     FROM users
-//     WHERE email = ${email};
-//   `)
-//     .then((data) => {
-//       console.log("data in get user query", data)
-//       return data;
 
-//     })
-// }
+// function to insert game data
+const insertGameInfo = (user_id, completed, score) => {
+  return db.query(`INSERT INTO game (user_id, completed, score) VALUES ($1, $2, $3) RETURNING*;`, [user_id, completed, score])
+    .then(data => {
+      console.log('user added to game')
+      return data.rows[0]
+    })
+    .catch(err => console.log("insert user to game error", err))
+}
 
-// const insertUserIntoGame = function(db, user_id, completed, score) {
-//   return db.query(`
 
-//   `)
-
-// }
-
-module.exports = { getUserByEmail, addUsertoDatabase }
+module.exports = { getUserByEmail, addUsertoDatabase, insertGameInfo }

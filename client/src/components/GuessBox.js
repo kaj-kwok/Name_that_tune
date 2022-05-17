@@ -5,11 +5,11 @@ import "./GuessBox.css"
 export default function GuessBox({ value, placeholder }) {
   if (value) {
     return (
-      <input className="answer_row_value answer_row" placeholder={"Guess #" + placeholder} disabled value={value} />
+      <div className="answer_row_value answer_row" placeholder={"Guess #" + placeholder} disabled value={value}>{value}</div>
     );
   } else {
     return (
-      <input className="answer_row" placeholder={"Guess #" + placeholder} disabled value={value} />
+      <div className="answer_row" placeholder={"Guess #" + placeholder} disabled value={value} />
     );
   }
 
