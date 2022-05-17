@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import { sendUserInfo } from "./helper.js/helperfunctions";
 
 export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState();
@@ -106,7 +107,10 @@ export default function useAuth(code) {
         name: data.data.display_name,
         email: data.data.email
       })
+      sendUserInfo(user)
     })
+
+    // 
   }
 
   return { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user }

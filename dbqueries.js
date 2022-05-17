@@ -19,11 +19,26 @@ db.connect(() => {
   console.log(`connected to db ${process.env.DB_PORT}`);
 });
 
+//function to retrieve the userid based on email
 const getUserByEmail = (email) => {
-  return db.query(`SELECT * FROM users`)
-    .then(res => {
-      // console.log(res.rows[0])
-      return res.rows[0]
+  return db.query(`SELECT * FROM users WHERE email = $1;`, [email])
+    .then(data => {
+      console.log("data returning from Userquery", data.rows[0])
+      if (data.rows[0] === undefined) {
+        return
+      } else {
+        return data.rows[0]
+      }
+
+    })
+}
+
+//function to add user to database
+const addUsertoDatabase = (user) => {
+  return db.query(`INSERT INTO users (email, name, streak, max_streak) VALUES ($1, $2, $3, $4) RETURNING*;`, [user.name, user.email, 0, 0])
+    .then(data => {
+      console.log('user added')
+      return data.rows[0]
     })
 }
 
@@ -50,4 +65,4 @@ const getUserByEmail = (email) => {
 
 // }
 
-module.exports = { getUserByEmail }
+module.exports = { getUserByEmail, addUsertoDatabase }

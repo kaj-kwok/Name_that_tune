@@ -7,8 +7,8 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const morgan = require('morgan');
 const cors = require('cors')
 const PORT = 3001;
-const { getUserByEmail } = require('./dbqueries');
-// const getUserByEmail = require('./dbqueries');
+const { getUserByEmail, addUsertoDatabase } = require('./dbqueries');
+
 
 
 // Express Configuration
@@ -91,13 +91,27 @@ App.get('/auth/callback', (req, res) => res.json({
 }));
 
 App.post("/stats", (req, res) => {
-  console.log(req.body)
+  getUserByEmail(req.body.email).then(data => {
+    console.log("data is ", data)
+  })
 })
 
-const x = getUserByEmail().then(data => {
-  console.log("data is ", data)
+App.post("/user", (req, res) => {
+  console.log(req.body)
+  getUserByEmail(req.body.email).then(data => {
+    if (data === undefined) {
+      console.log("user not found")
+      addUsertoDatabase(req.body)
+    }
+
+  })
+  // if (getUserByEmail(req.body.email) === undefined) {
+  //   console.log("not found")
+  //   addUsertoDatabase(req.body)
+  // }
+
 })
-console.log(x)
+
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console

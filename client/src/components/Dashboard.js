@@ -6,7 +6,7 @@ import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import GameModal from "./GameModal";
-import postGameStats from "./helper.js/sendGameData"
+import { postGameStats } from "./helper.js/helperfunctions"
 
 
 export default function Dashboard({ code }) {
@@ -107,8 +107,6 @@ export default function Dashboard({ code }) {
     setGuesses(newAnswers)
     setTurnsLeft(prev => prev -= 1)
   }
-
-  const x = []
 
   const gameReset = () => {
     console.log("reset game")
