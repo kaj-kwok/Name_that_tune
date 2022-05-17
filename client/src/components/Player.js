@@ -3,12 +3,17 @@ import axios from 'axios'
 import { Button } from '@mui/material'
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
+import Lottie from 'react-lottie'
+import animationData from '../lotties/player-button'
+import { withTheme } from '@emotion/react';
+
 
 export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, turnsLeft, selectAnswer, answer }) {
 
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
   const [trackList, setTrackList] = useState()
+  const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
     if (accessToken) {
@@ -71,7 +76,9 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         "uris": [`spotify:track:${answer}`]
       },
       "position_ms": 0,
-    }).then(() => setTimeout(() => {
+    })
+    .then(() => setIsPlaying(true))
+    .then(() => setTimeout(() => {
       pause()
     }, (turnsLeft * 3000)))
   }
@@ -84,11 +91,31 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         "Content-Type": "application/json"
       },
     })
+    .then(() => setIsPlaying(false))
   }
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
 
   return (
     <div>
-      <Button variant="contained" onClick={() => play()}> <PlayArrowRoundedIcon /> </Button>
+      <Button variant="contained" 
+      onClick={() => play()}> 
+      { isPlaying ? <div>
+      <Lottie 
+	    options={defaultOptions}
+        height="24px"
+        width="24px"
+      />
+    </div> : <PlayArrowRoundedIcon /> }
+      </Button>
+      
       <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>
     </div>
   )

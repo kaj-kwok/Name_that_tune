@@ -3,8 +3,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
-  width: 70%;
+  border: 1px solid gray;
+  width: 60%;
   border-radius: 999px;
   padding: 1em;
   height: 1em;
@@ -13,6 +13,8 @@
 
 .answer_row_value {
   animation: flip 0.5s ease forwards;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: large;
 }
 
 @keyframes flip {
