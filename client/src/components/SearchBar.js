@@ -1,11 +1,14 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { useState } from 'react';
 
 export default function ComboBox({ getGuess }) {
+  const [val, setVal] = useState('')
 
   return (
     <Autocomplete
+      value={val}
       disablePortal
       size="small"
       id="combo-box-demo"

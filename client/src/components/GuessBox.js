@@ -6,8 +6,13 @@ import TextField from '@mui/material/TextField';
 export default function GuessBox({ value }) {
 
   return (
-    <div>
-      answer = {value}
+    <>
+    
+    <div className='box'> 
+      {value}
     </div>
+    </>
+
+  
   );
 }
