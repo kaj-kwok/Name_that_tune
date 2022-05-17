@@ -24,8 +24,12 @@
 THINGS TO DO:
 
 # Primary
+<<<<<<< HEAD
 
   - [x] button condition, change to pause when song is playing
+=======
+  - [] button condition, change to pause when song is playing
+>>>>>>> 6946b78046e357573774b8b52c2e1d63f5217fa4
   - [] game modal styling 
   - [] guess box styling 
   - [] song intervals
@@ -43,3 +47,10 @@ THINGS TO DO:
   - [] dark mode
   - [] erase drop down in top left
   - [] deployment to web
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 6946b78046e357573774b8b52c2e1d63f5217fa4

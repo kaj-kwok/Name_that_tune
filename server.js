@@ -92,28 +92,26 @@ App.get('/auth/callback', (req, res) => res.json({
 
 App.post("/stats", (req, res) => {
   console.log("req.body", req.body)
-  // getUserByEmail(req.body.email).then(data => {
-  //   console.log("data is ", data)
-  // })
-  //   .catch(err => console.log(err))
+  getUserByEmail(req.body.email).then(data => {
+    console.log("data is ", data)
+  })
+    .catch(err => console.log(err))
   insertGameInfo(1, req.body.completed, req.body.score);
 })
 
 
 App.post("/user", (req, res) => {
-  console.log("user route")
-  // if (req.body !== {}) {
-  //   getUserByEmail(req.body.email).then(data => {
-  //     if (data === undefined) {
-  //       console.log("user not found")
-  //       addUsertoDatabase(req.body)
-  //     }
-  //   })
-  //   res.send(200)
-  // }
+  console.log("user route", req.body)
+  res.status(201).send("received")
+  getUserByEmail(req.body.email).then(data => {
+    console.log("returned from getUserbyemail", data)
+    //check if user already exists
+    if (data === false) {
+      console.log("user not found")
+      addUsertoDatabase(req.body)
+    }
+  })
 })
-
-
 
 
 App.listen(PORT, () => {

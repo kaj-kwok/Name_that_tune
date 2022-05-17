@@ -25,7 +25,7 @@ const getUserByEmail = (email) => {
     .then(data => {
       console.log("data returning from Userquery", data.rows[0])
       if (data.rows[0] === undefined) {
-        return
+        return false
       } else {
         return data.rows[0]
       }
@@ -36,7 +36,7 @@ const getUserByEmail = (email) => {
 
 //function to add user to database
 const addUsertoDatabase = (user) => {
-  return db.query(`INSERT INTO users (email, name, streak, max_streak) VALUES ($1, $2, $3, $4) RETURNING*;`, [user.name, user.email, 0, 0])
+  return db.query(`INSERT INTO users (email, name, streak, max_streak) VALUES ($1, $2, $3, $4) RETURNING*;`, [user.email, user.name, 0, 0])
     .then(data => {
       console.log('user added')
       return data.rows[0]
@@ -50,7 +50,7 @@ const addUsertoDatabase = (user) => {
 const insertGameInfo = (user_id, completed, score) => {
   return db.query(`INSERT INTO game (user_id, completed, score) VALUES ($1, $2, $3) RETURNING*;`, [user_id, completed, score])
     .then(data => {
-      console.log('user added to game')
+      console.log('game info inserted')
       return data.rows[0]
     })
     .catch(err => console.log("insert user to game error", err))
