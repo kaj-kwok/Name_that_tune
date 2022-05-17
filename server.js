@@ -105,16 +105,13 @@ App.post("/user", (req, res) => {
   res.status(201).send("received")
   getUserByEmail(req.body.email).then(data => {
     console.log("returned from getUserbyemail", data)
+    //check if user already exists
     if (data === false) {
       console.log("user not found")
       addUsertoDatabase(req.body)
     }
   })
-  //   res.send(200)
-  // }
 })
-
-
 
 
 App.listen(PORT, () => {
