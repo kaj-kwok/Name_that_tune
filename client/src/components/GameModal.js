@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { IconButton, Fade } from '@mui/material';
 import ReplayIcon from '@mui/icons-material/Replay';
-
+import { gameScore } from './helper.js/helperfunctions';
 
 const style = {
   position: 'absolute',
@@ -42,7 +42,7 @@ export default function GameModal({ isWinner, gameReset, user, turnsLeft, answer
                   {user.name}
                   <span>{isWinner ? "You win!" : "You lost!"}</span>
                   <span>The Correct Answer was {answer}</span>
-                  <span>You scored {turnsLeft} Points</span>
+                  <span>You scored {gameScore(isWinner, turnsLeft)} Points</span>
                 </p>
                 <IconButton onClick={gameReset}><ReplayIcon /></IconButton>
               </div>
