@@ -92,10 +92,10 @@ App.get('/auth/callback', (req, res) => res.json({
 
 App.post("/stats", (req, res) => {
   console.log("req.body", req.body)
-  // getUserByEmail(req.body.email).then(data => {
-  //   console.log("data is ", data)
-  // })
-  //   .catch(err => console.log(err))
+  getUserByEmail(req.body.email).then(data => {
+    console.log("data is ", data)
+  })
+    .catch(err => console.log(err))
   insertGameInfo(1, req.body.completed, req.body.score);
 })
 
