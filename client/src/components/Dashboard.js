@@ -6,10 +6,11 @@ import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import GameModal from "./GameModal";
+import postGameStats from "./helper.js/sendGameData"
 
 
 export default function Dashboard({ code }) {
-  const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong } = useAuth(code)
+  const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user } = useAuth(code)
   const [currentGuess, setCurrentGuess] = useState('')
   const [guesses, setGuesses] = useState([])
   const [turnsLeft, setTurnsLeft] = useState(6)
@@ -22,10 +23,12 @@ export default function Dashboard({ code }) {
     console.log('new song is ', song)
   }, [song])
 
-  // sets the correct answer to the name of the song
-  const selectAnswer = (track) => {
-    setAnswer(track)
-  }
+  useEffect(() => {
+    if (isGameActive === false) {
+      console.log("sending data to server")
+      postGameStats(user, isWinner, turnsLeft)
+    }
+  }, [isGameActive])
 
   // sets guess state
   const getGuess = (guess) => {
@@ -135,7 +138,6 @@ export default function Dashboard({ code }) {
           accessToken={accessToken}
           refreshToken={refreshToken}
           makePostRequesttoRefresh={makePostRequesttoRefresh}
-          selectAnswer={selectAnswer}
           answer={answer.id}
         /> : <div>loading</div>}
       </div>

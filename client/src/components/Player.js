@@ -49,8 +49,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         player.connect();
         console.log("player, connected")
 
-        // retrievePlaylist()
-
         return () => {
           player.disconnect()
         }
@@ -63,38 +61,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
     if (device)
       changeDevice(device)
   }, [device])
-
-  // const retrievePlaylist = () => {
-  //   axios('https://api.spotify.com/v1/playlists/2dEZn55szDawgoYOYQWHKQ/tracks', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': 'Bearer ' + accessToken,
-  //       'Content-Type': "application/json"
-  //     }
-  //   }
-  //   ).then(data => {
-  //     const returnedSongs = data.data.items.map(item => {
-  //       return {
-  //         id: item.track.id,
-  //         title: item.track.name
-  //       }
-  //     })
-  //     const playlist = returnedSongs.reduce((obj, item) => {
-  //       const key = item["id"]
-  //       return { ...obj, [key]: item }
-  //     }, {})
-  //     // set to state
-  //     setTrackList(returnedSongs)
-  //     currentTrack(returnedSongs)
-  //   })
-  // }
-
-  // const currentTrack = (tracks) => {
-  //   const index = Math.floor(Math.random() * (tracks.length - 1))
-  //   console.log("index", index)
-  //   selectAnswer(tracks[index])
-  //   // setTrack(tracks[index])
-  // }
 
   const play = () => {
     console.log("this is the current track", answer)
@@ -126,8 +92,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
       },
     })
   }
-
-
 
   const changeDevice = (device) => {
     axios(`https://api.spotify.com/v1/me/player?${device}`, {
