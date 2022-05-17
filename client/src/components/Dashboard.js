@@ -23,18 +23,26 @@ export default function Dashboard({ code }) {
     console.log('new song is ', song)
   }, [song])
 
+<<<<<<< HEAD
   useEffect(() => {
     if (isGameActive === false) {
       console.log("sending data to server")
       postGameStats(user, isWinner, turnsLeft)
     }
   }, [isGameActive])
+=======
+  // sets the correct answer to the name of the song
+  const selectAnswer = (track) => {
+    setAnswer(track)
+  }
+>>>>>>> 44f5f32e5a2df51c5df21fdaf26fd06a4f186ded
 
   // sets guess state
   const getGuess = (guess) => {
     setCurrentGuess(guess)
   }
 
+  
   // Skips turn, reducing amount of turnsLeft left by 1
   const skipTurn = () => {
     if (isGameActive === false) return;
@@ -67,7 +75,7 @@ export default function Dashboard({ code }) {
     )
   })
 
-
+  // determines if the game is over, and if it is over if you won or lost
   const determineGameState = () => {
     console.log("called")
     if (currentGuess === answer.title && isGameActive === true) {
@@ -86,6 +94,7 @@ export default function Dashboard({ code }) {
 
   useEffect(() => { determineGameState() }, [guesses])
 
+  // function to make a guess and submit your answer
   const submitAnswer = () => {
     if (isGameActive === false) return;
     console.log("currentGuess", currentGuess);
@@ -106,8 +115,15 @@ export default function Dashboard({ code }) {
     console.log("answers array after submission", newAnswers);
     setGuesses(newAnswers)
     setTurnsLeft(prev => prev -= 1)
+    document.getElementById("combo-box-demo").value=''
   }
 
+<<<<<<< HEAD
+=======
+  const x = []
+
+  // function for resetting the game after the current game ends
+>>>>>>> 44f5f32e5a2df51c5df21fdaf26fd06a4f186ded
   const gameReset = () => {
     console.log("reset game")
     refreshSong()

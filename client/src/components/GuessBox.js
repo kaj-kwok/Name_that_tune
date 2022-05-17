@@ -13,4 +13,17 @@ export default function GuessBox({ value, placeholder }) {
     );
   }
 
+<<<<<<< HEAD
+=======
+  return (
+    <>
+    
+    <div className='box'> 
+      {value}
+    </div>
+    </>
+
+  
+  );
+>>>>>>> 44f5f32e5a2df51c5df21fdaf26fd06a4f186ded
 }

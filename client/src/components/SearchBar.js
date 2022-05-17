@@ -5,6 +5,10 @@ import { useState } from 'react';
 
 export default function ComboBox({ getGuess }) {
   const [val, setVal] = useState('')
+<<<<<<< HEAD
+=======
+
+>>>>>>> 44f5f32e5a2df51c5df21fdaf26fd06a4f186ded
   return (
     <Autocomplete
       value={val}

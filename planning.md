@@ -20,6 +20,7 @@
   - [x] turns left = 0
   - [x] submitted answer = correct answer
 
+<<<<<<< HEAD
 THINGS TO DO:
 
 # Primary
@@ -45,3 +46,5 @@ THINGS TO DO:
 
 
 
+=======
+>>>>>>> 44f5f32e5a2df51c5df21fdaf26fd06a4f186ded
