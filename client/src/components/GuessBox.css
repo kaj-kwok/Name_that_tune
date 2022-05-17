@@ -6,6 +6,10 @@
   text-align: center;
   padding: 1em;
   height: 1em;
+
+}
+
+.answer_row_value {
   animation: flip 0.5s ease forwards;
 }
 

@@ -42,10 +42,9 @@ export default function GameModal({ isWinner, gameReset, user, turnsLeft, answer
 
               <p className='modal-text'>
                 {user.name}
-                {isWinner ? "You win!" : "You lost you loser"}
-                The Correct Answer was {answer}
-                You scored {turnsLeft} Points
-                { }
+                <span>{isWinner ? "You win!" : "You lost you loser"}</span>
+                <span>The Correct Answer was {answer}</span>
+                <span>You scored {turnsLeft} Points</span>
               </p>
               <IconButton onClick={gameReset}><ReplayIcon /></IconButton>
             </div>
