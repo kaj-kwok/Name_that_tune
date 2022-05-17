@@ -88,6 +88,10 @@ App.get('/auth/callback', (req, res) => res.json({
   message: "Seems to work!",
 }));
 
+App.post("/stats", (req, res) => {
+  console.log(req.body)
+})
+
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Express seems to be listening on port ${PORT} so that's pretty good 👍`);

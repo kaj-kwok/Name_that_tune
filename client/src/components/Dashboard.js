@@ -6,10 +6,10 @@ import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import GameModal from "./GameModal";
-
+import postGameStats from "./helper.js/sendGameData"
 
 export default function Dashboard({ code }) {
-  const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong } = useAuth(code)
+  const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user } = useAuth(code)
   const [currentGuess, setCurrentGuess] = useState('')
   const [guesses, setGuesses] = useState([])
   const [turnsLeft, setTurnsLeft] = useState(6)
@@ -22,9 +22,12 @@ export default function Dashboard({ code }) {
     console.log('new song is ', song)
   }, [song])
 
-  const selectAnswer = (track) => {
-    setAnswer(track)
-  }
+  useEffect(() => {
+    if (isGameActive === false) {
+      console.log("postgamestats called")
+      postGameStats(user, isWinner, turnsLeft)
+    }
+  }, [isGameActive])
 
   // sets guess state
   const getGuess = (guess) => {
@@ -35,7 +38,6 @@ export default function Dashboard({ code }) {
   const skipTurn = () => {
     if (isGameActive === false) return;
     if (turnsLeft === 0) {
-      console.log("you're out of turns")
       return;
     }
     setTurnsLeft(prev => prev - 1)
@@ -63,14 +65,12 @@ export default function Dashboard({ code }) {
     )
   })
 
-
   const determineGameState = () => {
     console.log("called")
     if (currentGuess === answer.title && isGameActive === true) {
       setIsGameActive(false)
       setIsWinner(true)
       console.log("you win")
-
       return;
     }
     if (turnsLeft === 0 && isGameActive === true) {
@@ -130,7 +130,6 @@ export default function Dashboard({ code }) {
           accessToken={accessToken}
           refreshToken={refreshToken}
           makePostRequesttoRefresh={makePostRequesttoRefresh}
-          selectAnswer={selectAnswer}
           answer={answer.id}
         /> : <div>loading</div>}
       </div>
