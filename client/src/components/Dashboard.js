@@ -6,25 +6,22 @@ import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import GameModal from "./GameModal";
-import postGameStats from "./helper.js/sendGameData"
+import { postGameStats } from "./helper.js/helperfunctions"
+
 
 export default function Dashboard({ code }) {
   const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user } = useAuth(code)
   const [currentGuess, setCurrentGuess] = useState('')
   const [guesses, setGuesses] = useState([])
   const [turnsLeft, setTurnsLeft] = useState(6)
-  const [answer, setAnswer] = useState('')
   const [isGameActive, setIsGameActive] = useState(true)
   const [isWinner, setIsWinner] = useState(false)
 
-  useEffect(() => {
-    setAnswer(song)
-    console.log('new song is ', song)
-  }, [song])
+
 
   useEffect(() => {
     if (isGameActive === false) {
-      console.log("postgamestats called")
+      console.log("sending data to server")
       postGameStats(user, isWinner, turnsLeft)
     }
   }, [isGameActive])
@@ -33,6 +30,7 @@ export default function Dashboard({ code }) {
   const getGuess = (guess) => {
     setCurrentGuess(guess)
   }
+
 
   // Skips turn, reducing amount of turnsLeft left by 1
   const skipTurn = () => {
@@ -65,9 +63,10 @@ export default function Dashboard({ code }) {
     )
   })
 
+  // determines if the game is over, and if it is over if you won or lost
   const determineGameState = () => {
-    console.log("called")
-    if (currentGuess === answer.title && isGameActive === true) {
+    console.log("called determine state")
+    if (currentGuess === song.title && isGameActive === true) {
       setIsGameActive(false)
       setIsWinner(true)
       console.log("you win")
@@ -82,6 +81,7 @@ export default function Dashboard({ code }) {
 
   useEffect(() => { determineGameState() }, [guesses])
 
+  // function to make a guess and submit your answer
   const submitAnswer = () => {
     if (isGameActive === false) return;
     console.log("currentGuess", currentGuess);
@@ -102,10 +102,12 @@ export default function Dashboard({ code }) {
     console.log("answers array after submission", newAnswers);
     setGuesses(newAnswers)
     setTurnsLeft(prev => prev -= 1)
+    document.getElementById("combo-box-demo").value = ''
   }
 
-  const x = []
 
+
+  // function for resetting the game after the current game ends
   const gameReset = () => {
     console.log("reset game")
     refreshSong()
@@ -119,7 +121,7 @@ export default function Dashboard({ code }) {
   return (
     <div className="body">
       <ResponsiveAppBar />
-      {!isGameActive && <GameModal isWinner={isWinner} gameReset={gameReset} />}
+      {!isGameActive && <GameModal answer={song.title} user={user} turnsLeft={turnsLeft} isWinner={isWinner} gameReset={gameReset} />}
       <div className="guess-container">
         {guessDisplay}
       </div>
@@ -130,7 +132,7 @@ export default function Dashboard({ code }) {
           accessToken={accessToken}
           refreshToken={refreshToken}
           makePostRequesttoRefresh={makePostRequesttoRefresh}
-          answer={answer.id}
+          answer={song.id}
         /> : <div>loading</div>}
       </div>
       <div className="submit-form">

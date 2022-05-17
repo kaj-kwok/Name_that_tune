@@ -3,96 +3,62 @@ import axios from 'axios'
 import { Button } from '@mui/material'
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
+import Lottie from 'react-lottie'
+import animationData from '../lotties/player-button'
+import { withTheme } from '@emotion/react';
+
 
 export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, turnsLeft, answer }) {
 
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
   const [trackList, setTrackList] = useState()
+  const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
     if (accessToken) {
-      const script = document.createElement("script");
-      script.src = "https://sdk.scdn.co/spotify-player.js";
-      script.async = true;
+      // const script = document.createElement("script");
+      // script.src = "https://sdk.scdn.co/spotify-player.js";
+      // script.async = true;
 
-      document.body.appendChild(script);
+      // document.body.appendChild(script);
 
-      window.onSpotifyWebPlaybackSDKReady = () => {
+      // window.onSpotifyWebPlaybackSDKReady = () => {
 
-        const player = new window.Spotify.Player({
-          name: 'Web Playback SDK',
-          getOAuthToken: spotifyCallback => {
-            console.log("calling cb for SDK");
-            //// call function get a new token require my refresh currently useAuth
-            makePostRequesttoRefresh((newaccesstoken) => {
-              console.log(newaccesstoken)
-              spotifyCallback(newaccesstoken)
-            })
-          },
+      const player = new window.Spotify.Player({
+        name: 'Web Playback SDK',
+        getOAuthToken: spotifyCallback => {
+          console.log("calling cb for SDK");
+          //// call function get a new token require my refresh currently useAuth
+          makePostRequesttoRefresh((newaccesstoken) => {
+            console.log(newaccesstoken)
+            spotifyCallback(newaccesstoken)
+          })
+        },
 
-          volume: 0.5
-        });
+        volume: 0.5
+      });
 
-        setPlayer(player);
+      setPlayer(player);
 
-        player.addListener('ready', ({ device_id }) => {
-          console.log('Ready with Device ID', device_id)
-          setDevice(device_id)
-        });
+      player.addListener('ready', ({ device_id }) => {
+        console.log('Ready with Device ID', device_id)
+        setDevice(device_id)
+      });
 
-        player.addListener('not_ready', ({ device_id }) => {
-          console.log('Device ID has gone offline', device_id);
-        });
+      player.addListener('not_ready', ({ device_id }) => {
+        console.log('Device ID has gone offline', device_id);
+      });
 
+      player.connect();
+      console.log("player, connected")
 
-        player.connect();
-        console.log("player, connected")
-
-        return () => {
-          player.disconnect()
-        }
-      };
-    }
+      return () => {
+        player.disconnect()
+      }
+    };
+    // }
   }, []);
-
-  // changeDevice if device state is updated
-  useEffect(() => {
-    if (device)
-      changeDevice(device)
-  }, [device])
-
-  // const retrievePlaylist = () => {
-  //   axios('https://api.spotify.com/v1/playlists/2dEZn55szDawgoYOYQWHKQ/tracks', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': 'Bearer ' + accessToken,
-  //       'Content-Type': "application/json"
-  //     }
-  //   }
-  //   ).then(data => {
-  //     const returnedSongs = data.data.items.map(item => {
-  //       return {
-  //         id: item.track.id,
-  //         title: item.track.name
-  //       }
-  //     })
-  //     const playlist = returnedSongs.reduce((obj, item) => {
-  //       const key = item["id"]
-  //       return { ...obj, [key]: item }
-  //     }, {})
-  //     // set to state
-  //     setTrackList(returnedSongs)
-  //     currentTrack(returnedSongs)
-  //   })
-  // }
-
-  // const currentTrack = (tracks) => {
-  //   const index = Math.floor(Math.random() * (tracks.length - 1))
-  //   console.log("index", index)
-  //   selectAnswer(tracks[index])
-  //   // setTrack(tracks[index])
-  // }
 
   const play = () => {
     console.log("this is the current track", answer)
@@ -111,9 +77,11 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         "uris": [`spotify:track:${answer}`]
       },
       "position_ms": 0,
-    }).then(() => setTimeout(() => {
-      pause()
-    }, (turnsLeft * 3000)))
+    })
+      .then(() => setIsPlaying(true))
+      .then(() => setTimeout(() => {
+        pause()
+      }, (turnsLeft * 3000)))
   }
 
   const pause = (device) => {
@@ -124,26 +92,31 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         "Content-Type": "application/json"
       },
     })
+      .then(() => setIsPlaying(false))
   }
 
-
-
-  const changeDevice = (device) => {
-    axios(`https://api.spotify.com/v1/me/player?${device}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': 'Bearer ' + accessToken,
-        "Content-Type": "application/json"
-      },
-      data: {
-        "device_ids": [device]
-      },
-    })
-  }
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
 
   return (
     <div>
-      <Button variant="contained" onClick={() => play()}> <PlayArrowRoundedIcon /> </Button>
+      <Button variant="contained"
+        onClick={() => play()}>
+        {isPlaying ? <div>
+          <Lottie
+            options={defaultOptions}
+            height="24px"
+            width="24px"
+          />
+        </div> : <PlayArrowRoundedIcon />}
+      </Button>
+
       <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>
     </div>
   )
