@@ -1,4 +1,5 @@
 const dotenv = require('dotenv').config()
+
 const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
@@ -6,7 +7,7 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const morgan = require('morgan');
 const cors = require('cors')
 const PORT = 3001;
-const {db, getUserByEmail} = require('./dbqueries');
+const { getUserByEmail } = require('./dbqueries');
 // const getUserByEmail = require('./dbqueries');
 
 
@@ -93,7 +94,10 @@ App.post("/stats", (req, res) => {
   console.log(req.body)
 })
 
-console.log("get user by email", getUserByEmail(db, "jshsparx@gmail.com"))
+const x = getUserByEmail().then(data => {
+  console.log("data is ", data)
+})
+console.log(x)
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console

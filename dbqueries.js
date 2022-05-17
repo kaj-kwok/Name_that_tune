@@ -15,33 +15,39 @@ if (process.env.DATABASE_URL) {
 
 const db = new Pool(dbParams);
 
-db.connect(()=>{
+db.connect(() => {
   console.log(`connected to db ${process.env.DB_PORT}`);
 });
 
-
+const getUserByEmail = (email) => {
+  return db.query(`SELECT * FROM users`)
+    .then(res => {
+      // console.log(res.rows[0])
+      return res.rows[0]
+    })
+}
 
 // get user id by email
 // insert into game (user_id, completed, score)
 
-const getUserByEmail = function(db, email) {
-  return db.query(`
-    SELECT id 
-    FROM users
-    WHERE email = ${email};
-  `)
-  .then((data) => {
-    console.log("data in get user query", data)
-    return data;
+// const getUserByEmail = function (db, email) {
+//   return db.query(`
+//     SELECT id 
+//     FROM users
+//     WHERE email = ${email};
+//   `)
+//     .then((data) => {
+//       console.log("data in get user query", data)
+//       return data;
 
-  })
-}
+//     })
+// }
 
-const insertUserIntoGame = function(db, user_id, completed, score) {
-  return db.query(`
+// const insertUserIntoGame = function(db, user_id, completed, score) {
+//   return db.query(`
 
-  `)
-  
-}
+//   `)
 
-module.exports =  { getUserByEmail }
+// }
+
+module.exports = { getUserByEmail }
