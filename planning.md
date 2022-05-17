@@ -19,3 +19,29 @@
 - Game will end when
   - [x] turns left = 0
   - [x] submitted answer = correct answer
+
+THINGS TO DO:
+
+# Primary
+  - [] button condition, add animation when song is playing
+  - [] fix broken queries and create stats queries 
+  - [] game modal styling 
+  - [] guess box styling 
+  - [] song intervals
+  - [] settings drop down change to just display username
+  - [] stats modal display stats
+  - [] expand playlist/guess list
+  - [] game changed to games
+  - [] logo
+  - [] recording of demo 
+
+  
+## Secondary
+  - dark mode
+  - erase drop down in top left
+  - deployment to web
+  - make app dynamic so we can select from all songs in api 
+
+
+
+

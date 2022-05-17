@@ -1,9 +1,11 @@
 /* animation */
 .answer_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid lightgray;
   width: 70%;
   border-radius: 999px;
-  text-align: center;
   padding: 1em;
   height: 1em;
 
