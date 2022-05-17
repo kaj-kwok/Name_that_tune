@@ -19,6 +19,7 @@ export default function useAuth(code) {
         setExpiresIn(res.data.expiresIn)
         //clear query parameters from URL, set to root URL
         window.history.pushState({}, null, "/")
+        getUserData(res.data.accessToken)
       })
       //if code is expired, redirect to login
       .catch(() => {
@@ -61,7 +62,7 @@ export default function useAuth(code) {
     if (!accessToken) return
     refreshSong()
     console.log("refresh song called from useAuth, accesstoken is ", accessToken);
-    getUserData()
+
   }, [accessToken])
 
   function refreshSong() {
@@ -94,7 +95,7 @@ export default function useAuth(code) {
     setSong(tracks[index])
   }
 
-  function getUserData() {
+  function getUserData(accessToken) {
     axios("https://api.spotify.com/v1/me", {
       method: 'GET',
       headers: {
@@ -103,10 +104,11 @@ export default function useAuth(code) {
       }
     }
     ).then(data => {
-      setUser({
+      const user = {
         name: data.data.display_name,
         email: data.data.email
-      })
+      }
+      setUser(user)
       sendUserInfo(user)
     }).catch(err => console.log(err))
 

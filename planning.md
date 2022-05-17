@@ -23,6 +23,7 @@
 THINGS TO DO:
 
 # Primary
+<<<<<<< HEAD
   - [] button condition, change to pause when song is playing
   - [] game modal styling 
   - [] guess box styling 
@@ -41,6 +42,26 @@ THINGS TO DO:
   - [] dark mode
   - [] erase drop down in top left
   - [] deployment to web
+=======
+  - [] button condition, add animation when song is playing
+  - [] fix broken queries and create stats queries 
+  - [] game modal styling 
+  - [] guess box styling 
+  - [] song intervals
+  - [] settings drop down change to just display username
+  - [] stats modal display stats
+  - [] expand playlist/guess list
+  - [] game changed to games
+  - [] logo
+  - [] recording of demo 
+
+  
+## Secondary
+  - dark mode
+  - erase drop down in top left
+  - deployment to web
+  - make app dynamic so we can select from all songs in api 
+>>>>>>> a9b2f987d4c7db24a7072abfe6e299f80e5ef602
 
 
 
