@@ -43,8 +43,3 @@ THINGS TO DO:
   - [] dark mode
   - [] erase drop down in top left
   - [] deployment to web
-
-
-
-
-

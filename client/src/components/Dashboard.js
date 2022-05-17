@@ -17,6 +17,10 @@ export default function Dashboard({ code }) {
   const [isGameActive, setIsGameActive] = useState(true)
   const [isWinner, setIsWinner] = useState(false)
 
+  useEffect(() => {
+    setAnswer(song)
+    console.log('new song is ', song)
+  }, [song])
 
   useEffect(() => {
     if (isGameActive === false) {
@@ -106,6 +110,9 @@ export default function Dashboard({ code }) {
     document.getElementById("combo-box-demo").value=''
   }
 
+
+
+  // function for resetting the game after the current game ends
   const gameReset = () => {
     console.log("reset game")
     refreshSong()
