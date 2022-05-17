@@ -23,19 +23,12 @@ export default function Dashboard({ code }) {
     console.log('new song is ', song)
   }, [song])
 
-<<<<<<< HEAD
   useEffect(() => {
     if (isGameActive === false) {
       console.log("sending data to server")
       postGameStats(user, isWinner, turnsLeft)
     }
   }, [isGameActive])
-=======
-  // sets the correct answer to the name of the song
-  const selectAnswer = (track) => {
-    setAnswer(track)
-  }
->>>>>>> 44f5f32e5a2df51c5df21fdaf26fd06a4f186ded
 
   // sets guess state
   const getGuess = (guess) => {
@@ -118,12 +111,9 @@ export default function Dashboard({ code }) {
     document.getElementById("combo-box-demo").value=''
   }
 
-<<<<<<< HEAD
-=======
-  const x = []
+
 
   // function for resetting the game after the current game ends
->>>>>>> 44f5f32e5a2df51c5df21fdaf26fd06a4f186ded
   const gameReset = () => {
     console.log("reset game")
     refreshSong()
