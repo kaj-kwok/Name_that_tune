@@ -17,47 +17,47 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
 
   useEffect(() => {
     if (accessToken) {
-      const script = document.createElement("script");
-      script.src = "https://sdk.scdn.co/spotify-player.js";
-      script.async = true;
+      // const script = document.createElement("script");
+      // script.src = "https://sdk.scdn.co/spotify-player.js";
+      // script.async = true;
 
-      document.body.appendChild(script);
+      // document.body.appendChild(script);
 
-      window.onSpotifyWebPlaybackSDKReady = () => {
+      // window.onSpotifyWebPlaybackSDKReady = () => {
 
-        const player = new window.Spotify.Player({
-          name: 'Web Playback SDK',
-          getOAuthToken: spotifyCallback => {
-            console.log("calling cb for SDK");
-            //// call function get a new token require my refresh currently useAuth
-            makePostRequesttoRefresh((newaccesstoken) => {
-              console.log(newaccesstoken)
-              spotifyCallback(newaccesstoken)
-            })
-          },
+      const player = new window.Spotify.Player({
+        name: 'Web Playback SDK',
+        getOAuthToken: spotifyCallback => {
+          console.log("calling cb for SDK");
+          //// call function get a new token require my refresh currently useAuth
+          makePostRequesttoRefresh((newaccesstoken) => {
+            console.log(newaccesstoken)
+            spotifyCallback(newaccesstoken)
+          })
+        },
 
-          volume: 0.5
-        });
+        volume: 0.5
+      });
 
-        setPlayer(player);
+      setPlayer(player);
 
-        player.addListener('ready', ({ device_id }) => {
-          console.log('Ready with Device ID', device_id)
-          setDevice(device_id)
-        });
+      player.addListener('ready', ({ device_id }) => {
+        console.log('Ready with Device ID', device_id)
+        setDevice(device_id)
+      });
 
-        player.addListener('not_ready', ({ device_id }) => {
-          console.log('Device ID has gone offline', device_id);
-        });
+      player.addListener('not_ready', ({ device_id }) => {
+        console.log('Device ID has gone offline', device_id);
+      });
 
-        player.connect();
-        console.log("player, connected")
+      player.connect();
+      console.log("player, connected")
 
-        return () => {
-          player.disconnect()
-        }
-      };
-    }
+      return () => {
+        player.disconnect()
+      }
+    };
+    // }
   }, []);
 
   const play = () => {
@@ -77,10 +77,10 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
       },
       "position_ms": 0,
     })
-    .then(() => setIsPlaying(true))
-    .then(() => setTimeout(() => {
-      pause()
-    }, (turnsLeft * 3000)))
+      .then(() => setIsPlaying(true))
+      .then(() => setTimeout(() => {
+        pause()
+      }, (turnsLeft * 3000)))
   }
 
   const pause = (device) => {
@@ -91,7 +91,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         "Content-Type": "application/json"
       },
     })
-    .then(() => setIsPlaying(false))
+      .then(() => setIsPlaying(false))
   }
 
   const defaultOptions = {
@@ -104,6 +104,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
   };
 
   return (
+<<<<<<< HEAD
     <div class="play-skip">
       <Button variant="contained" 
         onClick={() => play()}> 
@@ -115,6 +116,18 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
               width="24px"
               />
         </div> : <PlayArrowRoundedIcon /> }
+=======
+    <div>
+      <Button variant="contained"
+        onClick={() => play()}>
+        {isPlaying ? <div>
+          <Lottie
+            options={defaultOptions}
+            height="24px"
+            width="24px"
+          />
+        </div> : <PlayArrowRoundedIcon />}
+>>>>>>> efe644249ec56b09897bb60ed162615664dc585b
       </Button>
 
       <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>

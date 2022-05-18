@@ -20,6 +20,7 @@ export default function useAuth(code) {
         //clear query parameters from URL, set to root URL
         window.history.pushState({}, null, "/")
         getUserData(res.data.accessToken)
+        refreshSong(res.data.accessToken)
       })
       //if code is expired, redirect to login
       .catch(() => {
@@ -58,14 +59,7 @@ export default function useAuth(code) {
       })
   }
 
-  useEffect(() => {
-    if (!accessToken) return
-    refreshSong()
-    console.log("refresh song called from useAuth, accesstoken is ", accessToken);
-
-  }, [accessToken])
-
-  function refreshSong() {
+  function refreshSong(accessToken) {
     axios('https://api.spotify.com/v1/playlists/2dEZn55szDawgoYOYQWHKQ/tracks', {
       method: 'GET',
       headers: {
