@@ -118,7 +118,7 @@ export default function Dashboard({ code }) {
 
   return (
     <div className="body">
-      <ResponsiveAppBar />
+      <ResponsiveAppBar displayName={user.name} />
       {!isGameActive && <GameModal answer={song.title} user={user} turnsLeft={turnsLeft} isWinner={isWinner} gameReset={gameReset} />}
       <div className="guess-container">
         {guessDisplay}

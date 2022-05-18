@@ -50,7 +50,7 @@ const addUsertoDatabase = (user) => {
 const insertGameInfo = (user_id, completed, score) => {
   return db.query(`INSERT INTO game (user_id, completed, score) VALUES ($1, $2, $3) RETURNING*;`, [user_id, completed, score])
     .then(data => {
-      console.log('user added to game')
+      console.log('game info inserted')
       return data.rows[0]
     })
     .catch(err => console.log("insert user to game error", err))

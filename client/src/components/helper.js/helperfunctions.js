@@ -1,12 +1,18 @@
 //post game data to backend after game is completed
 import axios from 'axios'
 
-export function postGameStats(user, isWinner, turnsLeft) {
+
+export function gameScore(isWinner, turnsLeft) {
+  if (!isWinner) return 0;
+  else return turnsLeft + 1;
+};
+
+export function postGameStats(user, isWinner) {
   axios.post("http://localhost:3001/stats", {
     displayName: user.name,
     email: user.email,
     completed: isWinner,
-    score: turnsLeft + 1
+    score: gameScore()
   })
 }
 
