@@ -25,8 +25,8 @@ THINGS TO DO:
 
 # Primary
   - [] button condition, change to pause when song is playing
-  - [] game modal styling 
-  - [] guess box styling 
+  - [x] game modal styling 
+  - [x] guess box styling 
   - [] song intervals
   - [] logo
   - [x] settings drop down change to just display username
@@ -35,7 +35,7 @@ THINGS TO DO:
   - [] expand playlist/guess list
   - [x] game changed to games
   - [] recording of demo 
-  - [] on click of play button, some icon to show that music is playing
+  - [x] on click of play button, some icon to show that music is playing
 
   
 ## Secondary

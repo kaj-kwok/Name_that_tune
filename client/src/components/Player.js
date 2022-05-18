@@ -104,7 +104,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
   };
 
   return (
-<<<<<<< HEAD
     <div class="play-skip">
       <Button variant="contained" 
         onClick={() => play()}> 
@@ -116,18 +115,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
               width="24px"
               />
         </div> : <PlayArrowRoundedIcon /> }
-=======
-    <div>
-      <Button variant="contained"
-        onClick={() => play()}>
-        {isPlaying ? <div>
-          <Lottie
-            options={defaultOptions}
-            height="24px"
-            width="24px"
-          />
-        </div> : <PlayArrowRoundedIcon />}
->>>>>>> efe644249ec56b09897bb60ed162615664dc585b
       </Button>
 
       <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>
