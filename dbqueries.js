@@ -87,4 +87,11 @@ const checkCurrentStreak = (user_id, streak, max_streak, completed) => {
   }
 }
 
-module.exports = { getUserByEmail, addUsertoDatabase, insertGameInfo, checkCurrentStreak }
+//function to retrieve basic stats
+const retrieveStats = (id) => {
+  return db.query(`SELECT * FROM users JOIN games ON users.id = games.user_id WHERE users.id = $1;`, [id])
+    .then(data => data.rows)
+    .catch(err => console.log(err))
+}
+
+module.exports = { getUserByEmail, addUsertoDatabase, insertGameInfo, checkCurrentStreak, retrieveStats }

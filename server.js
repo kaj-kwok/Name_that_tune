@@ -7,7 +7,7 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const morgan = require('morgan');
 const cors = require('cors')
 const PORT = 3001;
-const { getUserByEmail, addUsertoDatabase, insertGameInfo, checkCurrentStreak } = require('./dbqueries');
+const { getUserByEmail, addUsertoDatabase } = require('./dbqueries');
 
 
 
@@ -17,6 +17,10 @@ App.use(BodyParser.json());
 App.use(Express.static('public'));
 App.use(cors())
 App.use(morgan("dev"));
+
+//require router
+const statsRouter = require('./routes/stats_routes')
+App.use('/stats', statsRouter)
 
 App.post('/login', (req, res) => {
   console.log("Post request made to Spotify API");
@@ -89,18 +93,6 @@ App.post('/refresh', (req, res) => {
 App.get('/auth/callback', (req, res) => res.json({
   message: "Seems to work!",
 }));
-
-App.post("/stats", (req, res) => {
-  console.log("req.body is ", req.body)
-  getUserByEmail(req.body.email).then(data => {
-    console.log("data from query", data)
-    checkCurrentStreak(data.id, data.streak, data.max_streak, req.body.completed)
-    insertGameInfo(data.id, req.body.completed, req.body.score);
-  })
-    .catch(err => console.log(err))
-
-  res.status(201).send("received")
-})
 
 
 App.post("/user", (req, res) => {

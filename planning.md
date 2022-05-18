@@ -32,7 +32,8 @@ THINGS TO DO:
   - [] logo
   - [x] settings drop down change to just display username
   - [] stats modal display stats
-  - [] fix broken queries and create stats queries
+  - [x] fix broken queries and create stats queries (including streaks, max streaks)
+  - [] expose API endpoint on backend to access stats
   - [x] expand playlist/guess list
   - [x] game changed to games
   - [] recording of demo 
