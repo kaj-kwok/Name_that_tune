@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
 router.get("/:id", (req, res) => {
   console.log(req.params.id)
   retrieveStats(req.params.id)
-    .then(data => res.send(data))
+    .then(data => res.json(data))
 })
 
 module.exports = router;

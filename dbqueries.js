@@ -81,7 +81,7 @@ const checkCurrentStreak = (user_id, streak, max_streak, completed) => {
       })
   }
   if (completed === 'false') {
-    db.query(`UPDATE users SET streak = $1 WHERE id = $2 RETURNING*;`, [1, user_id])
+    db.query(`UPDATE users SET streak = $1 WHERE id = $2 RETURNING*;`, [0, user_id])
       .then(data => {
       }).catch(err => console.log(err))
   }
