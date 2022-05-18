@@ -33,7 +33,7 @@ THINGS TO DO:
   - [x] settings drop down change to just display username
   - [] stats modal display stats
   - [x] fix broken queries and create stats queries (including streaks, max streaks)
-  - [] expose API endpoint on backend to access stats
+  - [x] expose API endpoint on backend to access stats
   (total games, win percentage, win streak, max win streak)
   - [x] expand playlist/guess list
   - [x] game changed to games
