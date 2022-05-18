@@ -10,7 +10,7 @@ import { postGameStats } from "./helper.js/helperfunctions"
 
 
 export default function Dashboard({ code }) {
-  const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user } = useAuth(code)
+  const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user, trackList } = useAuth(code)
   const [currentGuess, setCurrentGuess] = useState('')
   const [guesses, setGuesses] = useState([])
   const [turnsLeft, setTurnsLeft] = useState(6)
@@ -108,7 +108,7 @@ export default function Dashboard({ code }) {
   // function for resetting the game after the current game ends
   const gameReset = () => {
     console.log("reset game")
-    refreshSong()
+    refreshSong(accessToken)
     setTurnsLeft(6)
     setGuesses((prev) => [])
     setIsGameActive(true)
@@ -134,7 +134,7 @@ export default function Dashboard({ code }) {
         /> : <div>loading</div>}
       </div>
       <div className="submit-form">
-        <ComboBox className="combo-box" getGuess={getGuess} />
+        <ComboBox className="combo-box" getGuess={getGuess} trackList={trackList} />
         <ColorButtons submitAnswer={submitAnswer} />
       </div>
     </div>

@@ -3,15 +3,20 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useState } from 'react';
 
-export default function ComboBox({ getGuess }) {
+export default function ComboBox({ getGuess, trackList }) {
   const [val, setVal] = useState('')
+
+  const renderedTracklist = trackList.map(track => {
+    return track.title
+  })
+
   return (
     <Autocomplete
       value={val}
       disablePortal
       size="small"
       id="combo-box-demo"
-      options={songList}
+      options={renderedTracklist}
       sx={{ width: 300 }}
       onChange={(e, value) => getGuess(value)}
       renderInput={(params) => <TextField {...params} label="Can you guess the Song" />}
@@ -22,4 +27,4 @@ export default function ComboBox({ getGuess }) {
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 
 
-const songList = [ "Thunderstruck", "Back In Black", "Highway to Hell", "T.N.T.", "You Shook Me All Night Long", "test", "testing" ];
+const songList = ["Thunderstruck", "Back In Black", "Highway to Hell", "T.N.T.", "You Shook Me All Night Long", "test", "testing"];

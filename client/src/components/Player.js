@@ -12,7 +12,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
 
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
-  const [trackList, setTrackList] = useState()
   const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
@@ -106,16 +105,16 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
 
   return (
     <div class="play-skip">
-      <Button variant="contained" 
-        onClick={() => play()}> 
-        { isPlaying ? 
-        <div>
-            <Lottie 
-            options={defaultOptions}
+      <Button variant="contained"
+        onClick={() => play()}>
+        {isPlaying ?
+          <div>
+            <Lottie
+              options={defaultOptions}
               height="24px"
               width="24px"
-              />
-        </div> : <PlayArrowRoundedIcon /> }
+            />
+          </div> : <PlayArrowRoundedIcon />}
       </Button>
 
       <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>

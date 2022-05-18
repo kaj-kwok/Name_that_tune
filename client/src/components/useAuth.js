@@ -8,6 +8,7 @@ export default function useAuth(code) {
   const [expiresIn, setExpiresIn] = useState()
   const [song, setSong] = useState("");
   const [user, setUser] = useState({})
+  const [trackList, setTrackList] = useState([])
 
   useEffect(() => {
     axios.post('http://localhost:3001/login', {
@@ -74,12 +75,12 @@ export default function useAuth(code) {
           title: item.track.name
         }
       })
-      const playlist = returnedSongs.reduce((obj, item) => {
-        const key = item["id"]
-        return { ...obj, [key]: item }
-      }, {})
+      // const playlist = returnedSongs.reduce((obj, item) => {
+      //   const key = item["id"]
+      //   return { ...obj, [key]: item }
+      // }, {})
       // set to state
-      // setTrackList(returnedSongs)
+      setTrackList(returnedSongs)
       return currentTrack(returnedSongs)
     })
   }
@@ -109,7 +110,7 @@ export default function useAuth(code) {
     // 
   }
 
-  return { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user }
+  return { accessToken, makePostRequesttoRefresh, song, refreshSong, user, trackList }
 
 
 }
