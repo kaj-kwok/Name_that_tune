@@ -28,7 +28,7 @@ THINGS TO DO:
   - [x] button condition, change to pause when song is playing
   - [] game modal styling 
   - [] guess box styling 
-  - [] song intervals
+  - [x] song intervals
   - [] logo
   - [x] settings drop down change to just display username
   - [] stats modal display stats
@@ -45,3 +45,4 @@ THINGS TO DO:
   - [] dark mode
   - [] erase drop down in top left
   - [] deployment to web
+  - [] hard mode

@@ -125,7 +125,7 @@ export default function Dashboard({ code }) {
       </div>
       <div className="player">
         {accessToken ? <Player
-          turnsLeft={turnsLeft}
+          guesses={guesses}
           skipTurn={skipTurn}
           accessToken={accessToken}
           refreshToken={refreshToken}

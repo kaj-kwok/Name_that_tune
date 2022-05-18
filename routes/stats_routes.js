@@ -14,9 +14,9 @@ router.post("/", (req, res) => {
   res.status(201).send("received")
 })
 
-router.get("/:id", (req, res) => {
-  console.log(req.params.id)
-  retrieveStats(req.params.id)
+router.get("/:email", (req, res) => {
+  console.log(req.params.email)
+  retrieveStats(req.params.email)
     .then(data => res.json(data))
 })
 

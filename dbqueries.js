@@ -88,8 +88,8 @@ const checkCurrentStreak = (user_id, streak, max_streak, completed) => {
 }
 
 //function to retrieve basic stats
-const retrieveStats = (id) => {
-  return db.query(`SELECT * FROM users JOIN games ON users.id = games.user_id WHERE users.id = $1;`, [id])
+const retrieveStats = (email) => {
+  return db.query(`SELECT * FROM users JOIN games ON users.id = games.user_id WHERE users.email = $1;`, [email])
     .then(data => data.rows)
     .catch(err => console.log(err))
 }

@@ -8,11 +8,14 @@ import animationData from '../lotties/player-button'
 import { withTheme } from '@emotion/react';
 
 
-export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, turnsLeft, answer }) {
+export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, guesses, answer }) {
 
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
   const [isPlaying, setIsPlaying] = useState(false)
+
+  const playLengthArray = [3000, 6000, 10000, 15000, 20000, 25000]
+
 
   useEffect(() => {
     if (accessToken) {
@@ -80,7 +83,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
       .then(() => setIsPlaying(true))
       .then(() => setTimeout(() => {
         pause()
-      }, (turnsLeft * 3000)))
+      }, playLengthArray[guesses.length]))
   }
 
   const pause = (device) => {
