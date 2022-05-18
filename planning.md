@@ -32,7 +32,7 @@ THINGS TO DO:
   - [] stats modal display stats
   - [] fix broken queries and create stats queries
   - [] expand playlist/guess list
-  - [] game changed to games
+  - [x] game changed to games
   - [] recording of demo 
   - [] on click of play button, some icon to show that music is playing
 
