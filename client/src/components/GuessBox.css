@@ -4,11 +4,10 @@
   justify-content: center;
   align-items: center;
   border: 1px solid gray;
-  width: 60%;
+  width: 400px;
   border-radius: 999px;
   padding: 1em;
   height: 1em;
-
 }
 
 .answer_row_value {

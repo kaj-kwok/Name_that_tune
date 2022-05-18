@@ -15,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2em 15em 2em 15em;
+  margin: 2em 0 2em 0;
   gap: 15px;
 }
 
@@ -52,6 +52,7 @@ button.MuiButton-root.MuiButton-contained {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 25px;
 }
 
 .modal-text {
@@ -71,3 +72,13 @@ button.MuiButton-root.MuiButton-contained {
   gap: 15px;
   flex-direction: column;
 }
+
+#root > div > div.player > div > button:nth-child(1) {
+  margin: 0;
+}
+
+.play-skip {
+  display: flex;
+  gap: 10px;
+}
+

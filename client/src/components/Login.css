@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   background-color: black;
+  gap: 1em;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
