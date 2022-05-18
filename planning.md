@@ -24,9 +24,16 @@
 THINGS TO DO:
 
 # Primary
+<<<<<<< HEAD
   - [] button condition, change to pause when song is playing
   - [x] game modal styling 
   - [x] guess box styling 
+=======
+
+  - [x] button condition, change to pause when song is playing
+  - [] game modal styling 
+  - [] guess box styling 
+>>>>>>> 5aea2e1594c1937285e7b816d1dab0dfd08bab38
   - [] song intervals
   - [] logo
   - [x] settings drop down change to just display username
@@ -42,7 +49,10 @@ THINGS TO DO:
   - [] dark mode
   - [] erase drop down in top left
   - [] deployment to web
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 5aea2e1594c1937285e7b816d1dab0dfd08bab38

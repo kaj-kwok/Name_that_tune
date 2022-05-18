@@ -17,8 +17,6 @@ export default function Dashboard({ code }) {
   const [isGameActive, setIsGameActive] = useState(true)
   const [isWinner, setIsWinner] = useState(false)
 
-  
-
   useEffect(() => {
     if (isGameActive === false) {
       console.log("sending data to server")
@@ -31,12 +29,11 @@ export default function Dashboard({ code }) {
     setCurrentGuess(guess)
   }
 
-  
+
   // Skips turn, reducing amount of turnsLeft left by 1
   const skipTurn = () => {
     if (isGameActive === false) return;
     if (turnsLeft === 0) {
-      console.log("you're out of turns")
       return;
     }
     setTurnsLeft(prev => prev - 1)
@@ -71,7 +68,6 @@ export default function Dashboard({ code }) {
       setIsGameActive(false)
       setIsWinner(true)
       console.log("you win")
-
       return;
     }
     if (turnsLeft === 0 && isGameActive === true) {
@@ -104,7 +100,7 @@ export default function Dashboard({ code }) {
     console.log("answers array after submission", newAnswers);
     setGuesses(newAnswers)
     setTurnsLeft(prev => prev -= 1)
-    document.getElementById("combo-box-demo").value=''
+    document.getElementById("combo-box-demo").value = ''
   }
 
 

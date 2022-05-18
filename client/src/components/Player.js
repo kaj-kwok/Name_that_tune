@@ -8,7 +8,7 @@ import animationData from '../lotties/player-button'
 import { withTheme } from '@emotion/react';
 
 
-export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, turnsLeft, selectAnswer, answer }) {
+export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, turnsLeft, answer }) {
 
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
@@ -65,6 +65,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
     console.log("this is the device", device)
     if (!device) {
       console.log("not working")
+      player.on("")
     }
     axios(`https://api.spotify.com/v1/me/player/play?device_id=${device}`, {
       method: 'PUT',
