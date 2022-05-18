@@ -7,7 +7,7 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const morgan = require('morgan');
 const cors = require('cors')
 const PORT = 3001;
-const { getUserByEmail, addUsertoDatabase, insertGameInfo } = require('./dbqueries');
+const { getUserByEmail, addUsertoDatabase, insertGameInfo, checkCurrentStreak } = require('./dbqueries');
 
 
 
@@ -91,12 +91,15 @@ App.get('/auth/callback', (req, res) => res.json({
 }));
 
 App.post("/stats", (req, res) => {
-  console.log("req.body", req.body)
+  console.log("req.body is ", req.body)
   getUserByEmail(req.body.email).then(data => {
-    console.log("data is ", data)
+    console.log("data from query", data)
+    checkCurrentStreak(data.id, data.streak, data.max_streak, req.body.completed)
+    insertGameInfo(data.id, req.body.completed, req.body.score);
   })
     .catch(err => console.log(err))
-  insertGameInfo(1, req.body.completed, req.body.score);
+
+  res.status(201).send("received")
 })
 
 

@@ -44,11 +44,9 @@ const addUsertoDatabase = (user) => {
     .catch(err => console.log("addUser error", err))
 }
 
-
-
 // function to insert game data
 const insertGameInfo = (user_id, completed, score) => {
-  return db.query(`INSERT INTO game (user_id, completed, score) VALUES ($1, $2, $3) RETURNING*;`, [user_id, completed, score])
+  return db.query(`INSERT INTO games (user_id, completed, score) VALUES ($1, $2, $3) RETURNING*;`, [user_id, completed, score])
     .then(data => {
       console.log('game info inserted')
       return data.rows[0]
@@ -56,5 +54,37 @@ const insertGameInfo = (user_id, completed, score) => {
     .catch(err => console.log("insert user to game error", err))
 }
 
+//function to check if currently on streak
+const checkCurrentStreak = (user_id, streak, max_streak, completed) => {
+  if (completed === "true") {
+    return db.query(`SELECT * FROM games WHERE user_id = $1 ORDER BY id DESC LIMIT 1;`, [user_id])
+      .then(data => {
+        if (data.rows[0].completed === true) {
+          const value = streak + 1
+          db.query(`UPDATE users SET streak = $1 WHERE id = $2 RETURNING*;`, [value, user_id])
+            .then(data => {
+              if (data.rows[0].streak > max_streak) {
+                db.query(`UPDATE users SET max_streak = $1 WHERE id = $2;`, [data.rows[0].streak, user_id])
+              }
+            })
+            .catch(err => console.log(err))
+        }
+        if (data.rows[0].completed === false) {
+          db.query(`UPDATE users SET streak = $1 WHERE id = $2 RETURNING*;`, [1, user_id])
+            .then(data => {
+              if (data.rows[0].streak > max_streak) {
+                db.query(`UPDATE users SET max_streak = $1 WHERE id = $2;`, [data.rows[0].streak, user_id])
+              }
+            })
+            .catch(err => console.log(err))
+        }
+      })
+  }
+  if (completed === 'false') {
+    db.query(`UPDATE users SET streak = $1 WHERE id = $2 RETURNING*;`, [1, user_id])
+      .then(data => {
+      }).catch(err => console.log(err))
+  }
+}
 
-module.exports = { getUserByEmail, addUsertoDatabase, insertGameInfo }
+module.exports = { getUserByEmail, addUsertoDatabase, insertGameInfo, checkCurrentStreak }
