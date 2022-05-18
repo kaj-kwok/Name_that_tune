@@ -56,5 +56,31 @@ const insertGameInfo = (user_id, completed, score) => {
     .catch(err => console.log("insert user to game error", err))
 }
 
+// const calculateStreak = (completed) => {
+//   if (completed === true) {
+//     return getStreak(email) + 1
+//   } 
+// }
+
+// // function to add streak
+// const addStreak = (completed, email) => {
+//   if (!completed) {
+//     return db.query(`UPDATE users SET streak=$1 WHERE email=$2;`, [0, email])
+//   } else {
+//     return db.query(`UPDATE users SET streak=$1 WHERE email=$2;`, [ + 1 , email])
+//   }
+// }
+
+
+// function to grab streak value
+const getStreak = (email) => {
+  return db.query(`SELECT streak FROM users WHERE email = $1`, [email])
+  .then(data => {
+    console.log('get streak')
+    return data.rows[0]
+  })
+  .catch(err => console.log('getStreak error', err))
+}
+
 
 module.exports = { getUserByEmail, addUsertoDatabase, insertGameInfo }

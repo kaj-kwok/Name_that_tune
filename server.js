@@ -100,6 +100,7 @@ App.post("/stats", (req, res) => {
 })
 
 
+
 App.post("/user", (req, res) => {
   console.log("user route", req.body)
   res.status(201).send("received")
