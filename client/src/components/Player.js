@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Button } from '@mui/material'
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 import Lottie from 'react-lottie'
 import animationData from '../lotties/player-button'
-import { withTheme } from '@emotion/react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-
+import { alpha, styled } from '@mui/material/styles';
+import { pink } from '@mui/material/colors';
 
 
 export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, guesses, answer }) {
@@ -121,10 +121,22 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
     setHardMode(!hardMode);
   };
 
+  const GreenSwitch = styled(Switch)(({ theme }) => ({
+    '& .MuiSwitch-switchBase.Mui-checked': {
+      color: pink[600],
+      '&:hover': {
+        backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
+      },
+    },
+    '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+      backgroundColor: pink[600],
+    },
+  }));
+
   return (
     <div className="play-skip">
       <div className="hardmode_switch"><FormGroup>
-        <FormControlLabel labelPlacement="top" value="top" control={<Switch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
+        <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
       </FormGroup>
       </div>
       <Button variant="contained"

@@ -100,5 +100,10 @@ canvas {
 .hardmode_switch {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 5%;
+
+}
+
+.css-1hpqosy-MuiFormControlLabel-root .MuiFormControlLabel-label {
+  font-size: 1em;
 }
