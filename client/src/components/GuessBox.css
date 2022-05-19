@@ -35,3 +35,9 @@
   }
 
 }
+
+@media (max-width: 820px) {
+  .answer_row {
+    width: 60%
+  }
+}
