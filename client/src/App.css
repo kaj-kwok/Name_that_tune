@@ -45,6 +45,7 @@ button.MuiButton-root.MuiButton-contained {
   justify-content: center;
   flex-direction: row;
   gap: 8px;
+  padding-right: 20px;
 
 }
 
@@ -82,3 +83,14 @@ button.MuiButton-root.MuiButton-contained {
   gap: 10px;
 }
 
+.app-name {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 160px;
+}
+
+.switch{
+  display: flex;
+  padding-left: 20px;
+}
