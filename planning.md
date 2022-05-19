@@ -26,7 +26,7 @@ THINGS TO DO:
 # Primary
 
   - [x] button condition, change to pause when song is playing
-  - [] game modal styling (confetti)
+  - [x] game modal styling (confetti)
   - [] guess box styling (responsive design)
   - [x] song intervals
   - [] logo

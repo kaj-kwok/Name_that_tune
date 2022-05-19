@@ -7,13 +7,13 @@ export function gameScore(isWinner, turnsLeft) {
   else return turnsLeft + 1;
 };
 
-export function postGameStats(user, isWinner) {
+export function postGameStats(user, isWinner, turnsLeft) {
   console.log(gameScore())
   axios.post("http://localhost:3001/stats", {
     displayName: user.name,
     email: user.email,
     completed: isWinner,
-    score: gameScore()
+    score: gameScore(isWinner, turnsLeft)
   })
 }
 

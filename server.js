@@ -9,8 +9,6 @@ const cors = require('cors')
 const PORT = 3001;
 const { getUserByEmail, addUsertoDatabase } = require('./dbqueries');
 
-
-
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
@@ -22,16 +20,24 @@ App.use(morgan("dev"));
 const statsRouter = require('./routes/stats_routes')
 App.use('/stats', statsRouter)
 
+const credentials = {
+  clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+  redirectUri: 'http://localhost:3000/auth/callback'
+}
+
+var spotifyApi = new SpotifyWebApi(credentials);
+
 App.post('/login', (req, res) => {
   console.log("Post request made to Spotify API");
 
-  const credentials = {
-    clientId: process.env.SPOTIFY_CLIENT_ID,
-    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    redirectUri: 'http://localhost:3000/auth/callback'
-  };
+  // const credentials = {
+  //   clientId: process.env.SPOTIFY_CLIENT_ID,
+  //   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+  //   redirectUri: 'http://localhost:3000/auth/callback'
+  // };
 
-  var spotifyApi = new SpotifyWebApi(credentials);
+  // var spotifyApi = new SpotifyWebApi(credentials);
 
   // The code that's returned as a query parameter to the redirect URI
   const code = req.body.code;
@@ -61,14 +67,14 @@ App.post('/login', (req, res) => {
 })
 
 App.post('/refresh', (req, res) => {
-  const refreshToken = req.body.refreshToken
-  console.log("refresh running")
-  const spotifyApi = new SpotifyWebApi({
-    clientId: process.env.SPOTIFY_CLIENT_ID,
-    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    redirectUri: 'http://localhost:3000/auth/callback',
-    refreshToken,
-  })
+  // const refreshToken = req.body.refreshToken
+  // console.log("refresh running")
+  // const spotifyApi = new SpotifyWebApi({
+  //   clientId: process.env.SPOTIFY_CLIENT_ID,
+  //   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+  //   redirectUri: 'http://localhost:3000/auth/callback',
+  //   refreshToken,
+  // })
 
   spotifyApi.refreshAccessToken()
     .then(function (data) {
@@ -106,6 +112,21 @@ App.post("/user", (req, res) => {
       addUsertoDatabase(req.body)
     }
   })
+})
+
+App.get('/test', (req, res) => {
+  console.log('The access token is ' + spotifyApi.getAccessToken());
+  spotifyApi
+    .getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', { limit: 10, offset: 20 })
+    .then(
+      function (data) {
+        console.log('Album information', data.body);
+      },
+      function (err) {
+        console.error(err);
+      }
+    );
+
 })
 
 App.listen(PORT, () => {
