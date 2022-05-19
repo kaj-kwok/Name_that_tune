@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 5;
 }
 
 .submit-form {
@@ -73,7 +74,7 @@ button.MuiButton-root.MuiButton-contained {
   flex-direction: column;
 }
 
-#root > div > div.player > div > button:nth-child(1) {
+#root>div>div.player>div>button:nth-child(1) {
   margin: 0;
 }
 
@@ -82,3 +83,16 @@ button.MuiButton-root.MuiButton-contained {
   gap: 10px;
 }
 
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: absolute;
+  top: 0%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  z-index: -5;
+}
