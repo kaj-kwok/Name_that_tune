@@ -96,3 +96,9 @@ canvas {
   height: 90%;
   z-index: -5;
 }
+
+.hardmode_switch {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}

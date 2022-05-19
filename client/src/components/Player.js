@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import { Button } from '@mui/material'
 import SkipNextIcon from '@mui/icons-material/SkipNext';
@@ -6,6 +6,10 @@ import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 import Lottie from 'react-lottie'
 import animationData from '../lotties/player-button'
 import { withTheme } from '@emotion/react';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+
 
 
 export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, guesses, answer }) {
@@ -13,20 +17,28 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
   const [isPlaying, setIsPlaying] = useState(false)
+  const [hardMode, setHardMode] = useState(false)
+  const [hardModeTimer, setHardModeTimer] = useState(0)
 
   const playLengthArray = [3000, 6000, 10000, 15000, 20000, 25000]
+  const hardModeArray = [1500, 2500, 3500, 5000, 6000, 7500]
 
+  function hardModeRandomizer(duration_ms) {
+    const timer = Math.floor((duration_ms - 7500) * Math.random())
+    console.log(timer)
+    return timer
+  }
+
+  //toggle for hardmode
+  useEffect(() => {
+    if (hardMode) {
+      const timer = hardModeRandomizer(answer.duration)
+      setHardModeTimer(timer)
+    }
+  }, [hardMode, guesses])
 
   useEffect(() => {
     if (accessToken) {
-      // const script = document.createElement("script");
-      // script.src = "https://sdk.scdn.co/spotify-player.js";
-      // script.async = true;
-
-      // document.body.appendChild(script);
-
-      // window.onSpotifyWebPlaybackSDKReady = () => {
-
       const player = new window.Spotify.Player({
         name: 'Web Playback SDK',
         getOAuthToken: spotifyCallback => {
@@ -59,7 +71,6 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         player.disconnect()
       }
     };
-    // }
   }, []);
 
   const play = () => {
@@ -76,14 +87,14 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         "Content-Type": "application/json"
       },
       data: {
-        "uris": [`spotify:track:${answer}`]
-      },
-      "position_ms": 0,
+        "uris": [`spotify:track:${answer.id}`],
+        "position_ms": hardMode ? hardModeTimer : 0,
+      }
     })
       .then(() => setIsPlaying(true))
       .then(() => setTimeout(() => {
         pause()
-      }, playLengthArray[guesses.length]))
+      }, hardMode ? hardModeArray[guesses.length] : playLengthArray[guesses.length]))
   }
 
   const pause = (device) => {
@@ -106,8 +117,16 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
     }
   };
 
+  const handleChange = () => {
+    setHardMode(!hardMode);
+  };
+
   return (
-    <div class="play-skip">
+    <div className="play-skip">
+      <div className="hardmode_switch"><FormGroup>
+        <FormControlLabel labelPlacement="top" value="top" control={<Switch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
+      </FormGroup>
+      </div>
       <Button variant="contained"
         onClick={() => play()}>
         {isPlaying ?

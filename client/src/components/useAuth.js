@@ -69,10 +69,12 @@ export default function useAuth(code) {
       }
     }
     ).then(data => {
+      console.log(data.data.items)
       const returnedSongs = data.data.items.map(item => {
         return {
           id: item.track.id,
-          title: item.track.name
+          title: item.track.name,
+          duration: item.track.duration_ms
         }
       })
       // const playlist = returnedSongs.reduce((obj, item) => {
