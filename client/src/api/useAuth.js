@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import { sendUserInfo } from "./helper.js/helperfunctions";
+import { sendUserInfo } from "../components/helpers/helperfunctions";
 
 export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState();
