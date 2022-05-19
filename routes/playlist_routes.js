@@ -4,8 +4,13 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  console.log(spotifyApi)
-  // console.log('The access token is ' + spotifyApi.getAccessToken());
+  spotifyApi.searchArtists(req.query.searchTerm)
+    .then(function (data) {
+      console.log('Search artists by "Love"', data.body);
+      res.json(data.body)
+    }, function (err) {
+      console.error(err);
+    });
 })
 
 

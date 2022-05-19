@@ -25,3 +25,12 @@ export function sendUserInfo(user) {
     })
     .catch(err => console.log(err))
 }
+
+export function searchArtist(searchTerm) {
+  return axios.get(`http://localhost:3001/playlists`, { params: { searchTerm } })
+    .then(data => {
+      console.log(data)
+      return data.data.artists.items
+    })
+    .catch(data => console.log(data))
+}

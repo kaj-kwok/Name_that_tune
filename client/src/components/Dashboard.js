@@ -7,6 +7,8 @@ import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import GameModal from "./GameModal";
 import { postGameStats } from "./helpers/helperfunctions"
+import SearchArtist from "./SearchArtist"
+
 
 
 export default function Dashboard() {
@@ -134,6 +136,11 @@ export default function Dashboard() {
         <ComboBox className="combo-box" getGuess={getGuess} trackList={trackList} />
         <ColorButtons submitAnswer={submitAnswer} />
       </div>
+      <div>
+        <SearchArtist />
+
+      </div>
+
     </div>
 
   )
