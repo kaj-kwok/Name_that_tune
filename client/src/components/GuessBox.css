@@ -8,6 +8,7 @@
   border-radius: 999px;
   padding: 1em;
   height: 1em;
+  box-shadow: 2px 2px 2px grey;
 }
 
 .answer_row_value {

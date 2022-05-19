@@ -42,9 +42,7 @@ export default function StatsModal() {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className='modal-box'>
 
-            <p className='modal-text'>
-              
-            </p>
+            
             
             </div>
           

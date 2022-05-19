@@ -7,6 +7,7 @@ import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import GameModal from "./GameModal";
 import { postGameStats } from "./helper.js/helperfunctions"
+import SimpleSnackbar from "./SnackBar"
 
 
 export default function Dashboard({ code }) {
@@ -16,6 +17,7 @@ export default function Dashboard({ code }) {
   const [turnsLeft, setTurnsLeft] = useState(6)
   const [isGameActive, setIsGameActive] = useState(true)
   const [isWinner, setIsWinner] = useState(false)
+  const [isDuplicateAnswer, setIsDuplicateAnswer] = useState(false)
 
   useEffect(() => {
     if (isGameActive === false) {
@@ -79,6 +81,11 @@ export default function Dashboard({ code }) {
 
   useEffect(() => { determineGameState() }, [guesses])
 
+  // function passed to snackBar to set state to false
+  const close = () => {
+    setIsDuplicateAnswer(false)
+  }
+
   // function to make a guess and submit your answer
   const submitAnswer = () => {
     if (isGameActive === false) return;
@@ -88,6 +95,7 @@ export default function Dashboard({ code }) {
       return;
     }
     if (guesses.includes(currentGuess)) {
+      setIsDuplicateAnswer(true)
       console.log("already guesssed, pls select a different answer")
       return;
     }
@@ -101,6 +109,7 @@ export default function Dashboard({ code }) {
     setGuesses(newAnswers)
     setTurnsLeft(prev => prev -= 1)
     document.getElementById("combo-box-demo").value = ''
+    setIsDuplicateAnswer(false)
   }
 
 
@@ -135,7 +144,8 @@ export default function Dashboard({ code }) {
       </div>
       <div className="submit-form">
         <ComboBox className="combo-box" getGuess={getGuess} trackList={trackList} />
-        <ColorButtons submitAnswer={submitAnswer} />
+        <ColorButtons submitAnswer={submitAnswer}/>
+        {isDuplicateAnswer && <SimpleSnackbar close={close}/>}
       </div>
     </div>
 
