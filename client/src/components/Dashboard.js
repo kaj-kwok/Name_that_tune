@@ -52,7 +52,7 @@ export default function Dashboard({ code }) {
   const rowsToDisplay = currentRows()
 
   // creates the fields that holds the turnsLeft
-  const guessDisplay = rowsToDisplay.map((answer, index, song) => {
+  const guessDisplay = rowsToDisplay.map((answer, index) => {
     return (
       <GuessBox
         key={index}

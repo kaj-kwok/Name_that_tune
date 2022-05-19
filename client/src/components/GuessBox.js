@@ -4,7 +4,7 @@ import DangerousIcon from '@mui/icons-material/Dangerous';
 
 
 export default function GuessBox({ value, placeholder, correctAnswer }) {
-  if (value !== correctAnswer) {
+  if (value !== correctAnswer && value !== undefined) {
     return (
      <> <div className="answer_row_value answer_row" placeholder={"Guess #" + placeholder} disabled value={value}>{value} <DangerousIcon /> </div> </> 
     );
