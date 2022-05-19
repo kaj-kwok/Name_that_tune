@@ -50,6 +50,14 @@ button.MuiButton-root.MuiButton-contained {
 
 }
 
+.app-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding-left: 160px;
+}
+
 .modal-box {
   display: flex;
   flex-direction: column;
@@ -132,4 +140,14 @@ canvas {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 820px) {
+  .app-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+  }
 }
