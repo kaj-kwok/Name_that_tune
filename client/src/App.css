@@ -107,3 +107,28 @@ canvas {
 .css-1hpqosy-MuiFormControlLabel-root .MuiFormControlLabel-label {
   font-size: 1em;
 }
+
+#modal-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+#modal-modal-description {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.streaks, .scores {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.individual-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
