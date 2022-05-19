@@ -107,7 +107,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
   };
 
   return (
-    <div class="play-skip">
+    <div className="play-skip">
       <Button variant="contained"
         onClick={() => play()}>
         {isPlaying ?

@@ -56,6 +56,7 @@ const insertGameInfo = (user_id, completed, score) => {
 
 //function to check if currently on streak
 const checkCurrentStreak = (user_id, streak, max_streak, completed) => {
+  console.log("streak", streak);
   if (completed === "true") {
     return db.query(`SELECT * FROM games WHERE user_id = $1 ORDER BY id DESC LIMIT 1;`, [user_id])
       .then(data => {
@@ -89,7 +90,7 @@ const checkCurrentStreak = (user_id, streak, max_streak, completed) => {
 
 //function to retrieve basic stats
 const retrieveStats = (email) => {
-  return db.query(`SELECT games.id, streak, max_streak, score, completed FROM users JOIN games ON users.id = games.user_id WHERE users.email = $1;`, [email])
+  return db.query(`SELECT games.id, score, completed FROM users JOIN games ON users.id = games.user_id WHERE users.email = $1;`, [email])
     .then(data => data.rows)
     .catch(err => console.log(err))
 }

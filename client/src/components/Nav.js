@@ -19,13 +19,14 @@ import FaceIcon from '@mui/icons-material/Face';
 
 const pages = [];
 
-export function ResponsiveAppBar({ displayName }) {
+export function ResponsiveAppBar({ displayName, user }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+  
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -131,7 +132,7 @@ export function ResponsiveAppBar({ displayName }) {
           </Box>
           <div className='icons'>
             <HelpModal />
-            <StatsModal />
+            <StatsModal user={user}/>
             <Box sx={{ flexGrow: 0 }}>
               <Chip icon={<FaceIcon />} label={displayName} variant="outlined" />
             </Box>
