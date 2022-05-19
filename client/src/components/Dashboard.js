@@ -130,7 +130,7 @@ export default function Dashboard({ code }) {
           accessToken={accessToken}
           refreshToken={refreshToken}
           makePostRequesttoRefresh={makePostRequesttoRefresh}
-          answer={song.id}
+          answer={song}
         /> : <div>loading</div>}
       </div>
       <div className="submit-form">

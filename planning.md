@@ -26,19 +26,19 @@ THINGS TO DO:
 # Primary
 
   - [x] button condition, change to pause when song is playing
-  - [] game modal styling 
-  - [] guess box styling 
+  - [x] game modal styling (confetti)
+  - [] guess box styling (responsive design)
   - [x] song intervals
   - [] logo
   - [x] settings drop down change to just display username
-  - [] stats modal display stats
+  - [] stats modal display stats (total games, win percentage, win streak, max win streak)
   - [x] fix broken queries and create stats queries (including streaks, max streaks)
-  - [x] expose API endpoint on backend to access stats
-  (total games, win percentage, win streak, max win streak)
+  - [x] expose API endpoint on backend to access stats  
   - [x] expand playlist/guess list
   - [x] game changed to games
   - [] recording of demo 
   - [x] on click of play button, some icon to show that music is playing
+  - [] alerts on guess box for (duplicate answers)
 
   
 ## Secondary
@@ -46,3 +46,5 @@ THINGS TO DO:
   - [] erase drop down in top left
   - [] deployment to web
   - [] hard mode
+  - [] useContext
+  - [] refactored api calls 

@@ -8,7 +8,6 @@ export function gameScore(isWinner, turnsLeft) {
 };
 
 export function postGameStats(user, isWinner, turnsLeft) {
-  console.log("GAME SCORE DUDE",gameScore(isWinner, turnsLeft));
   axios.post("http://localhost:3001/stats", {
     displayName: user.name,
     email: user.email,
