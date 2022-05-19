@@ -23,10 +23,7 @@ const style = {
 export default function StatsModal({ user }) {
 
   const [open, setOpen] = useState(false);
-  // const [userStats, setUserStats] = useState([[null, null, "loading"], "loading"]);
-  const [gameStats, setGameStats] = useState();
   const [streak, setStreak] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [gamesPlayed, setGamesPlayed] = useState(0);
   
@@ -45,11 +42,6 @@ export default function StatsModal({ user }) {
       setTotalScore(gamesData.reduce((prev, current) => prev + current, 0))
       setGamesPlayed(gamesData.length)
       setStreak(streakData)
-      setGameStats(gamesData)
-    
-      setTimeout(() => {
-        setIsLoaded(true)
-      }, 1000);
       
     })
     .catch(err => {
@@ -77,29 +69,27 @@ export default function StatsModal({ user }) {
               <div className="streaks">
                 <div className="individual-stat">
                   <p>Current Streak</p>
-                  <p>{isLoaded && streak[0]}</p>
+                  <p>{streak && streak[0]}</p>
                 </div>
                 <div className="individual-stat">
                   <p>Max Streak</p>
-                  <p>{isLoaded && streak[1]}</p>
+                  <p>{streak && streak[1]}</p>
                 </div>             
               </div>
               <div className="scores">
                 <div className="individual-stat">
                   <p>Total Score</p>
-                  <p>{isLoaded && totalScore}</p>
+                  <p>{totalScore && totalScore}</p>
                 </div>
                 <div className="individual-stat">
                   <p>Games Played</p>
-                  <p>{isLoaded && gamesPlayed}</p>
+                  <p>{gamesPlayed && gamesPlayed}</p>
                 </div>
                 <div className="individual-stat">
                   <p>Average Score</p>
-                  <p>{isLoaded && (totalScore/gamesPlayed).toFixed(2)}</p>
+                  <p>{totalScore && (totalScore/gamesPlayed).toFixed(2)}</p>
                 </div>
               </div>
-             
-          
           </Typography>
         </Box>
       </Modal>
