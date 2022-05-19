@@ -20,13 +20,14 @@ import { Grid } from '@mui/material';
 
 const pages = [];
 
-export function ResponsiveAppBar({ displayName }) {
+export function ResponsiveAppBar({ displayName, user }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+  
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -72,10 +73,11 @@ export function ResponsiveAppBar({ displayName }) {
           </div>
           <div className='icons'>
             <HelpModal />
-            <StatsModal />
+            <StatsModal user={user}/>
             
               <Chip icon={<FaceIcon />} label={displayName} variant="outlined" color='warning' />
             
+          
           </div>
       </Grid>
     </AppBar>

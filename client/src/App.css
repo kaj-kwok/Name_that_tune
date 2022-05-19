@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 5;
 }
 
 .submit-form {
@@ -74,7 +75,7 @@ button.MuiButton-root.MuiButton-contained {
   flex-direction: column;
 }
 
-#root > div > div.player > div > button:nth-child(1) {
+#root>div>div.player>div>button:nth-child(1) {
   margin: 0;
 }
 
@@ -83,14 +84,52 @@ button.MuiButton-root.MuiButton-contained {
   gap: 10px;
 }
 
-.app-name {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-left: 140px;
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: absolute;
+  top: 0%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  z-index: -5;
 }
 
-.switch{
+.hardmode_switch {
+  position: absolute;
+  left: 0;
+  bottom: 5%;
+
+}
+
+.css-1hpqosy-MuiFormControlLabel-root .MuiFormControlLabel-label {
+  font-size: 1em;
+}
+
+#modal-modal-title {
   display: flex;
-  padding-left: 20px;
+  align-items: center;
+  gap: 1px;
+}
+
+#modal-modal-description {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.streaks, .scores {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.individual-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

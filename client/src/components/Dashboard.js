@@ -128,19 +128,19 @@ export default function Dashboard({ code }) {
 
   return (
     <div className="body">
-      <ResponsiveAppBar displayName={user.name} />
+      <ResponsiveAppBar displayName={user.name} user={user}/>
       {!isGameActive && <GameModal answer={song.title} user={user} turnsLeft={turnsLeft} isWinner={isWinner} gameReset={gameReset} />}
       <div className="guess-container">
         {guessDisplay}
       </div>
       <div className="player">
         {accessToken ? <Player
-          turnsLeft={turnsLeft}
+          guesses={guesses}
           skipTurn={skipTurn}
           accessToken={accessToken}
           refreshToken={refreshToken}
           makePostRequesttoRefresh={makePostRequesttoRefresh}
-          answer={song.id}
+          answer={song}
         /> : <div>loading</div>}
       </div>
       <div className="submit-form">
