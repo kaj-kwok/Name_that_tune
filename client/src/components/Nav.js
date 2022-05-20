@@ -35,10 +35,7 @@ export function ResponsiveAppBar({ displayName, user }) {
   return (
     <AppBar position="static">
       <Grid container  justifyContent='space-between' alignItems='center' padding>
-          
-
           <LightSwitch />
-          
           <div className='app-name'>
               <LibraryMusicIcon />
               <Typography
@@ -57,15 +54,11 @@ export function ResponsiveAppBar({ displayName, user }) {
               >
                 Name That Tune
               </Typography>
-            
           </div>
           <div className='icons'>
             <HelpModal />
             <StatsModal user={user}/>
-            
-              <Chip icon={<FaceIcon />} label={displayName} variant="outlined" color='warning' />
-            
-          
+              <Chip icon={<FaceIcon />} label={displayName} variant="outlined" />
           </div>
       </Grid>
     </AppBar>

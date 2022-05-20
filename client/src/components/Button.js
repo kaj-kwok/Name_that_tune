@@ -6,7 +6,7 @@ export default function ColorButtons({ submitAnswer }) {
 
 
   return (
-    <Button variant="contained" color="success" onClick={() => submitAnswer()}>
+    <Button variant="contained" color="secondary" onClick={() => submitAnswer()}>
       Submit
     </Button>
   );
