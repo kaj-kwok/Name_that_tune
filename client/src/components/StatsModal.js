@@ -8,7 +8,16 @@ import { getUserStats } from './helpers/helperfunctions';
 import { useEffect, useState, useContext } from 'react';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { dashboardContext } from '../providers/DashboardProvider';
-
+import styled, { css } from "styled-components";
+import { __DATA__ } from "./data";
+import {
+  MainContainer,
+  Container,
+  BarChartContainer,
+  Number,
+  BlackLine,
+  MakeBar
+} from "./styles";
 
 const style = {
   position: 'absolute',
@@ -95,6 +104,19 @@ export default function StatsModal() {
                 <p>{totalScore && (totalScore / gamesPlayed).toFixed(2)}</p>
               </div>
             </div>
+            <Container>
+              <MainContainer>
+                {__DATA__.map(({ distance, colors }, i) => {
+                  return (
+                    <BarChartContainer key={i}>
+                      <Number color={colors[1]}>{distance} km</Number>
+                      <MakeBar height={distance * 2} colors={colors} />
+                    </BarChartContainer>
+                  );
+                })}
+              </MainContainer>
+              <BlackLine />
+            </Container>
           </Typography>
         </Box>
       </Modal>

@@ -153,10 +153,6 @@ canvas {
   }
 }
 
-#root > div > div.player > div > div > div {
-  
-}
-
 .hardmode-parent {
   display: flex;
   justify-content: center;
@@ -166,3 +162,5 @@ canvas {
   position: absolute;
   bottom: 44px;
 }
+
+
