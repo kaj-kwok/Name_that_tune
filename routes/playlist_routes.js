@@ -22,4 +22,20 @@ router.get('/artist/:id', (req, res) => {
     });
 })
 
+router.get('/default', (req, res) => {
+  spotifyApi.getPlaylist('2dEZn55szDawgoYOYQWHKQ')
+    .then(function (data) {
+      const arranged = data.body.tracks.items.map(item => {
+        return {
+          id: item.track.id,
+          name: item.track.name,
+          duration: item.track.duration_ms
+        }
+      })
+      res.json(arranged)
+    }, function (err) {
+      console.log('Something went wrong!', err);
+    });
+})
+
 module.exports = router;

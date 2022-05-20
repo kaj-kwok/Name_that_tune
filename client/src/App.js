@@ -9,9 +9,7 @@ function App() {
 
   return (
     <DashboardProvider>
-      {code ?
-        <Dashboard />
-        : <Login />}
+      {code ? <Dashboard /> : <Login />}
     </DashboardProvider>
   );
 }

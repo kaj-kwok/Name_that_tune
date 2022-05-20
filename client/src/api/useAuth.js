@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import { sendUserInfo } from "../components/helpers/helperfunctions";
 
 export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState()
   const [expiresIn, setExpiresIn] = useState()
-  const [song, setSong] = useState("");
-  const [user, setUser] = useState({})
-  const [trackList, setTrackList] = useState([])
 
   useEffect(() => {
     axios.post('http://localhost:3001/login', {
@@ -20,8 +16,8 @@ export default function useAuth(code) {
         setExpiresIn(res.data.expiresIn)
         //clear query parameters from URL, set to root URL
         window.history.pushState({}, null, "/")
-        getUserData(res.data.accessToken)
-        refreshSong(res.data.accessToken)
+        // getUserData(res.data.accessToken)
+        // refreshSong(res.data.accessToken)
       })
       //if code is expired, redirect to login
       .catch(() => {
@@ -58,63 +54,8 @@ export default function useAuth(code) {
       })
   }
 
-  function getArtistTopTracks(id) {
 
-  }
-
-  function refreshSong(accessToken) {
-    axios('https://api.spotify.com/v1/playlists/2dEZn55szDawgoYOYQWHKQ/tracks', {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer ' + accessToken,
-        'Content-Type': "application/json"
-      }
-    }
-    ).then(data => {
-      console.log(data.data.items)
-      const returnedSongs = data.data.items.map(item => {
-        return {
-          id: item.track.id,
-          title: item.track.name,
-          duration: item.track.duration_ms
-        }
-      })
-      // const playlist = returnedSongs.reduce((obj, item) => {
-      //   const key = item["id"]
-      //   return { ...obj, [key]: item }
-      // }, {})
-      // set to state
-      setTrackList(returnedSongs)
-      return currentTrack(returnedSongs)
-    })
-  }
-
-  function currentTrack(tracks) {
-    const index = Math.floor(Math.random() * (tracks.length - 1))
-    setSong(tracks[index])
-  }
-
-  function getUserData(accessToken) {
-    axios("https://api.spotify.com/v1/me", {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer ' + accessToken,
-        'Content-Type': "application/json"
-      }
-    }
-    ).then(data => {
-      const user = {
-        name: data.data.display_name,
-        email: data.data.email
-      }
-      setUser(user)
-      sendUserInfo(user)
-    }).catch(err => console.log(err))
-
-    // 
-  }
-
-  return { accessToken, makePostRequesttoRefresh, song, refreshSong, user, trackList, setTrackList, currentTrack, setSong }
+  return { accessToken, makePostRequesttoRefresh }
 
 
 }

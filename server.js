@@ -96,7 +96,6 @@ App.post("/user", (req, res) => {
   console.log("user route", req.body)
   res.status(201).send("received")
   getUserByEmail(req.body.email).then(data => {
-    console.log("returned from getUserbyemail", data)
     //check if user already exists
     if (data === false) {
       console.log("user not found")

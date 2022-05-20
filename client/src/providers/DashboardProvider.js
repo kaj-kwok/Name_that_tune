@@ -1,12 +1,33 @@
-import { createContext } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import useAuth from '../api/useAuth'
+import { getUserData, sendUserInfo, currentTrack, refreshSong } from '../components/helpers/helperfunctions'
 
 export const dashboardContext = createContext()
 
 const code = new URLSearchParams(window.location.search).get('code')
 
 function DashboardProvider({ children }) {
-  const { accessToken, makePostRequesttoRefresh, song, refreshSong, user, trackList, setTrackList, currentTrack, setSong } = useAuth(code)
+  const { accessToken, makePostRequesttoRefresh } = useAuth(code)
+  const [user, setUser] = useState({})
+  const [song, setSong] = useState("");
+  const [trackList, setTrackList] = useState([])
+
+  useEffect(() => {
+    if (!accessToken) return
+    const user = getUserData(accessToken)
+    user.then((user) => {
+      setUser(user)
+      sendUserInfo(user)
+
+      const returnedSongs = refreshSong()
+      returnedSongs.then(playList => {
+        setTrackList(playList)
+        setSong(currentTrack(playList))
+      })
+    })
+  }, [accessToken])
+
+
 
   const dashboardData = { accessToken, makePostRequesttoRefresh, song, refreshSong, user, trackList, setTrackList, currentTrack, setSong }
 

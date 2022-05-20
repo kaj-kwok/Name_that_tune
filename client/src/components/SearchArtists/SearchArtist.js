@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import TextField from '@mui/material/TextField';
 import { searchArtist, retrieveArtistTopSongs } from '../helpers/helperfunctions';
-import ArtistResults from './ArtistResults';
 import Autocomplete from '@mui/material/Autocomplete';
 import { dashboardContext } from '../../providers/DashboardProvider';
 
@@ -35,7 +34,7 @@ export default function SearchArtist() {
     const list = retrieveArtistTopSongs(matchId[0].id)
     list.then(data => {
       setTrackList(data)
-      currentTrack(data)
+      setSong(currentTrack(data))
     })
   }
 
@@ -56,15 +55,5 @@ export default function SearchArtist() {
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Search Artists" />}
     />
-    // <>
-    //   <TextField id="outlined-search" label="Search field" type="search" onChange={(e) => {
-    //     setSearchTerm(e.target.value)
-    //   }} />
-    //   <div>
-    //     {searchResults.map(artist => {
-    //       return <ArtistResults artist={artist.name} key={artist.id} />
-    //     })}
-    //   </div>
-    // </>
   )
 }
