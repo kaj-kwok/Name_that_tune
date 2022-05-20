@@ -27,7 +27,7 @@ export function ResponsiveAppBar({ displayName, user }) {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -43,39 +43,39 @@ export function ResponsiveAppBar({ displayName, user }) {
 
   return (
     <AppBar position="static">
-      <Grid container  justifyContent='space-between' alignItems='center' padding>
-          <div className='switch'>
+      <Grid container justifyContent='space-between' alignItems='center' padding>
+        <div className='switch'>
 
           <LightSwitch />
-          </div>
-          <div className='app-name'>
-              <LibraryMusicIcon />
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                sx={{
-                  mr: 2,
-                  display: { md: 'flex' },
-                  fontFamily: 'monospace',
-                  fontWeight: 700,
-                  letterSpacing: '.3rem',
-                  color: 'inherit',
-                  textDecoration: 'none',
-                }}
-              >
-                Name That Tune
-              </Typography>
-            
-          </div>
-          <div className='icons'>
-            <HelpModal />
-            <StatsModal user={user}/>
-            
-              <Chip icon={<FaceIcon />} label={displayName} variant="filled" color='warning' />
-            
-          
-          </div>
+        </div>
+        <div className='app-name'>
+          <LibraryMusicIcon />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            sx={{
+              mr: 2,
+              display: { md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            Name That Tune
+          </Typography>
+
+        </div>
+        <div className='icons'>
+          <HelpModal />
+          <StatsModal />
+
+          <Chip icon={<FaceIcon />} label={displayName} variant="filled" color='warning' />
+
+
+        </div>
       </Grid>
     </AppBar>
   );

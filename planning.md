@@ -39,7 +39,7 @@ THINGS TO DO:
   - [] recording of demo 
   - [x] on click of play button, some icon to show that music is playing
   - [x] alerts on guess box for (duplicate answers)
-
+  - [] leader board
   
 ## Secondary
   - [] dark mode
@@ -48,3 +48,7 @@ THINGS TO DO:
   - [x] hard mode
   - [x] useContext
   - [x] refactored api calls 
+  - [] spinner for loading player
+  - [] Graphs for stats
+  - [] progress bar
+  - [] updated help modal to include hard mode
