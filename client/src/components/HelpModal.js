@@ -44,18 +44,18 @@ export default function HelpModal() {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className='modal-box'>
 
-            <p className='modal-text'>
-              <MusicNoteIcon fontSize='large' />
-              Listen to the intro, then find and select the song title in the list.
-            </p>
-            <p className='modal-text'>
-              <SkipNextIcon fontSize='large' />
-              Skipped or incorrect attempts unlock more of the intro.
-            </p>
-            <p className='modal-heart'> 
-              <FavoriteIcon  />
-              Good Luck! Don't forget to share with your friends!
-            </p>
+              <p className='modal-text'>
+                <MusicNoteIcon fontSize='large' />
+                Listen to the intro, then find and select the song title in the list.
+              </p>
+              <p className='modal-text'>
+                <SkipNextIcon fontSize='large' />
+                Skipped or incorrect attempts unlock more of the intro.
+              </p>
+              <p className='modal-heart'> 
+                <FavoriteIcon  />
+                Good Luck! Don't forget to share with your friends!
+              </p>
             </div>
           
           </Typography>

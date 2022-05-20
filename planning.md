@@ -43,7 +43,7 @@ THINGS TO DO:
   
 ## Secondary
   - [] dark mode
-  - [] erase drop down in top left
+  - [x] erase drop down in top left
   - [] deployment to web
   - [] hard mode
   - [] useContext
