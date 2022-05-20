@@ -38,12 +38,12 @@ THINGS TO DO:
   - [x] game changed to games
   - [] recording of demo 
   - [x] on click of play button, some icon to show that music is playing
-  - [] alerts on guess box for (duplicate answers)
+  - [x] alerts on guess box for (duplicate answers)
 
   
 ## Secondary
   - [] dark mode
-  - [] erase drop down in top left
+  - [x] erase drop down in top left
   - [] deployment to web
   - [] hard mode
   - [] useContext

@@ -43,16 +43,13 @@ export function ResponsiveAppBar({ displayName, user }) {
 
   return (
     <AppBar position="static">
-      <Grid container  justifyContent='space-between' alignItems='center'>
+      <Grid container  justifyContent='space-between' alignItems='center' padding>
           <div className='switch'>
 
           <LightSwitch />
           </div>
           <div className='app-name'>
-            
               <LibraryMusicIcon />
-           
-            
               <Typography
                 variant="h6"
                 noWrap
