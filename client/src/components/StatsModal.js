@@ -34,7 +34,9 @@ export default function StatsModal({ user }) {
   useEffect(() => {
     getUserStats(user.email)
     .then(data => {
+      // gets user streak and max_streak data
       const streakData = [data.data.streak, data.data.max_streak];
+      // gets user scores for all games
       const gamesData = data.data.games.map(info => {
         return info.score
       });

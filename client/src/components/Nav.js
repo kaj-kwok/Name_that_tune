@@ -72,7 +72,7 @@ export function ResponsiveAppBar({ displayName, user }) {
             <HelpModal />
             <StatsModal user={user}/>
             
-              <Chip icon={<FaceIcon />} label={displayName} variant="outlined" color='warning' />
+              <Chip icon={<FaceIcon />} label={displayName} variant="filled" color='warning' />
             
           
           </div>

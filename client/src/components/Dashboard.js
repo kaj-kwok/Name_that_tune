@@ -149,6 +149,5 @@ export default function Dashboard({ code }) {
         {isDuplicateAnswer && <SimpleSnackbar close={close}/>}
       </div>
     </div>
-
   )
 }

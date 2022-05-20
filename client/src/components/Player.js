@@ -10,6 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
+import flames from '../lotties/flames'
 
 
 export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, guesses, answer }) {
@@ -117,6 +118,15 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
     }
   };
 
+  const flamesOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: flames,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
   const handleChange = () => {
     setHardMode(!hardMode);
   };
@@ -135,9 +145,20 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
 
   return (
     <div className="play-skip">
-      <div className="hardmode_switch"><FormGroup>
-        <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
-      </FormGroup>
+      <div className="hardmode_switch">
+        <FormGroup>
+          <div className="hardmode-parent">
+            <div className="flames">
+              <Lottie 
+                options={flamesOptions}
+                height="45px"
+                width="79px"
+                z-index="999"
+              />
+            </div>
+            <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
+          </div>
+        </FormGroup>
       </div>
       <Button variant="contained"
         onClick={() => play()}>

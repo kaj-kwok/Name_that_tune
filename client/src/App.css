@@ -110,7 +110,6 @@ canvas {
   position: absolute;
   left: 0;
   bottom: 5%;
-
 }
 
 .css-1hpqosy-MuiFormControlLabel-root .MuiFormControlLabel-label {
@@ -150,4 +149,18 @@ canvas {
     gap: 15px;
     padding: 0;
   }
+}
+
+#root > div > div.player > div > div > div {
+  
+}
+
+.hardmode-parent {
+  display: flex;
+  justify-content: center;
+}
+
+.flames {
+  position: absolute;
+  bottom: 44px;
 }
