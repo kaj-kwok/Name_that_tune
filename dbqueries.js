@@ -23,7 +23,6 @@ db.connect(() => {
 const getUserByEmail = (email) => {
   return db.query(`SELECT * FROM users WHERE email = $1;`, [email])
     .then(data => {
-      console.log("data returning from Userquery", data.rows[0])
       if (data.rows[0] === undefined) {
         return false
       } else {

@@ -7,7 +7,7 @@ import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import GameModal from "./GameModal";
 import { postGameStats } from "./helpers/helperfunctions"
-import SearchArtist from "./SearchArtist"
+import SearchArtist from "./SearchArtists/SearchArtist"
 
 
 
@@ -138,9 +138,7 @@ export default function Dashboard() {
       </div>
       <div>
         <SearchArtist />
-
       </div>
-
     </div>
 
   )

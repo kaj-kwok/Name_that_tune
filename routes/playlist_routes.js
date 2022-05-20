@@ -6,12 +6,20 @@ const router = express.Router();
 router.get('/', (req, res) => {
   spotifyApi.searchArtists(req.query.searchTerm)
     .then(function (data) {
-      console.log('Search artists by "Love"', data.body);
-      res.json(data.body)
+      res.status(200).json(data.body)
     }, function (err) {
       console.error(err);
     });
 })
 
+router.get('/artist/:id', (req, res) => {
+  console.log(req.params.id)
+  spotifyApi.getArtistTopTracks(req.params.id, 'CA')
+    .then(function (data) {
+      res.status(200).json(data.body)
+    }, function (err) {
+      console.log('Something went wrong!', err);
+    });
+})
 
 module.exports = router;

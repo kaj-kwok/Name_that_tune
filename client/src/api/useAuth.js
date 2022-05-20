@@ -49,8 +49,6 @@ export default function useAuth(code) {
         if (typeof callback === 'function') {
           callback(res.data.accessToken)
         }
-        console.log("res.data.accessToken ", res.data.accessToken)
-        console.log("res.data.expiresIn ", res.data.expiresIn)
         setAccessToken(res.data.accessToken)
         setExpiresIn(res.data.expiresIn)
       })
@@ -58,6 +56,10 @@ export default function useAuth(code) {
       .catch(() => {
         window.location = "/"
       })
+  }
+
+  function getArtistTopTracks(id) {
+
   }
 
   function refreshSong(accessToken) {
@@ -112,7 +114,7 @@ export default function useAuth(code) {
     // 
   }
 
-  return { accessToken, makePostRequesttoRefresh, song, refreshSong, user, trackList }
+  return { accessToken, makePostRequesttoRefresh, song, refreshSong, user, trackList, setTrackList, currentTrack, setSong }
 
 
 }

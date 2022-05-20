@@ -8,7 +8,6 @@ export function gameScore(isWinner, turnsLeft) {
 };
 
 export function postGameStats(user, isWinner) {
-  console.log(gameScore())
   axios.post("http://localhost:3001/stats", {
     displayName: user.name,
     email: user.email,
@@ -18,7 +17,6 @@ export function postGameStats(user, isWinner) {
 }
 
 export function sendUserInfo(user) {
-  console.log("sending User information", user);
   axios.post("http://localhost:3001/user", user)
     .then(res => {
       return
@@ -29,8 +27,21 @@ export function sendUserInfo(user) {
 export function searchArtist(searchTerm) {
   return axios.get(`http://localhost:3001/playlists`, { params: { searchTerm } })
     .then(data => {
-      console.log(data)
       return data.data.artists.items
     })
     .catch(data => console.log(data))
 }
+
+export function retrieveArtistTopSongs(id) {
+  return axios.get(`http://localhost:3001/playlists/artist/${id}`)
+    .then(data => {
+      console.log(data.data.tracks)
+      return data.data.tracks.map(item => {
+        return {
+          id: item.id,
+          title: item.name,
+          duration: item.duration_ms
+        }
+      })
+    })
+} 
