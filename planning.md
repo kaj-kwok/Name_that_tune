@@ -45,6 +45,6 @@ THINGS TO DO:
   - [] dark mode
   - [x] erase drop down in top left
   - [] deployment to web
-  - [] hard mode
-  - [] useContext
-  - [] refactored api calls 
+  - [x] hard mode
+  - [x] useContext
+  - [x] refactored api calls 

@@ -1,13 +1,15 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { dashboardContext } from '../providers/DashboardProvider';
 
-export default function ComboBox({ getGuess, trackList }) {
+export default function ComboBox({ getGuess }) {
+  const { trackList } = useContext(dashboardContext)
   const [val, setVal] = useState('')
 
   const renderedTracklist = trackList.map(track => {
-    return track.title
+    return track.name
   })
 
   return (
@@ -26,5 +28,3 @@ export default function ComboBox({ getGuess, trackList }) {
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 
-
-const songList = ["Thunderstruck", "Back In Black", "Highway to Hell", "T.N.T.", "You Shook Me All Night Long", "test", "testing"];

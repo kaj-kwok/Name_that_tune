@@ -92,6 +92,7 @@ button.MuiButton-root.MuiButton-contained {
   gap: 10px;
 }
 
+/* for confetti */
 canvas {
   padding-left: 0;
   padding-right: 0;
@@ -106,9 +107,10 @@ canvas {
   z-index: -5;
 }
 
+/* hardmode css */
 .hardmode_switch {
   position: absolute;
-  left: 0;
+  right: 0;
   bottom: 5%;
 }
 

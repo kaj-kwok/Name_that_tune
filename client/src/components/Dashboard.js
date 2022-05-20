@@ -1,17 +1,19 @@
-import useAuth from "./useAuth"
-import React, { useEffect, useState } from 'react'
+import { dashboardContext } from "../providers/DashboardProvider"
+import React, { useEffect, useState, useContext } from 'react'
 import Player from './Player'
 import ResponsiveAppBar from './Nav'
 import ComboBox from "./SearchBar"
 import ColorButtons from "./Button"
 import GuessBox from "./GuessBox"
 import GameModal from "./GameModal";
-import { postGameStats } from "./helper.js/helperfunctions"
 import SimpleSnackbar from "./SnackBar"
+import { postGameStats } from "./helpers/helperfunctions"
+import SearchArtist from "./SearchArtists/SearchArtist"
 
 
-export default function Dashboard({ code }) {
-  const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user, trackList } = useAuth(code)
+
+export default function Dashboard() {
+  const { accessToken, makePostRequesttoRefresh, song, refreshSong, user, trackList } = useContext(dashboardContext)
   const [currentGuess, setCurrentGuess] = useState('')
   const [guesses, setGuesses] = useState([])
   const [turnsLeft, setTurnsLeft] = useState(6)
@@ -128,8 +130,8 @@ export default function Dashboard({ code }) {
 
   return (
     <div className="body">
-      <ResponsiveAppBar displayName={user.name} user={user}/>
-      {!isGameActive && <GameModal answer={song.title} user={user} turnsLeft={turnsLeft} isWinner={isWinner} gameReset={gameReset} />}
+      <ResponsiveAppBar displayName={user.name} />
+      {!isGameActive && <GameModal turnsLeft={turnsLeft} isWinner={isWinner} gameReset={gameReset} />}
       <div className="guess-container">
         {guessDisplay}
       </div>
@@ -137,17 +139,17 @@ export default function Dashboard({ code }) {
         {accessToken ? <Player
           guesses={guesses}
           skipTurn={skipTurn}
-          accessToken={accessToken}
-          refreshToken={refreshToken}
           makePostRequesttoRefresh={makePostRequesttoRefresh}
-          answer={song}
         /> : <div>loading</div>}
       </div>
       <div className="submit-form">
         <ComboBox className="combo-box" getGuess={getGuess} trackList={trackList} />
-        <ColorButtons submitAnswer={submitAnswer}/>
-        {isDuplicateAnswer && <SimpleSnackbar close={close}/>}
+        <ColorButtons submitAnswer={submitAnswer} />
+        {isDuplicateAnswer && <SimpleSnackbar close={close} />}
       </div>
-    </div>
+      <div>
+        <SearchArtist />
+      </div>
+    </div >
   )
 }
