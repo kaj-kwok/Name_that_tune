@@ -47,7 +47,7 @@ export default function StatsModal({ user }) {
     .catch(err => {
       console.log(err);
     })
-  },[user]);
+  });
 
   
   return (
