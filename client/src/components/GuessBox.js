@@ -12,7 +12,7 @@ export default function GuessBox({ value, placeholder, correctAnswer }) {
 
           {value} 
           </div>
-          <DangerousIcon sx={{fontSize: '25px'}}/> 
+          <DangerousIcon sx={{fontSize: '25px'}} color = 'error'/> 
           
         </div>  
       </> 

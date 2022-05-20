@@ -10,6 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
+import { Box } from '@mui/system';
 
 
 export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, guesses, answer }) {
@@ -134,25 +135,33 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
   }));
 
   return (
-    <div className="play-skip">
-      <div className="hardmode_switch"><FormGroup>
-        <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
-      </FormGroup>
+    <div>
+      <Box m={2}>
+        <FormGroup>
+          <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
+        </FormGroup>
+      </Box>
+      <div className="play-skip">
+        <div className="hardmode_switch">
+          <FormGroup>
+            <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
+          </FormGroup>
+        </div>
+        <Button variant="contained" color='secondary'
+          onClick={() => play()}>
+          {isPlaying ?
+            <div>
+              <Lottie
+                options={defaultOptions}
+                height="24px"
+                width="24px"
+                color='primary'
+              />
+            </div> : <PlayArrowRoundedIcon />}
+        </Button>
+        <Button variant="contained" onClick={skipTurn} color='secondary'> <SkipNextIcon /> </Button>
       </div>
-      <Button variant="contained"
-        onClick={() => play()}>
-        {isPlaying ?
-          <div>
-            <Lottie
-              options={defaultOptions}
-              height="24px"
-              width="24px"
-            />
-          </div> : <PlayArrowRoundedIcon />}
-      </Button>
-
-      <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>
-
     </div>
+
   )
 }

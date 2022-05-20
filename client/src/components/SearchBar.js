@@ -2,6 +2,8 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useState } from 'react';
+import { SocialDistance } from '@mui/icons-material';
+import { BorderAll } from '@mui/icons-material';
 
 
 export default function ComboBox({ getGuess, trackList }) {
@@ -18,9 +20,9 @@ export default function ComboBox({ getGuess, trackList }) {
       size="small"
       id="combo-box-demo"
       options={renderedTracklist}
-      sx={{ width: 300 }}
+      sx={{ width: 300}}
       onChange={(e, value) => getGuess(value)}
-      renderInput={(params) => <TextField {...params} label="Can you guess the Song"/>}
+      renderInput={(params) => <TextField {...params} label="Can you guess the Song"  />}
     />
   );
 }

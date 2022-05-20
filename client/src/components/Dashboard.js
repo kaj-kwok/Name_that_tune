@@ -9,7 +9,6 @@ import GameModal from "./GameModal";
 import { postGameStats } from "./helper.js/helperfunctions"
 import SimpleSnackbar from "./SnackBar"
 
-
 export default function Dashboard({ code }) {
   const { accessToken, refreshToken, makePostRequesttoRefresh, song, refreshSong, user, trackList } = useAuth(code)
   const [currentGuess, setCurrentGuess] = useState('')
