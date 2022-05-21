@@ -8,8 +8,6 @@ import { getUserStats } from './helpers/helperfunctions';
 import { useEffect, useState, useContext } from 'react';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { dashboardContext } from '../providers/DashboardProvider';
-import styled, { css } from "styled-components";
-import { __DATA__ } from "./data";
 import {
   MainContainer,
   Container,
@@ -18,6 +16,8 @@ import {
   BlackLine,
   MakeBar
 } from "./styles";
+
+
 
 const style = {
   position: 'absolute',
@@ -38,7 +38,18 @@ export default function StatsModal() {
   const [streak, setStreak] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
   const [gamesPlayed, setGamesPlayed] = useState(0);
-
+  
+  const defaultBarChartData = [
+    { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 1 [0]
+    { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 2 [1]
+    { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 3 [2]
+    { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 4 [3]
+    { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 5 [4]
+    { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 6 [5]
+  ];
+  
+  const [barChartData, setBarChartData] = useState(defaultBarChartData);
+  
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -49,10 +60,31 @@ export default function StatsModal() {
         // gets user streak and max_streak data
         const streakData = [data.data.streak, data.data.max_streak];
         // gets user scores for all games
+        const updatedBarChart = [...defaultBarChartData];
         const gamesData = data.data.games.map(info => {
+          // counts games by score
+          if (info.score === 6) {
+            updatedBarChart[5].score += 1;
+          }
+          if (info.score === 5) {
+            updatedBarChart[4].score += 1;
+          }
+          if (info.score === 4) {
+            updatedBarChart[3].score += 1;
+          }
+          if (info.score === 3) {
+            updatedBarChart[2].score += 1;
+          }
+          if (info.score ===2) {
+            updatedBarChart[1].score += 1;
+          }
+          if (info.score ===1) {
+            updatedBarChart[0].score += 1;
+          }
           return info.score
         });
 
+        setBarChartData(updatedBarChart);
         setTotalScore(gamesData.reduce((prev, current) => prev + current, 0))
         setGamesPlayed(gamesData.length)
         setStreak(streakData)
@@ -62,6 +94,7 @@ export default function StatsModal() {
         console.log(err);
       })
   }, [open]);
+
 
 
   return (
@@ -77,8 +110,22 @@ export default function StatsModal() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <AssessmentIcon /> Stats
           </Typography>
-
-
+          <div className="bar-graph">
+            <Container>
+              <MainContainer>
+                {barChartData.map(({ score, colors }, i) => {
+                  return (
+                    <BarChartContainer key={i} >
+                      <Number color={colors[1]}>{barChartData[i].score}</Number>
+                      <MakeBar height={score} colors={colors} />
+                    </BarChartContainer>
+                  );
+                })}
+              </MainContainer>
+              <BlackLine />
+            </Container>
+          </div>
+          <div className="bar-graph-numbers"><p></p>123456</div>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className="streaks">
               <div className="individual-stat">
@@ -104,19 +151,6 @@ export default function StatsModal() {
                 <p>{totalScore && (totalScore / gamesPlayed).toFixed(2)}</p>
               </div>
             </div>
-            <Container>
-              <MainContainer>
-                {__DATA__.map(({ distance, colors }, i) => {
-                  return (
-                    <BarChartContainer key={i}>
-                      <Number color={colors[1]}>{distance} km</Number>
-                      <MakeBar height={distance * 2} colors={colors} />
-                    </BarChartContainer>
-                  );
-                })}
-              </MainContainer>
-              <BlackLine />
-            </Container>
           </Typography>
         </Box>
       </Modal>

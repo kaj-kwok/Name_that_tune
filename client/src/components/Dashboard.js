@@ -69,7 +69,7 @@ export default function Dashboard() {
   // determines if the game is over, and if it is over if you won or lost
   const determineGameState = () => {
     console.log("called determine state")
-    if (currentGuess === song.title && isGameActive === true) {
+    if (currentGuess === song.name && isGameActive === true) {
       setIsGameActive(false)
       setIsWinner(true)
       console.log("you win")

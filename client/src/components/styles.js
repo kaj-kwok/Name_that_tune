@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   margin: 0px auto;
   max-width: 500px;
-  height: 500px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -12,8 +12,9 @@ export const Container = styled.div`
 export const MainContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 95%;
   height: 100%;
+  gap: 5px;
 `;
 
 export const BarChartContainer = styled.div`
@@ -21,11 +22,11 @@ export const BarChartContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  padding-left: 9.5px;
 `;
 
 export const Chart = css`
-  margin-top: 10px;
-  width: 56px;
+  width: 40px;
   &:hover {
     opacity: 0.8;
   }
@@ -35,13 +36,14 @@ export const Chart = css`
 `;
 
 export const Number = styled.span`
-  font-size: 1.5rem;
+  font-size: 0.7em;
   text-align: center;
   color: ${(props) => props.color};
 `;
 
 export const MakeBar = styled.div`
-  height: ${(props) => props.height}%;
+  border-radius: 3px;
+  height: ${(props) => props.height * 15}%;
   background-image: linear-gradient(
     to bottom,
     ${(props) => props.colors[0]},
