@@ -12,6 +12,7 @@ export default function SearchArtist() {
   const [selectedValue, setSelectedValue] = useState("")
 
   useEffect(() => {
+    if (!searchTerm) return
     if (!searchResults) return setSearchResults([])
     let pause = false
     const list = searchArtist(searchTerm)

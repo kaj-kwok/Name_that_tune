@@ -12,6 +12,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import flames from '../lotties/flames'
 import { dashboardContext } from '../providers/DashboardProvider';
+import ProgressBar from './ProgressBar';
 
 
 export default function Player({ skipTurn, guesses }) {
@@ -27,7 +28,6 @@ export default function Player({ skipTurn, guesses }) {
 
   function hardModeRandomizer(duration_ms) {
     const timer = Math.floor((duration_ms - 7500) * Math.random())
-    console.log(timer)
     return timer
   }
 
@@ -57,14 +57,17 @@ export default function Player({ skipTurn, guesses }) {
 
       setPlayer(player);
 
-      player.addListener('ready', ({ device_id }) => {
+      player.addListener('ready', async ({ device_id }) => {
         console.log('Ready with Device ID', device_id)
-        setDevice(device_id)
+        await setDevice(device_id)
+        // switchPlayer(device_id)
       });
 
       player.addListener('not_ready', ({ device_id }) => {
         console.log('Device ID has gone offline', device_id);
       });
+
+      // player.addListener('player_state_changed', update);
 
       player.connect();
       console.log("player, connected")
@@ -74,6 +77,29 @@ export default function Player({ skipTurn, guesses }) {
       }
     };
   }, []);
+
+  function switchPlayer(device) {
+    axios(`https://api.spotify.com/v1/me/player`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        "Content-Type": "application/json"
+      },
+      data: {
+        "device_ids": [device]
+      }
+    })
+  }
+
+  // function update() {
+  //   player.getCurrentState().then(state => {
+  //     if (!state) {
+  //       console.error('User is not playing music through the Web Playback SDK');
+  //       return;
+  //     }
+  //     console.log(state)
+  //   })
+  // }
 
   const play = () => {
     console.log("this is the current track", song)
@@ -145,36 +171,45 @@ export default function Player({ skipTurn, guesses }) {
   }));
 
   return (
-    <div className="play-skip">
-      <div className="hardmode_switch">
-        <FormGroup>
-          <div className="hardmode-parent">
-            <div className="flames">
-              <Lottie
-                options={flamesOptions}
-                height="45px"
-                width="79px"
-                z-index="999"
-              />
+    <div className="player-container">
+      <ProgressBar playLengthArray={playLengthArray} isPlaying={isPlaying} hardMode={hardMode} hardModeArray={hardModeArray} />
+      <div className="play-skip">
+        <div className="hardmode_switch">
+          <FormGroup>
+            <div className="hardmode-parent">
+              <div className="flames">
+                <Lottie
+                  options={flamesOptions}
+                  height="45px"
+                  width="79px"
+                  z-index="999"
+                />
+              </div>
+              <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
             </div>
-            <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
-          </div>
-        </FormGroup>
+          </FormGroup>
+        </div>
+
+        <Button variant="contained"
+          onClick={() => play()}>
+          {isPlaying ?
+            <div>
+              <Lottie
+                options={defaultOptions}
+                height="24px"
+                width="24px"
+              />
+            </div> : <PlayArrowRoundedIcon />}
+        </Button>
+
+        <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>
+        <Button variant="contained" onClick={() => {
+          player.togglePlay().then(() => {
+            console.log('Toggled playback!');
+          });
+        }}> <SkipNextIcon /> </Button>
+
       </div>
-      <Button variant="contained"
-        onClick={() => play()}>
-        {isPlaying ?
-          <div>
-            <Lottie
-              options={defaultOptions}
-              height="24px"
-              width="24px"
-            />
-          </div> : <PlayArrowRoundedIcon />}
-      </Button>
-
-      <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>
-
     </div>
   )
 }
