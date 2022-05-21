@@ -8,6 +8,7 @@ import Chip from '@mui/material/Chip';
 import FaceIcon from '@mui/icons-material/Face';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import { Grid } from '@mui/material';
+import LeaderModal from './LeaderBoardModal';
 
 const pages = [];
 
@@ -35,7 +36,11 @@ export function ResponsiveAppBar({ displayName, user }) {
   return (
     <AppBar position="static">
       <Grid container  justifyContent='space-between' alignItems='center' padding>
+        <div className='left-nav'>
+
           <LightSwitch />
+          <LeaderModal />
+        </div>
           <div className='app-name'>
               <LibraryMusicIcon />
               <Typography
