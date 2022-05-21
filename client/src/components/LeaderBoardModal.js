@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -18,17 +18,15 @@ const style = {
   p: 4,
 };
 
-const leaderBoard = getLeaderboard().then(data => {
-  return data.data.map(player => {
-    return player.name
-    // console.log(player.name)
-  })
-})
 
 export default function LeaderModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const leaderBoard = getLeaderboard()
+  console.log(leaderBoard);
+
 
   return (
     <div>
@@ -43,13 +41,12 @@ export default function LeaderModal() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Leaderboard
           </Typography>
-          
+
 
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className='modal-box'>
-              {leaderBoard}
             </div>
-          
+
           </Typography>
         </Box>
       </Modal>
