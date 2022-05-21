@@ -24,7 +24,7 @@ export function searchArtist(searchTerm) {
     .catch(data => console.log(data))
 }
 
-export function retrieveArtistTopSongs(id) {
+export function retrieveArtistTopSongs(id, name) {
   return axios.get(`http://localhost:3001/playlists/artist/${id}`)
     .then(data => {
       console.log(data.data.tracks)
@@ -32,7 +32,8 @@ export function retrieveArtistTopSongs(id) {
         return {
           id: item.id,
           title: item.name,
-          duration: item.duration_ms
+          duration: item.duration_ms,
+          artist: name
         }
       })
     })

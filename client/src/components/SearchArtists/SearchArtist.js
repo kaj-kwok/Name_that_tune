@@ -32,7 +32,7 @@ export default function SearchArtist() {
     const matchId = searchResults.filter(artist => {
       return artist.name === artistName
     })
-    const list = retrieveArtistTopSongs(matchId[0].id)
+    const list = retrieveArtistTopSongs(matchId[0].id, artistName)
     list.then(data => {
       setTrackList(data)
       setSong(currentTrack(data))

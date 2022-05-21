@@ -25,11 +25,13 @@ router.get('/artist/:id', (req, res) => {
 router.get('/default', (req, res) => {
   spotifyApi.getPlaylist('2dEZn55szDawgoYOYQWHKQ')
     .then(function (data) {
+      console.log("data", data.body.tracks.items[0].track.artists.name)
       const arranged = data.body.tracks.items.map(item => {
         return {
           id: item.track.id,
           name: item.track.name,
-          duration: item.track.duration_ms
+          duration: item.track.duration_ms,
+          artist: item.track.artists[0].name
         }
       })
       res.json(arranged)
