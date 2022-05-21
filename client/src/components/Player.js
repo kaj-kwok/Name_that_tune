@@ -10,6 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
+import { Box } from '@mui/system';
 import flames from '../lotties/flames'
 import { dashboardContext } from '../providers/DashboardProvider';
 import ProgressBar from './ProgressBar';
@@ -160,23 +161,23 @@ export default function Player({ skipTurn, guesses }) {
 
   const GreenSwitch = styled(Switch)(({ theme }) => ({
     '& .MuiSwitch-switchBase.Mui-checked': {
-      color: pink[600],
+      color: '#F78E1E',
       '&:hover': {
-        backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
+        backgroundColor: alpha('#F78E1E', theme.palette.action.hoverOpacity),
       },
     },
     '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-      backgroundColor: pink[600],
+      backgroundColor: '#F78E1E',
     },
   }));
 
   return (
     <div className="player-container">
       <ProgressBar playLengthArray={playLengthArray} isPlaying={isPlaying} hardMode={hardMode} hardModeArray={hardModeArray} />
-      <div className="play-skip">
-        <div className="hardmode_switch">
+    <div>
+      <Box mb={2}>
+      <div className='hardmode-parent'>
           <FormGroup>
-            <div className="hardmode-parent">
               <div className="flames">
                 <Lottie
                   options={flamesOptions}
@@ -186,11 +187,10 @@ export default function Player({ skipTurn, guesses }) {
                 />
               </div>
               <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
-            </div>
           </FormGroup>
         </div>
-
-        <Button variant="contained"
+      </Box>
+        <Button variant="contained" color='secondary'
           onClick={() => play()}>
           {isPlaying ?
             <div>
@@ -198,18 +198,13 @@ export default function Player({ skipTurn, guesses }) {
                 options={defaultOptions}
                 height="24px"
                 width="24px"
+                color='primary'
               />
             </div> : <PlayArrowRoundedIcon />}
         </Button>
-
-        <Button variant="contained" onClick={skipTurn}> <SkipNextIcon /> </Button>
-        <Button variant="contained" onClick={() => {
-          player.togglePlay().then(() => {
-            console.log('Toggled playback!');
-          });
-        }}> <SkipNextIcon /> </Button>
-
+        <Button variant="contained" onClick={skipTurn} color='secondary'> <SkipNextIcon /> </Button>
       </div>
     </div>
+
   )
 }

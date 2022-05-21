@@ -8,6 +8,8 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+
 
 const style = {
   position: 'absolute',
@@ -52,9 +54,9 @@ export default function HelpModal() {
                 <SkipNextIcon fontSize='large' />
                 Skipped or incorrect attempts unlock more of the intro.
               </p>
-              <p className='modal-heart'> 
-                <FavoriteIcon  />
-                Good Luck! Don't forget to share with your friends!
+              <p className='modal-text'>
+                <LocalFireDepartmentIcon fontSize='large' />
+                Hard mode. The play time is shorter and instead of always starting from the beginning, it plays the song from a random point.
               </p>
             </div>
           

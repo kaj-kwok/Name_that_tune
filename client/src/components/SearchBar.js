@@ -15,13 +15,14 @@ export default function ComboBox({ getGuess }) {
   return (
     <Autocomplete
       value={val}
+      color={'#77BCA9'}
       disablePortal
       size="small"
       id="combo-box-demo"
       options={renderedTracklist}
-      sx={{ width: 300 }}
+      sx={{ width: 300}}
       onChange={(e, value) => getGuess(value)}
-      renderInput={(params) => <TextField {...params} label="Can you guess the Song" />}
+      renderInput={(params) => <TextField {...params} label="Can you guess the Song"  />}
     />
   );
 }

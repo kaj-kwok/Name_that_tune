@@ -3,26 +3,28 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border: 1px solid gray;
+  border: 1px solid #77BCA9;
   width: 400px;
   border-radius: 999px;
   padding: 1em;
   height: 1em;
-  box-shadow: 2px 2px 2px grey;
+  box-shadow: 2px 2px 2px #77BCA9;
   text-align: center;
+  padding-top: 1.2em;
+  padding-bottom: 1.2em;
 }
 
 .answer_row_value {
   animation: flip 0.5s ease forwards;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: large;
-
 }
 
 .value {
   justify-self: center;
   flex: 1;
-  transform: translateX(15px);
+  transform: translateX(18px);
+  padding-right: 15px;
 }
 
 
