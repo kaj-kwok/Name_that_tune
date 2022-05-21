@@ -14,11 +14,12 @@ const getDesignTokens = (mode) => ({
     primary: {
       ...(mode === 'dark' && {
         main: '#015077',
+        warning: '#1DB954'
       }),
     },
     ...(mode === 'dark' && {
       background: {
-        default: '#015077',
+        default: '#4B4848',
         paper: '#015077'
         
       },
@@ -31,12 +32,12 @@ const getDesignTokens = (mode) => ({
     text: {
       ...(mode === 'dark'
         ? {
-            primary:    '#1DB954',
-            secondary: '#1DB954',
+            primary:    '#77BCA9',
+            secondary: '#77BCA9',
           }
         : {
-            primary: '#	#1DB954',
-            secondary: '#1DB954',
+            primary: '#	#77BCA9',
+            secondary: '#77BCA9',
           }),
     },
   },

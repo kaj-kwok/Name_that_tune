@@ -41,6 +41,7 @@ export default function SearchArtist() {
   return (
     <Autocomplete
       value={selectedValue}
+      size='small'
       onChange={(e, newValue) => {
         setSelectedValue(newValue)
         handleSearchRequest(newValue);

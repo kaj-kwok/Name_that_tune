@@ -130,7 +130,7 @@ export default function Dashboard() {
 
   return (
     <div className="body">
-      <ResponsiveAppBar displayName={user.name} />
+      <ResponsiveAppBar displayName={user.name}/>
       {!isGameActive && <GameModal turnsLeft={turnsLeft} isWinner={isWinner} gameReset={gameReset} />}
       <div className="guess-container">
         {guessDisplay}
@@ -143,11 +143,11 @@ export default function Dashboard() {
         /> : <div>loading</div>}
       </div>
       <div className="submit-form">
-        <ComboBox className="combo-box" getGuess={getGuess} trackList={trackList} />
+        <ComboBox className="combo-box" getGuess={getGuess} trackList={trackList}/>
         <ColorButtons submitAnswer={submitAnswer} />
         {isDuplicateAnswer && <SimpleSnackbar close={close} />}
       </div>
-      <div>
+      <div className="search">
         <SearchArtist />
       </div>
     </div >

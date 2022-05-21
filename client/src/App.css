@@ -167,3 +167,10 @@ canvas {
   position: absolute;
   bottom: 44px;
 }
+
+.search {
+  display: flex;
+  justify-content: center;
+  padding-top: 1em;
+  padding-right: 7.1em;
+}

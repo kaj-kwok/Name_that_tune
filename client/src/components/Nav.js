@@ -33,7 +33,7 @@ export function ResponsiveAppBar({ displayName, user }) {
 
 
   return (
-    <AppBar position="static" color='warning'>
+    <AppBar position="static">
       <Grid container  justifyContent='space-between' alignItems='center' padding>
           <LightSwitch />
           <div className='app-name'>
