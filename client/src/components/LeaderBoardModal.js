@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { IconButton } from '@mui/material';
 import PublicIcon from '@mui/icons-material/Public';
+import { getLeaderboard } from './helpers/helperfunctions';
 
 const style = {
   position: 'absolute',
@@ -16,6 +17,13 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
+const leaderBoard = getLeaderboard().then(data => {
+  return data.data.map(player => {
+    return player.name
+    // console.log(player.name)
+  })
+})
 
 export default function LeaderModal() {
   const [open, setOpen] = React.useState(false);
@@ -39,16 +47,7 @@ export default function LeaderModal() {
 
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className='modal-box'>
-
-              <p className='modal-text'>
-               
-              </p>
-              <p className='modal-text'>
-                
-              </p>
-              <p className='modal-text'>
-                
-              </p>
+              {leaderBoard}
             </div>
           
           </Typography>
