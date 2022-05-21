@@ -31,7 +31,7 @@ THINGS TO DO:
   - [x] song intervals
   - [] logo
   - [x] settings drop down change to just display username
-  - [] stats modal display stats (total games, win percentage, win streak, max win streak)
+  - [x] stats modal display stats (total games, win percentage, win streak, max win streak)
   - [x] fix broken queries and create stats queries (including streaks, max streaks)
   - [x] expose API endpoint on backend to access stats  
   - [x] expand playlist/guess list
@@ -39,12 +39,16 @@ THINGS TO DO:
   - [] recording of demo 
   - [x] on click of play button, some icon to show that music is playing
   - [x] alerts on guess box for (duplicate answers)
-
+  - [] leader board
   
 ## Secondary
   - [] dark mode
   - [x] erase drop down in top left
   - [] deployment to web
-  - [] hard mode
-  - [] useContext
-  - [] refactored api calls 
+  - [x] hard mode
+  - [x] useContext
+  - [x] refactored api calls 
+  - [] spinner for loading player
+  - [] Graphs for stats
+  - [] progress bar
+  - [] updated help modal to include hard mode

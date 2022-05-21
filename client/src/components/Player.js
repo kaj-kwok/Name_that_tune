@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { Button } from '@mui/material'
 import SkipNextIcon from '@mui/icons-material/SkipNext';
@@ -10,11 +10,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
-import { Box } from '@mui/system';
+import flames from '../lotties/flames'
+import { dashboardContext } from '../providers/DashboardProvider';
 
 
-export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn, guesses, answer }) {
-
+export default function Player({ skipTurn, guesses }) {
+  const { accessToken, makePostRequesttoRefresh, song } = useContext(dashboardContext)
   const [device, setDevice] = useState()
   const [player, setPlayer] = useState()
   const [isPlaying, setIsPlaying] = useState(false)
@@ -33,7 +34,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
   //toggle for hardmode
   useEffect(() => {
     if (hardMode) {
-      const timer = hardModeRandomizer(answer.duration)
+      const timer = hardModeRandomizer(song.duration)
       setHardModeTimer(timer)
     }
   }, [hardMode, guesses])
@@ -75,7 +76,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
   }, []);
 
   const play = () => {
-    console.log("this is the current track", answer)
+    console.log("this is the current track", song)
     console.log("this is the device", device)
     if (!device) {
       console.log("not working")
@@ -88,7 +89,7 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
         "Content-Type": "application/json"
       },
       data: {
-        "uris": [`spotify:track:${answer.id}`],
+        "uris": [`spotify:track:${song.id}`],
         "position_ms": hardMode ? hardModeTimer : 0,
       }
     })
@@ -118,6 +119,15 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
     }
   };
 
+  const flamesOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: flames,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
   const handleChange = () => {
     setHardMode(!hardMode);
   };
@@ -135,31 +145,21 @@ export default function Player({ accessToken, makePostRequesttoRefresh, skipTurn
   }));
 
   return (
-    <div>
-      <Box m={2}>
+    <div className="play-skip">
+      <div className="hardmode_switch">
         <FormGroup>
-          <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
-        </FormGroup>
-      </Box>
-      <div className="play-skip">
-        <div className="hardmode_switch">
-          <FormGroup>
-            <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
-          </FormGroup>
-        </div>
-        <Button variant="contained" color='secondary'
-          onClick={() => play()}>
-          {isPlaying ?
-            <div>
+          <div className="hardmode-parent">
+            <div className="flames">
               <Lottie
-                options={defaultOptions}
-                height="24px"
-                width="24px"
-                color='primary'
+                options={flamesOptions}
+                height="45px"
+                width="79px"
+                z-index="999"
               />
-            </div> : <PlayArrowRoundedIcon />}
-        </Button>
-        <Button variant="contained" onClick={skipTurn} color='secondary'> <SkipNextIcon /> </Button>
+            </div>
+            <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
+          </div>
+        </FormGroup>
       </div>
     </div>
 

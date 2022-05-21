@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { IconButton, Fade } from '@mui/material';
 import ReplayIcon from '@mui/icons-material/Replay';
-import { gameScore } from './helper.js/helperfunctions';
+import { gameScore } from './helpers/helperfunctions';
+import { dashboardContext } from '../providers/DashboardProvider';
+
 
 //confetti options
 const confetti = require('canvas-confetti');
@@ -22,9 +23,11 @@ const style = {
   p: 4,
 };
 
-export default function GameModal({ isWinner, gameReset, user, turnsLeft, answer }) {
+export default function GameModal({ isWinner, gameReset, turnsLeft }) {
   const [open, setOpen] = React.useState(true);
+  const { user, song } = useContext(dashboardContext)
 
+  //confetti dreams
   if (isWinner === true && open === true) {
     setTimeout(() => {
       const myCanvas = document.createElement('canvas');
@@ -38,7 +41,6 @@ export default function GameModal({ isWinner, gameReset, user, turnsLeft, answer
 
       var end = Date.now() + (15 * 1000);
 
-      // go Buckeyes!
       var colors = ['#bb0000', '#ffffff'];
 
       (function frame() {
@@ -82,7 +84,7 @@ export default function GameModal({ isWinner, gameReset, user, turnsLeft, answer
                 <p className='game-modal-text'>
                   {user.name}
                   <span>{isWinner ? "You win!" : "You lost!"}</span>
-                  <span>The Correct Answer was {answer}</span>
+                  <span>The Correct Answer was {song.title}</span>
                   <span>You scored {gameScore(isWinner, turnsLeft)} Points</span>
                 </p>
                 <IconButton onClick={gameReset}><ReplayIcon /></IconButton>
