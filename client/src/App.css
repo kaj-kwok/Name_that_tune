@@ -172,5 +172,9 @@ canvas {
   display: flex;
   justify-content: center;
   padding-top: 1em;
-  padding-right: 7.1em;
+  padding-right: 7em;
+}
+
+.artist {
+  font-size: large;
 }
