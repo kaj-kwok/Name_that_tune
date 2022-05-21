@@ -96,4 +96,11 @@ const retrieveStats = (email) => {
     .catch(err => console.log(err))
 }
 
-module.exports = { getUserByEmail, addUsertoDatabase, insertGameInfo, checkCurrentStreak, retrieveStats }
+//function to retrieve leaderboard
+const retrieveLeaderboard = () => {
+  return db.query('SELECT SUM(score), users.name FROM users LEFT JOIN games ON users.id = games.user_id GROUP BY users.id;')
+    .then(data => data.rows)
+    .catch(err => console.log(err))
+}
+
+module.exports = { getUserByEmail, addUsertoDatabase, insertGameInfo, checkCurrentStreak, retrieveStats, retrieveLeaderboard }

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getUserByEmail, checkCurrentStreak, insertGameInfo, retrieveStats } = require('../dbqueries.js');
+const { getUserByEmail, checkCurrentStreak, insertGameInfo, retrieveStats, retrieveLeaderboard } = require('../dbqueries.js');
 
 router.post("/", (req, res) => {
   getUserByEmail(req.body.email).then(data => {
@@ -11,6 +11,11 @@ router.post("/", (req, res) => {
     .catch(err => console.log(err))
 
   res.status(201).send("received")
+})
+
+router.get("/leaderboard", (req, res) => {
+  retrieveLeaderboard()
+    .then(data => res.json(data))
 })
 
 router.get("/:email", (req, res) => {
