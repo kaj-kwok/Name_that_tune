@@ -81,3 +81,9 @@ export function getUserStats(email) {
   return axios.get(`http://localhost:3001/stats/${email}`)
     .catch(err => console.log(err));
 }
+
+export function getLeaderboard() {
+  return axios.get('http://localhost:3001/stats/leaderboard')
+    .then(data => data)
+    .catch(err => console.log(err))
+}

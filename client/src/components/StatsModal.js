@@ -38,7 +38,7 @@ export default function StatsModal() {
   const [streak, setStreak] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
   const [gamesPlayed, setGamesPlayed] = useState(0);
-  
+
   const defaultBarChartData = [
     { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 1 [0]
     { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 2 [1]
@@ -47,9 +47,9 @@ export default function StatsModal() {
     { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 5 [4]
     { score: 0, colors: ["#cbd9ad", "#7ca81d"] }, // 6 [5]
   ];
-  
+
   const [barChartData, setBarChartData] = useState(defaultBarChartData);
-  
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -75,10 +75,10 @@ export default function StatsModal() {
           if (info.score === 3) {
             updatedBarChart[2].score += 1;
           }
-          if (info.score ===2) {
+          if (info.score === 2) {
             updatedBarChart[1].score += 1;
           }
-          if (info.score ===1) {
+          if (info.score === 1) {
             updatedBarChart[0].score += 1;
           }
           return info.score
