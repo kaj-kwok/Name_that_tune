@@ -179,7 +179,7 @@ canvas {
 
 .flames {
   position: relative;
-  top: 20px
+  top: 17.5px
 }
 
 .search {
@@ -193,10 +193,33 @@ canvas {
   font-size: large;
 }
 
-.MuiPaper-root > MuiPaper-elevation > MuiPaper-elevation4 > MuiAppBar-root > MuiAppBar-colorPrimary > MuiAppBar-positionStatic > css-7bcgxy-MuiPaper-root-MuiAppBar-root {
-  background-color: aliceblue  
+.bar-graph-numbers {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1.3em;
 }
 
-.css-7bcgxy-MuiPaper-root-MuiAppBar-root {
-  background-color: aliceblue;
+.leaderboard-table {
+  width: 100%;
+  text-align: center;
+  font-size: 150%;
+}
+
+.leaderboard-place {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+#first-place {
+  color: #FFD700;
+}
+
+#second-place {
+  color: silver;
+}
+
+#third-place {
+  color: #b08d57
 }
