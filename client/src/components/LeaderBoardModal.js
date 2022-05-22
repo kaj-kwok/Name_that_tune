@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal';
 import { IconButton } from '@mui/material';
 import PublicIcon from '@mui/icons-material/Public';
 import { getLeaderboard } from './helpers/helperfunctions';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 const style = {
   position: 'absolute',
@@ -24,8 +25,13 @@ export default function LeaderModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const leaderBoard = getLeaderboard()
-  console.log(leaderBoard);
+
+  const leaderBoard = getLeaderboard().then(data => {
+    return data.data.map(player => {
+      return player.name
+      // console.log(player.name)
+    })
+  })
 
 
   return (
@@ -45,8 +51,19 @@ export default function LeaderModal() {
 
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className='modal-box'>
+              <p className='modal-text'>
+                <EmojiEventsIcon />
+                First Place
+              </p>
+              <p className='modal-text'>
+                <EmojiEventsIcon />
+                Second Place
+              </p>
+              <p className='modal-text'>
+                <EmojiEventsIcon />
+                Third Place
+              </p>
             </div>
-
           </Typography>
         </Box>
       </Modal>

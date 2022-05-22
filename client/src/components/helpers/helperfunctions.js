@@ -31,7 +31,7 @@ export function retrieveArtistTopSongs(id, name) {
       return data.data.tracks.map(item => {
         return {
           id: item.id,
-          title: item.name,
+          name: item.name,
           duration: item.duration_ms,
           artist: name
         }
