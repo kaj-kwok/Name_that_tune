@@ -90,6 +90,7 @@ button.MuiButton-root.MuiButton-contained {
 
 .player-container {
   width: 50%;
+  max-width: 600px;
 }
 
 .player-controls {
