@@ -125,7 +125,14 @@ export default function StatsModal() {
               <BlackLine />
             </Container>
           </div>
-          <div className="bar-graph-numbers"><p></p>123456</div>
+          <div className="bar-graph-numbers">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+            <p>4</p>
+            <p>5</p>
+            <p>6</p>
+            </div>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className="streaks">
               <div className="individual-stat">

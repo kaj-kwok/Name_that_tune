@@ -178,7 +178,7 @@ canvas {
 
 .flames {
   position: relative;
-  top: 20px
+  top: 17.5px
 }
 
 .search {
@@ -190,4 +190,35 @@ canvas {
 
 .artist {
   font-size: large;
+}
+
+.bar-graph-numbers {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1.3em;
+}
+
+.leaderboard-table {
+  width: 100%;
+  text-align: center;
+  font-size: 150%;
+}
+
+.leaderboard-place {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+#first-place {
+  color: #FFD700;
+}
+
+#second-place {
+  color: silver;
+}
+
+#third-place {
+  color: #b08d57
 }
