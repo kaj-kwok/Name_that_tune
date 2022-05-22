@@ -1,7 +1,7 @@
 import React from 'react'
 import './Login.css'
 
-const AUTH_URL = 'https://accounts.spotify.com:443/authorize?client_id=036db34aae6d4d70a636cd76c4758224&response_type=code&redirect_uri=http://localhost:3000/auth/callback&scope=user-read-private%20user-read-email%20streaming%20user-read-playback-state%20user-modify-playback-state'
+const AUTH_URL = process.env.REACT_APP_AUTH_URL
 
 export default function Login() {
   return (
