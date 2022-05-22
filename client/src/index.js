@@ -19,21 +19,21 @@ const getDesignTokens = (mode) => ({
     },
     ...(mode === 'dark' && {
       background: {
-        default: '#4B4848',
-        paper: '#015077'
+        default: '#0D0D0D',
+        paper: '#0D0D0D'
         
       },
     }),
     secondary: {
         ...(mode === 'dark' && {
-            main: '#F78E1E',
+            main: '#E4E4E4',
           }),
     },
     text: {
       ...(mode === 'dark'
         ? {
-            primary:    '#77BCA9',
-            secondary: '#77BCA9',
+            primary:    '#E4E4E4',
+            secondary: '#E4E4E4',
           }
         : {
             primary: '#	#77BCA9',

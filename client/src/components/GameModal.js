@@ -68,7 +68,6 @@ export default function GameModal({ isWinner, gameReset, turnsLeft }) {
 
   return (
     <div>
-
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"

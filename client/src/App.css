@@ -95,6 +95,7 @@ button.MuiButton-root.MuiButton-contained {
 .player-controls {
   display: flex;
   justify-content: center;
+  gap: 15px
 }
 
 .timer-bar {
@@ -185,9 +186,17 @@ canvas {
   display: flex;
   justify-content: center;
   padding-top: 1em;
-  padding-right: 7em;
+  padding-right: 6.1em;
 }
 
 .artist {
   font-size: large;
+}
+
+.MuiPaper-root > MuiPaper-elevation > MuiPaper-elevation4 > MuiAppBar-root > MuiAppBar-colorPrimary > MuiAppBar-positionStatic > css-7bcgxy-MuiPaper-root-MuiAppBar-root {
+  background-color: aliceblue  
+}
+
+.css-7bcgxy-MuiPaper-root-MuiAppBar-root {
+  background-color: aliceblue;
 }

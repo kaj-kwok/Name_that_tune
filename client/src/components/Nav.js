@@ -63,7 +63,7 @@ export function ResponsiveAppBar({ displayName, user }) {
           <div className='icons'>
             <HelpModal />
             
-              <Chip icon={<FaceIcon />} label={displayName} variant="filled" color="primary" />
+              <Chip icon={<FaceIcon />} label={displayName} variant="filled" color="secondary" />
           </div>
       </Grid>
     </AppBar>

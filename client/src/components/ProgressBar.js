@@ -45,7 +45,7 @@ export default function ProgressBar({ playLengthArray, isPlaying, hardMode, hard
   const fillerStyles = {
     height: '100%',
     width: `${width}% `,
-    backgroundColor: "#1976d2",
+    backgroundColor: "#585759",
     borderRadius: 'inherit',
     textAlign: 'right'
   }

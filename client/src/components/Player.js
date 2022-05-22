@@ -161,13 +161,13 @@ export default function Player({ skipTurn, guesses }) {
 
   const GreenSwitch = styled(Switch)(({ theme }) => ({
     '& .MuiSwitch-switchBase.Mui-checked': {
-      color: '#F78E1E',
+      color: pink[300],
       '&:hover': {
-        backgroundColor: alpha('#F78E1E', theme.palette.action.hoverOpacity),
+        backgroundColor: alpha('#E4E4E4', theme.palette.action.hoverOpacity),
       },
     },
     '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-      backgroundColor: '#F78E1E',
+      backgroundColor: pink[300],
     },
   }));
 
@@ -191,7 +191,7 @@ export default function Player({ skipTurn, guesses }) {
           </div>
         </Box>
         <div className="player-controls">
-          <Button variant="contained" color='secondary'
+          <Button variant="outlined" color='secondary'
             onClick={() => play()}>
             {isPlaying ?
               <div>
@@ -203,7 +203,7 @@ export default function Player({ skipTurn, guesses }) {
                 />
               </div> : <PlayArrowRoundedIcon />}
           </Button>
-          <Button variant="contained" onClick={skipTurn} color='secondary'> <SkipNextIcon /> </Button>
+          <Button variant="outlined" onClick={skipTurn} color='secondary'> <SkipNextIcon /> </Button>
         </div>
       </div>
     </div>
