@@ -22,16 +22,22 @@ const style = {
 
 export default function LeaderModal() {
   const [open, setOpen] = useState(false);
+  const [position, setPosition] = useState(null)
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
-  const leaderBoard = getLeaderboard().then(data => {
-    return data.data.map(player => {
-      return player.name
-      // console.log(player.name)
+  useEffect(() => {
+    const leaderBoard = getLeaderboard().then(data => {
+      const position = data.data.map(player => {
+        return {
+          name: player.name,
+          score: (player.sum === null ? 0 : player.sum)
+        }
+      })
+      setPosition(position)
     })
-  })
+
+  }, [])
 
 
   return (
@@ -53,15 +59,15 @@ export default function LeaderModal() {
             <div className='modal-box'>
               <p className='modal-text'>
                 <EmojiEventsIcon />
-                First Place
+                First Place: {position && position[0].name}
               </p>
               <p className='modal-text'>
                 <EmojiEventsIcon />
-                Second Place
+                Second Place: {position && position[1].name}
               </p>
               <p className='modal-text'>
                 <EmojiEventsIcon />
-                Third Place
+                Third Place: {position && position[2].name}
               </p>
             </div>
           </Typography>
