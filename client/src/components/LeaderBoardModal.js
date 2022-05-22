@@ -59,15 +59,15 @@ export default function LeaderModal() {
             <div className='modal-box'>
               <p className='modal-text'>
                 <EmojiEventsIcon />
-                First Place: {position && position[0].name}
+                First Place: {position && position[0].name} Score:{position && position[0].score}
               </p>
               <p className='modal-text'>
                 <EmojiEventsIcon />
-                Second Place: {position && position[1].name}
+                Second Place: {position && position[1].name} Score:{position && position[1].score}
               </p>
               <p className='modal-text'>
                 <EmojiEventsIcon />
-                Third Place: {position && position[2].name}
+                Third Place: {position && position[2].name} Score:{position && position[2].score}
               </p>
             </div>
           </Typography>
