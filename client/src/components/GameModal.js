@@ -25,7 +25,7 @@ const style = {
 
 export default function GameModal({ isWinner, gameReset, turnsLeft }) {
   const [open, setOpen] = React.useState(true);
-  const { user, song } = useContext(dashboardContext)
+  const { user, song, resetSong, accessToken } = useContext(dashboardContext)
 
   //confetti dreams
   if (isWinner === true && open === true) {
@@ -84,10 +84,13 @@ export default function GameModal({ isWinner, gameReset, turnsLeft }) {
                 <p className='game-modal-text'>
                   {user.name}
                   <span>{isWinner ? "You win!" : "You lost!"}</span>
-                  <span>The Correct Answer was {song.title}</span>
+                  <span>The Correct Answer was: {song.name}</span>
                   <span>You scored {gameScore(isWinner, turnsLeft)} Points</span>
                 </p>
-                <IconButton onClick={gameReset}><ReplayIcon /></IconButton>
+                <IconButton onClick={() => {
+                  gameReset()
+                  resetSong()
+                }}><ReplayIcon /></IconButton>
                 {/* <IconButton onClick={() => {
                   createCanvas()
                 }}><ReplayIcon /></IconButton> */}

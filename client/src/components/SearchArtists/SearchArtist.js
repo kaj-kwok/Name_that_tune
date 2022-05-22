@@ -5,7 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { dashboardContext } from '../../providers/DashboardProvider';
 
 
-export default function SearchArtist() {
+export default function SearchArtist({ gameReset }) {
   const { setTrackList, currentTrack, setSong } = useContext(dashboardContext)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchResults, setSearchResults] = useState([])
@@ -45,7 +45,8 @@ export default function SearchArtist() {
       size='small'
       onChange={(e, newValue) => {
         setSelectedValue(newValue)
-        handleSearchRequest(newValue);
+        handleSearchRequest(newValue)
+        gameReset();
       }}
       inputValue={searchTerm}
       onInputChange={(event, newInputValue) => {

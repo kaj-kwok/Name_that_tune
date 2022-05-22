@@ -115,12 +115,10 @@ export default function Dashboard() {
     setIsDuplicateAnswer(false)
   }
 
-
-
   // function for resetting the game after the current game ends
   const gameReset = () => {
     console.log("reset game")
-    refreshSong(accessToken)
+    // refreshSong(accessToken)
     setTurnsLeft(6)
     setGuesses((prev) => [])
     setIsGameActive(true)
@@ -146,12 +144,12 @@ export default function Dashboard() {
         /> : <div>loading</div>}
       </div>
       <div className="submit-form">
-        <ComboBox className="combo-box" getGuess={getGuess} trackList={trackList}/>
+        <ComboBox className="combo-box" getGuess={getGuess} trackList={trackList} />
         <ColorButtons submitAnswer={submitAnswer} />
         {isDuplicateAnswer && <SimpleSnackbar close={close} />}
       </div>
       <div className="search">
-        <SearchArtist />
+        <SearchArtist gameReset={gameReset} />
       </div>
     </div >
   )

@@ -19,17 +19,21 @@ function DashboardProvider({ children }) {
       setUser(user)
       sendUserInfo(user)
 
-      const returnedSongs = refreshSong()
-      returnedSongs.then(playList => {
-        setTrackList(playList)
-        setSong(currentTrack(playList))
-      })
+      resetSong()
     })
   }, [accessToken])
 
 
+  function resetSong() {
+    const returnedSongs = refreshSong()
+    returnedSongs.then(playList => {
+      setTrackList(playList)
+      setSong(currentTrack(playList))
+    })
+  }
 
-  const dashboardData = { accessToken, makePostRequesttoRefresh, song, refreshSong, user, trackList, setTrackList, currentTrack, setSong }
+
+  const dashboardData = { accessToken, makePostRequesttoRefresh, song, resetSong, user, trackList, setTrackList, currentTrack, setSong }
 
   return (
     <dashboardContext.Provider value={dashboardData}>
