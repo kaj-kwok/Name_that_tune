@@ -50,8 +50,11 @@ export default function ProgressBar({ playLengthArray, isPlaying, hardMode, hard
     textAlign: 'right'
   }
   return (
-    <div className="progress-parent" style={containerStyles}>
-      <div className="progress-child" style={fillerStyles} ></div>
+    <div>
+      <span className="timer-bar"><div>0:00</div><div>{hardMode ? "0:0" + hardModeArray[hardModeArray.length - 1] / 1000 : "0:" + playLengthArray[playLengthArray.length - 1] / 1000}</div></span>
+      <div className="progress-parent" style={containerStyles}>
+        <div className="progress-child" style={fillerStyles} ></div>
+      </div>
     </div>
   )
 }

@@ -25,7 +25,7 @@ export default function Player({ skipTurn, guesses }) {
   const [hardModeTimer, setHardModeTimer] = useState(0)
 
   const playLengthArray = [3000, 6000, 10000, 15000, 20000, 25000]
-  const hardModeArray = [1500, 2500, 3500, 5000, 6000, 7500]
+  const hardModeArray = [1500, 2500, 3500, 5000, 6000, 8000]
 
   function hardModeRandomizer(duration_ms) {
     const timer = Math.floor((duration_ms - 7500) * Math.random())
@@ -174,10 +174,10 @@ export default function Player({ skipTurn, guesses }) {
   return (
     <div className="player-container">
       <ProgressBar playLengthArray={playLengthArray} isPlaying={isPlaying} hardMode={hardMode} hardModeArray={hardModeArray} />
-    <div>
-      <Box mb={2}>
-      <div className='hardmode-parent'>
-          <FormGroup>
+      <div>
+        <Box mb={2}>
+          <div className='hardmode-parent'>
+            <FormGroup>
               <div className="flames">
                 <Lottie
                   options={flamesOptions}
@@ -187,22 +187,24 @@ export default function Player({ skipTurn, guesses }) {
                 />
               </div>
               <FormControlLabel labelPlacement="top" value="top" control={<GreenSwitch checked={hardMode} onChange={handleChange} />} label="Hard Mode" />
-          </FormGroup>
+            </FormGroup>
+          </div>
+        </Box>
+        <div className="player-controls">
+          <Button variant="contained" color='secondary'
+            onClick={() => play()}>
+            {isPlaying ?
+              <div>
+                <Lottie
+                  options={defaultOptions}
+                  height="24px"
+                  width="24px"
+                  color='primary'
+                />
+              </div> : <PlayArrowRoundedIcon />}
+          </Button>
+          <Button variant="contained" onClick={skipTurn} color='secondary'> <SkipNextIcon /> </Button>
         </div>
-      </Box>
-        <Button variant="contained" color='secondary'
-          onClick={() => play()}>
-          {isPlaying ?
-            <div>
-              <Lottie
-                options={defaultOptions}
-                height="24px"
-                width="24px"
-                color='primary'
-              />
-            </div> : <PlayArrowRoundedIcon />}
-        </Button>
-        <Button variant="contained" onClick={skipTurn} color='secondary'> <SkipNextIcon /> </Button>
       </div>
     </div>
 

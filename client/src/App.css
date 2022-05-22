@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   z-index: 5;
-  
+
 }
 
 .submit-form {
@@ -88,6 +88,20 @@ button.MuiButton-root.MuiButton-contained {
   margin: 0;
 }
 
+.player-container {
+  width: 50%;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+}
+
+.timer-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
 .play-skip {
   display: flex;
   gap: 10px;
@@ -132,7 +146,8 @@ canvas {
   gap: 1.5em;
 }
 
-.streaks, .scores {
+.streaks,
+.scores {
   display: flex;
   justify-content: space-evenly;
 }
@@ -164,8 +179,6 @@ canvas {
 .flames {
   position: relative;
   top: 20px
-  
- 
 }
 
 .search {
