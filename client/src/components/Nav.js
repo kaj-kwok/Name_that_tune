@@ -1,7 +1,6 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
-import LightSwitch from './Switch';
 import StatsModal from './StatsModal';
 import HelpModal from './HelpModal';
 import Chip from '@mui/material/Chip';

@@ -90,10 +90,6 @@ export default function GameModal({ isWinner, gameReset, turnsLeft }) {
                   gameReset()
                   resetSong()
                 }}><ReplayIcon /></IconButton>
-                {/* <IconButton onClick={() => {
-                  createCanvas()
-                }}><ReplayIcon /></IconButton> */}
-
               </div>
             </Typography>
           </Box>

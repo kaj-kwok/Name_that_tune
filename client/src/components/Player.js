@@ -61,14 +61,12 @@ export default function Player({ skipTurn, guesses }) {
       player.addListener('ready', async ({ device_id }) => {
         console.log('Ready with Device ID', device_id)
         await setDevice(device_id)
-        // switchPlayer(device_id)
       });
 
       player.addListener('not_ready', ({ device_id }) => {
         console.log('Device ID has gone offline', device_id);
       });
 
-      // player.addListener('player_state_changed', update);
 
       player.connect();
       console.log("player, connected")
@@ -91,16 +89,6 @@ export default function Player({ skipTurn, guesses }) {
       }
     })
   }
-
-  // function update() {
-  //   player.getCurrentState().then(state => {
-  //     if (!state) {
-  //       console.error('User is not playing music through the Web Playback SDK');
-  //       return;
-  //     }
-  //     console.log(state)
-  //   })
-  // }
 
   const play = () => {
     console.log("this is the current track", song)
