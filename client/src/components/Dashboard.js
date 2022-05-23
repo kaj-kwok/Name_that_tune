@@ -13,7 +13,7 @@ import SearchArtist from "./SearchArtists/SearchArtist"
 
 
 export default function Dashboard() {
-  const { accessToken, makePostRequesttoRefresh, song, refreshSong, user, trackList } = useContext(dashboardContext)
+  const { accessToken, makePostRequesttoRefresh, song, user, trackList, resetSong } = useContext(dashboardContext)
   const [currentGuess, setCurrentGuess] = useState('')
   const [guesses, setGuesses] = useState([])
   const [turnsLeft, setTurnsLeft] = useState(6)
@@ -61,7 +61,7 @@ export default function Dashboard() {
         className="guess"
         value={answer}
         placeholder={index + 1}
-        correctAnswer={song.name}
+      // correctAnswer={song.name}
       />
     )
   })
@@ -118,7 +118,7 @@ export default function Dashboard() {
   // function for resetting the game after the current game ends
   const gameReset = () => {
     console.log("reset game")
-    // refreshSong(accessToken)
+    resetSong()
     setTurnsLeft(6)
     setGuesses((prev) => [])
     setIsGameActive(true)

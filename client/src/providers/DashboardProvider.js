@@ -19,17 +19,17 @@ function DashboardProvider({ children }) {
       setUser(user)
       sendUserInfo(user)
 
-      resetSong()
+      const returnedSongs = refreshSong()
+      returnedSongs.then(playList => {
+        setTrackList(playList)
+        setSong(currentTrack(playList))
+      })
     })
   }, [accessToken])
 
-
   function resetSong() {
-    const returnedSongs = refreshSong()
-    returnedSongs.then(playList => {
-      setTrackList(playList)
-      setSong(currentTrack(playList))
-    })
+    setSong(currentTrack(trackList))
+
   }
 
 
