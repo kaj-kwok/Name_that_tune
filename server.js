@@ -105,17 +105,7 @@ App.post("/user", (req, res) => {
 })
 
 App.get('/test', (req, res) => {
-  console.log('The access token is ' + spotifyApi.getAccessToken());
-  spotifyApi
-    .getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', { limit: 10, offset: 20 })
-    .then(
-      function (data) {
-        console.log('Album information', data.body);
-      },
-      function (err) {
-        console.error(err);
-      }
-    );
+  res.json("hello")
 
 })
 
