@@ -6,7 +6,7 @@ const BodyParser = require('body-parser');
 const SpotifyWebApi = require('spotify-web-api-node')
 const morgan = require('morgan');
 const cors = require('cors')
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const { getUserByEmail, addUsertoDatabase } = require('./dbqueries');
 
 // Express Configuration
@@ -93,7 +93,6 @@ App.get('/auth/callback', (req, res) => res.json({
 
 
 App.post("/user", (req, res) => {
-  console.log("user route", req.body)
   res.status(201).send("received")
   getUserByEmail(req.body.email).then(data => {
     //check if user already exists
@@ -106,7 +105,6 @@ App.post("/user", (req, res) => {
 
 App.get('/test', (req, res) => {
   res.json("hello")
-
 })
 
 App.listen(PORT, () => {

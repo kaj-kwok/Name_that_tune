@@ -55,16 +55,13 @@ const insertGameInfo = (user_id, completed, score) => {
 
 //function to check if currently on streak
 const checkCurrentStreak = (user_id, streak, max_streak, completed) => {
-  console.log(streak)
   if (completed === true) {
     return db.query(`SELECT * FROM games WHERE user_id = $1 ORDER BY id DESC LIMIT 1;`, [user_id])
       .then(data => {
         if (data.rows[0].completed === true) {
           const value = streak + 1
-          console.log("newvalue", value)
           db.query(`UPDATE users SET streak = $1 WHERE id = $2 RETURNING*;`, [value, user_id])
             .then(data => {
-              console.log("data after updating streak", data.rows);
               if (data.rows[0].streak > max_streak) {
                 db.query(`UPDATE users SET max_streak = $1 WHERE id = $2;`, [data.rows[0].streak, user_id])
               }
