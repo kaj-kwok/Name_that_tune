@@ -8,7 +8,7 @@ Utilises [Spotify API](spotify.com)
 
 # Authors:
 
-Ryan Kwok [[LinkedIn]](www.linkedin.com/in/ryan-kwok604) [[Github]]()\
+Ryan Kwok [[LinkedIn]](https://www.linkedin.com/in/ryan-kwok604) [[Github]](https://github.com/kaj-kwok/Name_that_tune)\
 Calvin Chung [[LinkedIn]](https://www.linkedin.com/in/calvin-chung-3543b5239/) [[Github]](https://github.com/Kikstyophobia)\
 Josh Sparkes [[LinkedIn]](https://www.linkedin.com/in/joshua-sparkes-95121422b/) [[Github]](https://github.com/Sparkes21)
 
