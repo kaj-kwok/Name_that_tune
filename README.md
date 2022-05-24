@@ -12,9 +12,10 @@ Ryan Kwok [[LinkedIn]](www.linkedin.com/in/ryan-kwok604) [[Github]]()\
 Calvin Chung [[LinkedIn]](https://www.linkedin.com/in/\calvin-chung-3543b5239/) [[Github]](https://github.com/Kikstyophobia)\
 Josh Sparkes [[LinkedIn]](https://www.linkedin.com/in/joshua-sparkes-95121422b/) [[Github]](https://github.com/Sparkes21)
 
-![playthrough](docs\example1.gif)
+![example1](https://user-images.githubusercontent.com/94345485/169933822-25754a53-cd0a-4caf-9e68-53fc512de73f.gif)
 
-![Help Menu](docs\Help_Menu.png)
+![Help_Menu](https://user-images.githubusercontent.com/94345485/169933887-89a7fabf-805b-4908-8201-541081fe1f9b.png)
+
 
 ## Installation
 
