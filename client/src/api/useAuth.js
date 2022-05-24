@@ -16,8 +16,6 @@ export default function useAuth(code) {
         setExpiresIn(res.data.expiresIn)
         //clear query parameters from URL, set to root URL
         window.history.pushState({}, null, "/")
-        // getUserData(res.data.accessToken)
-        // refreshSong(res.data.accessToken)
       })
       //if code is expired, redirect to login
       .catch(() => {

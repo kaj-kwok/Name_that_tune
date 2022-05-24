@@ -10,25 +10,25 @@ export default function GuessBox({ value, placeholder, correctAnswer }) {
         <div className="answer_row_value answer_row" >
           <div className='value'>
 
-          {value} 
+            {value}
           </div>
-          <DangerousIcon sx={{fontSize: '25px'}} color = 'error'/> 
-          
-        </div>  
-      </> 
+          <DangerousIcon sx={{ fontSize: '25px' }} color='error' />
+
+        </div>
+      </>
     );
   } else if (value === correctAnswer) {
     return (
       <div className="answer_row_value answer_row">
         <div className='value'>
-        {value}
+          {value}
         </div>
       </div>
     )
 
   } else {
     return (
-      <div className="answer_row"/>
+      <div className="answer_row" />
     );
   }
 

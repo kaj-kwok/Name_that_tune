@@ -61,7 +61,7 @@ export default function Dashboard() {
         className="guess"
         value={answer}
         placeholder={index + 1}
-      // correctAnswer={song.name}
+        correctAnswer={song.name}
       />
     )
   })
