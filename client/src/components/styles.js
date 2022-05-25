@@ -43,7 +43,7 @@ export const Number = styled.span`
 
 export const MakeBar = styled.div`
   border-radius: 3px;
-  height: ${(props) => props.height * 15}%;
+  height: ${(props) => props.height}%;
   background-image: linear-gradient(
     to bottom,
     ${(props) => props.colors[0]},

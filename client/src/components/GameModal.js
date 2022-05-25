@@ -18,7 +18,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '2px solid #E4E4E4',
   boxShadow: 12,
   p: 4,
 };
@@ -41,18 +41,18 @@ export default function GameModal({ isWinner, gameReset, turnsLeft }) {
 
       var end = Date.now() + (15 * 1000);
 
-      var colors = ['#bb0000', '#ffffff'];
+      var colors = ['#ff99ff', '#ffff00', '#66ff33', '#33ccff'];
 
       (function frame() {
         myConfetti({
-          particleCount: 2,
+          particleCount: 4,
           angle: 60,
           spread: 55,
           origin: { x: 0 },
           colors: colors
         });
         myConfetti({
-          particleCount: 2,
+          particleCount: 4,
           angle: 120,
           spread: 55,
           origin: { x: 1 },
