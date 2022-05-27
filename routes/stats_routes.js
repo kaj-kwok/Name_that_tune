@@ -6,7 +6,6 @@ router.post("/", (req, res) => {
   getUserByEmail(req.body.email).then(data => {
     checkCurrentStreak(data.id, data.streak, data.max_streak, req.body.completed)
     insertGameInfo(data.id, req.body.completed, req.body.score);
-    console.log("req.body is ", req.body)
   })
     .catch(err => console.log(err))
 
