@@ -39,7 +39,7 @@ export default function GameModal({ isWinner, gameReset, turnsLeft }) {
         useWorker: true,
       });
 
-      var end = Date.now() + (15 * 1000);
+      var end = Date.now() + (0.3 * 1000);
 
       var colors = ['#ff99ff', '#ffff00', '#66ff33', '#33ccff'];
 
